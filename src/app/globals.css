@@ -9,3 +9,20 @@
         font-family: Rokh;
     }
 }
+
+@theme{
+    --color-primary : #CB1B1B;
+    --breakpoint-sm : 320px
+}
+
+@layer components{
+    .btn{
+        @apply border-primary text-primary border rounded-[12px] flex justify-center items-center hover:cursor-pointer hover:bg-red-100 transition-colors
+    } 
+    .active{
+        @apply text-primary
+    }
+    .menuHover{
+        @apply  hover:text-primary transition-colors hover:cursor-pointer
+    }
+}
