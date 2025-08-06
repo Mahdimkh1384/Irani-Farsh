@@ -11,36 +11,42 @@ export default function NavBar() {
     const [isShowCategoryMenu, setIsShowCategoryMenu] = useState(false)
 
     return (
-        <div className='flex flex-col pr-[108px] pl-[108px] pt-6 gap-6'>
-            <div className='flex justify-between items-center'>
-                <div className='flex justify-center items-center gap-6'>
-                    <h4 className='lg:text-primary text-[24px]'>ایرانی فرش</h4>
+        <div className='flex flex-col lg:pr-[108px] lg:pl-[108px] sm:pr-3 sm:pl-3 pt-6 gap-6'>
+            <div className='flex justify-between items-start'>
+                {/* ========================= right section ======================== */}
+                <div className='flex sm:w-[220px] lg:w-full lg:items-center lg:gap-6 lg:flex-row sm:flex-col'>
+                    <div className='flex items-center gap-x-4'>
+                        <button className='lg:hidden sm:inline size-10 rounded-[8px] bg-neutral-300 p-3'><IoMdMenu /></button>
+                        <h4 className='text-primary text-[24px]'>ایرانی فرش</h4>
+                    </div>
                     <div className=' relative'>
-                        <MdSearch className=' absolute right-2 top-2.5 size-6 text-neutral-600 hover: cursor-pointer' />
-                        <input type="text" placeholder='جستجوی فرش' className='w-[439px] h-[48px] bg-neutral-200 p-3 pr-10 rounded-[12px] outline-none' />
+                        <MdSearch className=' absolute right-2 lg:top-2.5 sm:top-7.5 size-6 text-neutral-600 hover: cursor-pointer' />
+                        <input type="text" placeholder='جستجوی فرش' className='lg:w-[439px] sm:w-[367px] h-[48px] bg-neutral-200 p-3 pr-10 rounded-[12px] outline-none lg:mt-0 sm:mt-5' />
                     </div>
                 </div>
-                <div className='flex justify-between items-center gap-4'>
+                {/* ========================= left section ======================== */}
+                <div className='flex justify-between items-center gap-4 '>
                     <button className='btn size-12 text-2xl'><MdOutlineShoppingCart /> </button>
-                    <button className='btn w-[153px] h-12'>
-                        <MdOutlineLogin className='text-2xl ml-2' />
-                        <Link href="/">ورود / ثبت نام</Link>
+                    <button className='btn lg:w-[153px] lg:h-12 sm:size-12 '>
+                        <MdOutlineLogin className='text-2xl lg:ml-2' />
+                        <Link href="/" className=' lg:inline sm:hidden '>ورود / ثبت نام</Link>
                     </button>
                 </div>
             </div>
-            <div className=' border-b border-neutral-300 pt-2 pb-2'>
+            {/* ========================= menu section ======================== */}
+            <div className=' border-b border-neutral-300 pt-2 pb-2 lg:inline sm:hidden'>
                 <ul className='flex gap-8 text-[15px]'>
                     <Link href="/" className='active menuHover'>صفحه اصلی</Link>
-                    <Link href="/" className=' relative menuHover group' onMouseEnter={() => setIsShowCategoryMenu(true)}>
-                        <div className='flex justify-center items-center gap-x-0.5 '>
+                    <li href="/" className=' relative menuHover group' onMouseEnter={() => setIsShowCategoryMenu(true)}>
+                        <Link href="/" className='flex justify-center items-center gap-x-0.5 '>
                             دسته بندی
                             <MdArrowBackIos className=' group-hover:-rotate-90 transition-transform' />
-                        </div>
+                        </Link>
                         {isShowCategoryMenu && <ul className=' absolute flex flex-col gap-y-1 shadow p-2.5 w-28 h-20 top-8' onMouseLeave={() => setIsShowCategoryMenu(false)}>
                             <li><Link href="/" className='text-black hover:text-primary transition-colors'>فرش دستی</Link></li>
                             <li><Link href="/" className='text-black hover:text-primary transition-colors'>فرش ماشینی</Link></li>
                         </ul>}
-                    </Link>
+                    </li>
                     <Link href="" className='menuHover'>تماس با ما</Link>
                     <Link href="/" className='menuHover'>درباره ما</Link>
                 </ul>
