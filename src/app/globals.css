@@ -1,2 +1,11 @@
 @import "tailwindcss";
 
+@layer base{
+    @font-face {
+        font-family: Rokh;
+        src: url("../../public/fonts/Rokh/Rokh Pro v1.0/Farsi Numeral/ttf/RokhFaNum-Bold.ttf");
+    }
+    body{
+        font-family: Rokh;
+    }
+}
