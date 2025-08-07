@@ -12,7 +12,7 @@ export default function MobileMenu() {
                 <h3 className=' text-2xl text-primary'>ایرانی فرش</h3>
             </div>
             <div className='p-4'>
-                <ul className='flex flex-col gap-y-4' >
+                <ul className='flex flex-col gap-y-4 font-bold font-[Rokh-light]' >
                     <Link href="/" className='activeMobileMenu p-2'>صفحه اصلی</Link>
                     <li className='p-2' onClick={() => setIsShowCategoryForMobile(prev => !prev)}>
                         <div className='flex items-center gap-x-1'>
