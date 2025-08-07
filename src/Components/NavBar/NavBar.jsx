@@ -1,22 +1,46 @@
 "use client"
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { MdSearch, MdOutlineShoppingCart, MdOutlineLogin, MdArrowBackIos } from "react-icons/md";
 import { IoMdMenu } from "react-icons/io";
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 
 
 export default function NavBar() {
 
     const [isShowCategoryMenu, setIsShowCategoryMenu] = useState(false)
+    const [isShowMobileMenu, setIsShowMobileMenu] = useState(false)
+    const menuRef = useRef(null);
 
-    return (
+    // close mobile menu to click outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                isShowMobileMenu &&
+                menuRef.current &&
+                !menuRef.current.contains(event.target)
+            ) {
+                setIsShowMobileMenu(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isShowMobileMenu]);
+
+
+    return (<>
+        {isShowMobileMenu && <div ref={menuRef}><MobileMenu /></div>}
         <div className='flex flex-col lg:pr-[108px] lg:pl-[108px] sm:pr-3 sm:pl-3 pt-6 gap-6'>
             <div className='flex justify-between items-start'>
                 {/* ========================= right section ======================== */}
                 <div className='flex sm:w-[220px] lg:w-full lg:items-center lg:gap-6 lg:flex-row sm:flex-col'>
                     <div className='flex items-center gap-x-4'>
-                        <button className='lg:hidden sm:inline size-10 rounded-[8px] bg-neutral-300 p-3'><IoMdMenu /></button>
+                        <button className='lg:hidden sm:inline size-10 rounded-[8px] bg-neutral-300 p-3' onClick={() => setIsShowMobileMenu(true)}><IoMdMenu /></button>
                         <h4 className='text-primary text-[24px]'>ایرانی فرش</h4>
                     </div>
                     <div className=' relative'>
@@ -26,18 +50,18 @@ export default function NavBar() {
                 </div>
                 {/* ========================= left section ======================== */}
                 <div className='flex justify-between items-center gap-4 '>
-                    <button className='btn size-12 text-2xl'><MdOutlineShoppingCart /> </button>
-                    <button className='btn lg:w-[153px] lg:h-12 sm:size-12 '>
+                    <Link href="/" className='btn size-12 text-2xl'><MdOutlineShoppingCart /> </Link>
+                    <Link href="/" className='btn lg:w-[153px] lg:h-12 sm:size-12 '>
                         <MdOutlineLogin className='text-2xl lg:ml-2' />
-                        <Link href="/" className=' lg:inline sm:hidden '>ورود / ثبت نام</Link>
-                    </button>
+                        <span href="/" className=' lg:inline sm:hidden '>ورود / ثبت نام</span>
+                    </Link>
                 </div>
             </div>
             {/* ========================= menu section ======================== */}
             <div className=' border-b border-neutral-300 pt-2 pb-2 lg:inline sm:hidden'>
                 <ul className='flex gap-8 text-[15px]'>
                     <Link href="/" className='active menuHover'>صفحه اصلی</Link>
-                    <li href="/" className=' relative menuHover group' onMouseEnter={() => setIsShowCategoryMenu(true)}>
+                    <li className=' relative menuHover group' onMouseEnter={() => setIsShowCategoryMenu(true)}>
                         <Link href="/" className='flex justify-center items-center gap-x-0.5 '>
                             دسته بندی
                             <MdArrowBackIos className=' group-hover:-rotate-90 transition-transform' />
@@ -52,5 +76,6 @@ export default function NavBar() {
                 </ul>
             </div>
         </div>
+    </>
     )
 }

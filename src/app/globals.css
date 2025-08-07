@@ -25,4 +25,7 @@
     .menuHover{
         @apply  hover:text-primary transition-colors hover:cursor-pointer
     }
+    .activeMobileMenu{
+        @apply bg-red-200 rounded-xl
+    }
 }
