@@ -15,7 +15,7 @@ import { Navigation } from 'swiper/modules';
 
 export default function Slider() {
     return (
-        <div className="pr-[93px] pl-[93px] mt-7">
+        <div className="lg:pr-[93px] lg:pl-[93px] sm:pr-3 sm:pl-3 mt-7">
             <Swiper
                 className=" flex gap-x-6 justify-between"
                 spaceBetween={20}       // فاصله بین اسلایدها
@@ -24,6 +24,16 @@ export default function Slider() {
                 loop={true}             // اسلاید بی‌نهایت
                 navigation={true}       // دکمه‌های بعد/قبل
                 modules={[Navigation]}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1,
+                        spaceBetween: 10
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 20
+                    }
+                }}
             >
                 <SwiperSlide>
                     <ProductBox />
