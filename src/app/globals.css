@@ -11,6 +11,11 @@
         src: url("../../public/fonts/Rokh/Rokh Pro v1.0/Farsi Numeral/ttf/RokhFaNum-Regular.ttf");
     }
 
+    @font-face {
+        font-family: vazir;
+        src: url("../../public/fonts/vazir-font-v16.1.0/Vazir-Light.woff2");
+    }
+
     body {
         font-family: Rokh;
     }
