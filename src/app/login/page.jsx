@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Input from '../singup/input'
-import {FaKey, FaPhone, } from 'react-icons/fa'
-import { requiredValidator, minValidator, maxValidator } from '@/validators/rules'
+import {FaKey, FaPhone,FaEnvelope } from 'react-icons/fa'
+import { requiredValidator, minValidator, maxValidator  , emailValidator} from '@/validators/rules'
 import Link from 'next/link'
 
 export default function Login() {
@@ -18,15 +18,16 @@ export default function Login() {
                     <form action="" className='lg:w-[100%] flex flex-col gap-10 items-center justify-center sm:w-[90%] mt-6'>
                         <Input
                             className="loginInput"
-                            type="number"
-                            placeholder="شماره موبایل"
+                            type="email"
+                            placeholder="ایمیل"
                             element="input"
                             validations={[
                                 requiredValidator(),
-                                minValidator(11),
-                                maxValidator(11),
+                                minValidator(10),
+                                maxValidator(100),
+                                emailValidator()
                             ]}
-                            Icon={<FaPhone />}
+                            Icon={<FaEnvelope />}
                         />
                         <Input
                             className="loginInput"

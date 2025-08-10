@@ -42,18 +42,6 @@ export default function Login() {
                         />
                         <Input
                             className="loginInput"
-                            type="number"
-                            placeholder="شماره موبایل"
-                            element="input"
-                            validations={[
-                                requiredValidator(),
-                                minValidator(11),
-                                maxValidator(11),
-                            ]}
-                            Icon={<FaPhone />}
-                        />
-                        <Input
-                            className="loginInput"
                             type="email"
                             placeholder="ایمیل"
                             element="input"
