@@ -50,7 +50,7 @@ export default function NavBar() {
                 </div>
                 {/* ========================= left section ======================== */}
                 <div className='flex justify-between items-center gap-4 '>
-                    <Link href="/" className='btn size-12 text-2xl'><MdOutlineShoppingCart /> </Link>
+                    <Link href="/basket" className='btn size-12 text-2xl'><MdOutlineShoppingCart /> </Link>
                     <Link href="/login" className='btn lg:w-[153px] lg:h-12 sm:size-12 '>
                         <MdOutlineLogin className='text-2xl lg:ml-2' />
                         <span href="/" className=' lg:inline sm:hidden '>ورود / ثبت نام</span>
