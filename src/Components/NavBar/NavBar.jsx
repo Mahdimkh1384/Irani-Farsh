@@ -41,7 +41,7 @@ export default function NavBar() {
                 <div className='flex sm:w-[220px] lg:w-full lg:items-center lg:gap-6 lg:flex-row sm:flex-col'>
                     <div className='flex items-center gap-x-4'>
                         <button className='lg:hidden sm:inline size-10 rounded-[8px] bg-neutral-300 p-3' onClick={() => setIsShowMobileMenu(true)}><IoMdMenu /></button>
-                        <h4 className='text-primary text-[24px]'>ایرانی فرش</h4>
+                        <Link href="/" className='text-primary text-[24px]'>ایرانی فرش</Link>
                     </div>
                     <div className=' relative'>
                         <MdSearch className=' absolute right-2 lg:top-2.5 sm:top-7.5 size-6 text-neutral-600 hover: cursor-pointer' />
@@ -66,7 +66,7 @@ export default function NavBar() {
                             دسته بندی
                             <MdArrowBackIos className=' group-hover:-rotate-90 transition-transform' />
                         </Link>
-                        {isShowCategoryMenu && <ul className=' absolute flex flex-col gap-y-1 shadow p-2.5 w-28 h-20 top-8' onMouseLeave={() => setIsShowCategoryMenu(false)}>
+                        {isShowCategoryMenu && <ul className=' absolute flex flex-col gap-y-1 shadow p-2.5 w-28 h-20 top-8 bg-white z-50' onMouseLeave={() => setIsShowCategoryMenu(false)}>
                             <li><Link href="/" className='text-black hover:text-primary transition-colors'>فرش دستی</Link></li>
                             <li><Link href="/" className='text-black hover:text-primary transition-colors'>فرش ماشینی</Link></li>
                         </ul>}
