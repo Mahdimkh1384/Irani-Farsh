@@ -49,10 +49,9 @@ export default function Input({
             onChange={onChangeHandler}
             value={inputState.value}
             className={`peer bg-white/30 backdrop-blur-[4px] 
-              ${
-                inputState.isValid
-                  ? "border-green-500 border-2"
-                  : inputState.value.length > 0
+              ${inputState.isValid
+                ? "border-green-500 border-2"
+                : inputState.value.length > 0
                   ? "border-red-500 border-2"
                   : "border-[#9CA3AF]"
               } 
@@ -60,7 +59,7 @@ export default function Input({
           />
           {Icon && (
             <div
-              className="absolute right-3 lg:right-0.5 top-1/2 -translate-y-1/2 
+              className="absolute right-3 lg:right-1.5 top-1/2 -translate-y-1/2 
                          text-[#9CA3AF] peer-focus:text-[#CB1B1B] 
                          transition-colors duration-200 w-5 h-5 pointer-events-none"
             >

@@ -51,7 +51,7 @@ export default function NavBar() {
                 {/* ========================= left section ======================== */}
                 <div className='flex justify-between items-center gap-4 '>
                     <Link href="/" className='btn size-12 text-2xl'><MdOutlineShoppingCart /> </Link>
-                    <Link href="/" className='btn lg:w-[153px] lg:h-12 sm:size-12 '>
+                    <Link href="/login" className='btn lg:w-[153px] lg:h-12 sm:size-12 '>
                         <MdOutlineLogin className='text-2xl lg:ml-2' />
                         <span href="/" className=' lg:inline sm:hidden '>ورود / ثبت نام</span>
                     </Link>
@@ -71,7 +71,7 @@ export default function NavBar() {
                             <li><Link href="/" className='text-black hover:text-primary transition-colors'>فرش ماشینی</Link></li>
                         </ul>}
                     </li>
-                    <Link href="" className='menuHover'>تماس با ما</Link>
+                    <Link href="/" className='menuHover'>تماس با ما</Link>
                     <Link href="/" className='menuHover'>درباره ما</Link>
                 </ul>
             </div>

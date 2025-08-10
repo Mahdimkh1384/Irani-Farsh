@@ -1,4 +1,5 @@
 import rules from "./rules"
+import regex from "./regex";
 
 const validator = (value, validations, extraParams) => {
     let validationsResults = []
@@ -22,10 +23,10 @@ const validator = (value, validations, extraParams) => {
             if (!regex.test(value.trim())) validationsResults.push(false)
         }
         else if (validation.value === rules.alphabeticValue) {
-    
+
         }
-        else if (validation.value === rules.emailValiu) {
-            if (!value.trim().includes('@')) validationsResults.push(false)
+        else if (validation.value === rules.emailValue) {
+            !regex.testEmail(value) && validationsResults.push(false);
         }
     }
 

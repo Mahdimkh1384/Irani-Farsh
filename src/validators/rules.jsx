@@ -3,7 +3,7 @@ const minValue = "MIN_VALUE";
 const maxValue = 'MAX_VALUE';
 const alphabeticValue = "ALPHABETIC_VALUE";
 const alphabeticPattern = /^[آ-یa-zA-Z]+$/;
-const emailValiu = 'EMAIL_VALUE';
+const emailValue = 'EMAIL_VALUE';
 
 export const requiredValidator = () => ({
     value: requiredValue
@@ -30,7 +30,7 @@ export const alphabeticPatternValidator = () => ({
 
 
 export const emailValidator = () => ({
-    value: emailValiu
+    value: emailValue
 });
 
-export default { requiredValue, minValue, maxValue, alphabeticValue, alphabeticPattern, emailValiu };
+export default { requiredValue, minValue, maxValue, alphabeticValue, alphabeticPattern, emailValue };

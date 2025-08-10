@@ -5,14 +5,17 @@
         font-family: Rokh;
         src: url("../../public/fonts/Rokh/Rokh Pro v1.0/Farsi Numeral/ttf/RokhFaNum-Bold.ttf");
     }
+
     @font-face {
         font-family: Rokh-light;
         src: url("../../public/fonts/Rokh/Rokh Pro v1.0/Farsi Numeral/ttf/RokhFaNum-Regular.ttf");
     }
+
     @font-face {
         font-family: vazir;
         src: url("../../public/fonts/vazir-font-v16.1.0/Vazir-Light.woff2");
     }
+
     body {
         font-family: Rokh;
     }
@@ -38,5 +41,9 @@
 
     .activeMobileMenu {
         @apply bg-red-200 rounded-xl
+    }
+
+    .loginInput {
+        @apply lg:w-[100%] h-[56px] rounded-[12px] opacity-100 rotate-0 backdrop-blur-[4px] bg-white/30 border border-[#9CA3AF] placeholder-[#9CA3AF] text-right pr-10 focus:border-primary focus:placeholder-primary outline-none sm:w-[100%] font-[Rokh-light] font-bold
     }
 }
