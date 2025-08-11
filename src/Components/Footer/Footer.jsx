@@ -21,7 +21,7 @@ export default function Footer() {
                             <PiInstagramLogoLight className='hover:cursor-pointer' />
                         </div>
                     </div>
-                    <img src="./images/enamad.png" alt="enamad" />
+                    <img src="/images/enamad.png" alt="enamad" />
                 </div>
             </div>
             {/* ===================== left section =================== */}

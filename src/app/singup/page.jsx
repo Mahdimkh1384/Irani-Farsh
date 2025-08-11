@@ -9,7 +9,7 @@ export default function Login() {
     return (
         <>
             <div className="flex flex-col md:flex-row justify-center items-center gap-x-20 lg:mt-15 sm:mt-5
-                bg-no-repeat bg-center bg-cover
+                bg-no-repeat bg-center lg:bg-cover sm:bg-bottom
                 bg-[url('/farsh.png')] md:bg-none
                 ">
                 <div className='lg:w-[30%] flex flex-col gap-10 justify-center items-center lg:mt-[0px] sm:w-[100%] sm:gap-2 sm:mt-[200px] sm:bg-white sm:rounded-t-[20px] sm:pt-[20px]'>
