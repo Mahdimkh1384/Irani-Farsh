@@ -25,7 +25,7 @@ export default function MobileMenu() {
                         </ul>}
                     </li>
                     <Link href="/" className='p-2'>تماس با ما</Link>
-                    <Link href="/" className='p-2'>ارتباط با ما</Link>
+                    <Link href="/about-us" className='p-2'>درباره ما</Link>
                 </ul>
             </div>
         </div >
