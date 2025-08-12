@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function Landing() {
@@ -8,7 +9,7 @@ export default function Landing() {
                 <p className='text-center font-[Rokh-light] font-bold lg:text-[24px] sm:text-[12px] mt-6 lg:w-[590px] sm:w-[310px]'>با ایـــرانی فرش در سریع ترین زمان ممکن فرش خودت رو سفارش بده و از تنوع بی نظیر فرش ها لذت ببر.</p>
                 <div className='flex w-full justify-center lg:gap-x-10 sm:gap-x-4 lg:mt-12 sm:mt-6 lg:h-14 sm:h-8 '>
                     <button className='btn lg:h-14 sm:h-10 lg:w-[206px] sm:w-[152px] lg:text-[18px] sm:text-[14px]'>محصولات ویژه ایرانی فرش</button>
-                    <button className='font-bold lg:text-[18px] sm:text-[14px] font-[Rokh-light] bg-primary text-white border rounded-[12px] flex justify-center items-center hover:cursor-pointer hover:bg-red-700 transition-colors lg:h-14 sm:h-10 lg:w-[206px] sm:w-[152px]'>عضویت در باشگاه مشتریان</button>
+                    <Link href="/customer-club" className='font-bold lg:text-[18px] sm:text-[14px] font-[Rokh-light] bg-primary text-white border rounded-[12px] flex justify-center items-center hover:cursor-pointer hover:bg-red-700 transition-colors lg:h-14 sm:h-10 lg:w-[206px] sm:w-[152px]'>عضویت در باشگاه مشتریان</Link>
                 </div>
             </div>
             <img className='lg:w-[527px] lg:h-[470px] sm:w-[280px] sm:h-[250px]' src="./images/group 3.png" alt="carpets" />
