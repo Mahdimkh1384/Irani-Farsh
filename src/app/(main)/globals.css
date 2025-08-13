@@ -3,17 +3,17 @@
 @layer base {
     @font-face {
         font-family: Rokh;
-        src: url("../../public/fonts/Rokh/Rokh Pro v1.0/Farsi Numeral/ttf/RokhFaNum-Bold.ttf");
+        src: url("../../../public/fonts/Rokh/Rokh Pro v1.0/Farsi Numeral/ttf/RokhFaNum-Bold.ttf");
     }
 
     @font-face {
         font-family: Rokh-light;
-        src: url("../../public/fonts/Rokh/Rokh Pro v1.0/Farsi Numeral/ttf/RokhFaNum-Regular.ttf");
+        src: url("../../../public/fonts/Rokh/Rokh Pro v1.0/Farsi Numeral/ttf/RokhFaNum-Regular.ttf");
     }
 
     @font-face {
         font-family: vazir;
-        src: url("../../public/fonts/vazir-font-v16.1.0/Vazir-Light.woff2");
+        src: url("../../../public/fonts/vazir-font-v16.1.0/Vazir-Light.woff2");
     }
 
     body {
