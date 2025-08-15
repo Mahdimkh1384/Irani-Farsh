@@ -6,7 +6,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body>
-        <div className='px-10 py-5 flex  '>
+        <div className='lg:px-10 py-5 sm:px-5 flex  '>
           <SideBar />
           <div className="w-full lg:mr-100">
             <Header />
