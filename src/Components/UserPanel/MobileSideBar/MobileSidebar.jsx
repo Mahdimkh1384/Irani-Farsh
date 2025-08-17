@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 export default function MobileSidebar() {
     return (
-        <div className='bg-neutral-50 fixed top-0 right-0 w-[65%] h-screen border  border-neutral-400'>
+        <div className='bg-neutral-50 z-50 fixed top-0 right-0 w-[65%] h-screen border  border-neutral-400'>
             {/* ====================== top section (profile) ========================= */}
             <div className='h-[35%] flex flex-col justify-center items-center gap-y-2 border-b border-neutral-600 bg-[linear-gradient(to_bottom,rgba(255,30,30,0.5),rgba(255,0,0,0.2),rgba(255,255,255,1))]'>
                 <div className=' relative'>
@@ -31,7 +31,7 @@ export default function MobileSidebar() {
                         <FaUser />
                         حساب کاربری
                     </Link>
-                    <Link href='' className='flex items-center gap-x-2.5 pr-2.5 hover:text-primary transition-colors'>
+                    <Link href='/basket' className='flex items-center gap-x-2.5 pr-2.5 hover:text-primary transition-colors'>
                         <MdOutlineShoppingCart />
                         سبد خرید من
                     </Link>

@@ -35,7 +35,7 @@ export default function SideBar() {
                         <FaUser/>
                         حساب کاربری
                     </Link>
-                    <Link href='' className='flex items-center gap-x-2.5 pr-2.5 hover:text-primary transition-colors'>
+                    <Link href='/basket' className='flex items-center gap-x-2.5 pr-2.5 hover:text-primary transition-colors'>
                         <MdOutlineShoppingCart/>
                         سبد خرید من
                     </Link>
