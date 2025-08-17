@@ -8,8 +8,8 @@ export default function UserPanel() {
         <>
             <div className='lg:mt-14 sm:mt-10'>
                 <h2 className='text-2xl'>حساب کاربری</h2>
-                <div className='flex flex-col lg:gap-y-5 sm:gap-y-2.5 *: mt-10'>
-                    <div className='flex lg:flex-row sm:flex-col gap-2.5'>
+                <div className='flex flex-col lg:gap-y-5 sm:gap-y-2.5 lg:mt-10 sm:mt-7'>
+                    <div className='flex lg:flex-row sm:flex-col sm:gap-2.5 lg:gap-5'>
                         <Input
                             className="loginInput"
                             type="text"
@@ -35,7 +35,7 @@ export default function UserPanel() {
                             Icon={<FaUser />}
                         />
                     </div>
-                    <div className='flex lg:flex-row sm:flex-col gap-2.5'>
+                    <div className='flex lg:flex-row sm:flex-col sm:gap-2.5 lg:gap-5'>
                         <Input
                             className="loginInput"
                             type="email"
