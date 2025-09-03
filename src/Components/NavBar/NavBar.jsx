@@ -60,7 +60,7 @@ export default function NavBar() {
             {/* ========================= menu section ======================== */}
             <div className=' border-b border-neutral-300 pt-2 pb-2 lg:inline sm:hidden'>
                 <ul className='flex gap-8 text-[15px] font-bold font-[Rokh-light]'>
-                    <Link href="/" className='active menuHover'>صفحه اصلی</Link>
+                    <Link href="/" className='menuHover'>صفحه اصلی</Link>
                     <li className=' relative menuHover group' onMouseEnter={() => setIsShowCategoryMenu(true)}>
                         <Link href="/" className='flex justify-center items-center gap-x-0.5 '>
                             دسته بندی
