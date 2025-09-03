@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function ProductBox() {
@@ -11,9 +12,9 @@ export default function ProductBox() {
                     <p className='font-[Rokh-light] font-bold text-[18px]'>233/000 تومان</p>
                 </div>
             </div>
-            <button className='btn w-[255.5px] h-10 '>
+            <Link href="/product" className='btn w-[255.5px] h-10 '>
                 مشاهده بیشتر
-            </button>
+            </Link>
         </div>
     )
 }

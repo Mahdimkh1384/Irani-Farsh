@@ -1,16 +1,18 @@
 import ProductGallery from '@/Components/ProductsGallery/productgallery'
 import React from 'react'
-
+import Breadcrumb from '@/Components/Breadcrumb/Breadcrumb'
 import ProductSpecs from '@/Components/ProductSpecs/ProductSpecs'
 import PurchaseBox from '@/Components/PurchaseBox/PurchaseBox'
-import ProductBox from '@/Components/ProductBox/ProductBox'
 import Slider from '@/Components/Slider/Slider'
 import Reviews from '@/Components/Reviews/review'
 
 export default function Products() {
     return (
         <>
-            <div className='flex lg:flex-row lg:pt-[150px] sm:pt-[50px] lg:pr-[108px] lg:pl-[108px] justify-between sm:flex-col'>
+            <Breadcrumb links={[
+                {id : 1 , title : 'ماهساره' , href: "products"}
+            ]}/>
+            <div className='flex lg:flex-row pt-[50px] lg:pr-[108px] lg:pl-[108px] justify-between sm:flex-col'>
                 <div className=' lg:w-[30%] sm:w-[100%]'>
                     <ProductGallery />
                 </div>
