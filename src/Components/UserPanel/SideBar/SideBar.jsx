@@ -18,7 +18,7 @@ export default function SideBar() {
     const links = [
         { id: 1, title: "حساب کاربری", href: "/my-account", icon: <FaUser /> },
         { id: 2, title: "سبد خرید من", href: "/basket", icon: <MdOutlineShoppingCart /> },
-        { id: 3, title: "سفارش های من", href: "", icon: <LuClipboardList /> },
+        { id: 3, title: "سفارش های من", href: "/my-account/orders", icon: <LuClipboardList /> },
         { id: 4, title: "آدرس ها", href: "", icon: <FaRegAddressBook /> },
         { id: 5, title: "خروج", href: "", icon: <CiLogout /> },
     ]
