@@ -7,7 +7,7 @@ export default function Page() {
         <div className="lg:mt-14 sm:mt-10">
             <h2 className="text-2xl">سفارش‌های من</h2>
             <div className="pt-4 space-y-4">
-                <div className="flex items-center justify-between bg-white border border-neutral-400 rounded-xl p-3 shadow-sm hover:bg-red-50 hover:border-red-400 transition">
+                <div className="flex items-center justify-between bg-white border border-neutral-400 rounded-xl p-3 shadow-sm hover:bg-red-50 hover:border-red-400 transition cursor-pointer">
                     <div className="flex items-center space-x-2 space-x-reverse">
                         <Link href="/products" className="rounded-md overflow-hidden border border-gray-300">
                             <Image width={40} height={40} src="/images/carpet.png" className="w-full h-full object-cover" />
@@ -21,7 +21,7 @@ export default function Page() {
                         <CheckCircle className="w-5 h-5 text-green-600" />
                     </div>
                 </div>
-                <div className="flex items-center justify-between bg-white border border-neutral-400 rounded-xl p-3 shadow-sm hover:bg-red-50 hover:border-red-400 transition">
+                <div className="flex items-center justify-between bg-white border border-neutral-400 rounded-xl p-3 shadow-sm hover:bg-red-50 hover:border-red-400 transition cursor-pointer">
                     <div className="flex items-center space-x-2 space-x-reverse">
                         <Link href="/products" className="rounded-md overflow-hidden border border-gray-300">
                             <Image width={40} height={40} src="/images/carpet.png" className="w-full h-full object-cover" />
