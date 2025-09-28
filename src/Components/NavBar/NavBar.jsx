@@ -12,9 +12,16 @@ export default function NavBar() {
     const [isShowCategoryMenu, setIsShowCategoryMenu] = useState(false)
     const [isShowMobileMenu, setIsShowMobileMenu] = useState(false)
     const menuRef = useRef(null);
+    const [allCategories, setAllCategories] = useState([])
 
+    const getCategories = async () => {
+        const res = await fetch("https://backend.sajlab.ir/api/categories")
+        const data = await res.json()
+        setAllCategories(data.data)
+    }
     // close mobile menu to click outside
     useEffect(() => {
+        getCategories()
         const handleClickOutside = (event) => {
             if (
                 isShowMobileMenu &&
@@ -66,10 +73,12 @@ export default function NavBar() {
                             دسته بندی
                             <MdArrowBackIos className=' group-hover:-rotate-90 transition-transform' />
                         </Link>
-                        {isShowCategoryMenu && <ul className=' absolute flex flex-col gap-y-1 shadow p-2.5 w-28 h-20 top-8 bg-white z-50' onMouseLeave={() => setIsShowCategoryMenu(false)}>
-                            <li><Link href="/" className='text-black hover:text-primary transition-colors'>فرش دستی</Link></li>
-                            <li><Link href="/" className='text-black hover:text-primary transition-colors'>فرش ماشینی</Link></li>
-                        </ul>}
+                        {isShowCategoryMenu &&
+                            <ul className=' absolute flex flex-col gap-y-1 shadow p-2.5 w-28  top-8 bg-white z-50' onMouseLeave={() => setIsShowCategoryMenu(false)}>
+                                {allCategories.map(category => (
+                                    <li key={category.id} className='text-black hover:text-primary transition-colors'><Link href={category.slug}>{category.title}</Link></li>
+                                ))}
+                            </ul>}
                     </li>
                     <Link href="/" className='menuHover'>تماس با ما</Link>
                     <Link href="/about-us" className='menuHover'>درباره ما</Link>
