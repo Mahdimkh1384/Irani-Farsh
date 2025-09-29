@@ -1,11 +1,23 @@
 "use client"
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdArrowBackIos } from "react-icons/md";
 
 export default function MobileMenu() {
 
     const [isShowCategoryForMobile, setIsShowCategoryForMobile] = useState(false)
+    const [allCategories, setAllCategories] = useState([])
+
+    const getCategories = async () => {
+        const res = await fetch("https://backend.sajlab.ir/api/categories")
+        const data = await res.json()
+        setAllCategories(data.data)
+    }
+
+    useEffect(() => {
+        getCategories()
+    })
+
     return (
         <div className=' absolute bg-neutral-100 shadow top-0 right-0 w-[65%] h-screen z-50 '>
             <div className='flex justify-center items-center border-b h-17'>
@@ -19,9 +31,10 @@ export default function MobileMenu() {
                             دسته بندی
                             <MdArrowBackIos className={`${isShowCategoryForMobile ? ' -rotate-90 transition-transform' : ' rotate-0 transition-transform'}`} />
                         </div>
-                        {isShowCategoryForMobile && <ul className='flex flex-col gap-y-3 p-2.5 mt-2 text-neutral-700'>
-                            <Link href="/">فرش دستی</Link>
-                            <Link href='/'>فرش ماشینی</Link>
+                        {isShowCategoryForMobile && <ul className='flex flex-col gap-y-3.5 p-2.5 mt-2 text-neutral-700'>
+                            {allCategories.map(category => (
+                                <Link key={category.id} href={category.slug}>{category.title}</Link>
+                            ))}
                         </ul>}
                     </li>
                     <Link href="/" className='p-2'>تماس با ما</Link>
