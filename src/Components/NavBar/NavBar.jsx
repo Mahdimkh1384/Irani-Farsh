@@ -74,9 +74,9 @@ export default function NavBar() {
                             <MdArrowBackIos className=' group-hover:-rotate-90 transition-transform' />
                         </Link>
                         {isShowCategoryMenu &&
-                            <ul className=' absolute flex flex-col gap-y-1 shadow p-2.5 w-28  top-8 bg-white z-50' onMouseLeave={() => setIsShowCategoryMenu(false)}>
+                            <ul className=' absolute flex flex-col gap-y-1 shadow w-[200px] p-2.5 top-8 bg-white z-50' onMouseLeave={() => setIsShowCategoryMenu(false)}>
                                 {allCategories.map(category => (
-                                    <li key={category.id} className='text-black hover:text-primary transition-colors'><Link href={category.slug}>{category.title}</Link></li>
+                                    <li key={category.id} className='text-black hover:text-primary transition-colors p-1'><Link href={category.slug}>{category.title}</Link></li>
                                 ))}
                             </ul>}
                     </li>
