@@ -69,7 +69,7 @@ export default function NavBar() {
                 <ul className='flex gap-8 text-[15px] font-bold font-[Rokh-light]'>
                     <Link href="/" className='menuHover'>صفحه اصلی</Link>
                     <li className=' relative menuHover group' onMouseEnter={() => setIsShowCategoryMenu(true)}>
-                        <Link href="/" className='flex justify-center items-center gap-x-0.5 '>
+                        <Link href="/categories" className='flex justify-center items-center gap-x-0.5 '>
                             دسته بندی
                             <MdArrowBackIos className=' group-hover:-rotate-90 transition-transform' />
                         </Link>
