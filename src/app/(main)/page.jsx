@@ -12,10 +12,10 @@ export default function Home() {
       <CategoryBox />
       <SectionHeader title="جدیدترین ها" />
       <Slider />
-      <CategoryBox />
+      <CategoryBox firstItem={4} lastItem={8} />
       <SectionHeader title="فرش های ماشینی" />
       <Slider />
-      <CustomerClub/>
+      <CustomerClub firstItem={4} lastItem={8} />
     </>
   );
 }
