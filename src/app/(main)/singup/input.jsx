@@ -16,6 +16,7 @@ const inputReducer = (state, action) => {
 };
 
 export default function Input({
+  name,
   id,
   type = "text",
   placeholder,
@@ -25,6 +26,7 @@ export default function Input({
   validations = [],
   onChange,
   extraParams = {},
+  value,
 }) {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: "",
@@ -44,6 +46,7 @@ export default function Input({
           <input
             id={id}
             type={type}
+            name={id || name}
             placeholder={placeholder}
             dir="rtl"
             onChange={onChangeHandler}
@@ -71,6 +74,7 @@ export default function Input({
         <textarea
           id={id}
           placeholder={placeholder}
+          name={id || name}
           dir="rtl"
           onChange={onChangeHandler}
           value={inputState.value}
