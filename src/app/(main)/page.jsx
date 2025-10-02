@@ -9,13 +9,13 @@ export default function Home() {
   return (
     <>
       <Landing />
-      <CategoryBox />
+      <CategoryBox firstItem={0} lastItem={4}/>
       <SectionHeader title="جدیدترین ها" />
       <Slider />
       <CategoryBox firstItem={4} lastItem={8} />
       <SectionHeader title="فرش های ماشینی" />
       <Slider />
-      <CustomerClub firstItem={4} lastItem={8} />
+      <CustomerClub />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
 
 export default function Landing() {
     return (
@@ -12,7 +13,7 @@ export default function Landing() {
                     <Link href="/customer-club" className='font-bold lg:text-[18px] sm:text-[14px] font-[Rokh-light] bg-primary text-white border rounded-[12px] flex justify-center items-center hover:cursor-pointer hover:bg-red-700 transition-colors lg:h-14 sm:h-10 lg:w-[206px] sm:w-[152px]'>عضویت در باشگاه مشتریان</Link>
                 </div>
             </div>
-            <img className='lg:w-[527px] lg:h-[470px] sm:w-[280px] sm:h-[250px]' src="./images/group 3.png" alt="carpets" />
+            <Image width={530} height={470} className='lg:w-[527px] lg:h-[470px] sm:w-[280px] sm:h-[250px]' src="/images/group 3.png" alt="carpets" />
         </div>
     )
 }

@@ -1,10 +1,29 @@
+"use client"
 import React from 'react'
 import Breadcrumb from '@/Components/Breadcrumb/Breadcrumb'
 import Input from '../singup/input'
-import {FaEnvelope } from 'react-icons/fa'
-import { requiredValidator, minValidator, maxValidator  , emailValidator} from '@/validators/rules'
+import { FaEnvelope } from 'react-icons/fa'
+import { requiredValidator, minValidator, maxValidator, emailValidator } from '@/validators/rules'
+import { ToastContainer, toast } from 'react-toastify';
+import { useForm } from '../../../../hooks/useForm'
+
 
 export default function Customer() {
+
+    const [formState, onInputHandler] = useForm(
+        {
+            email: {
+                value: "",
+                isValid: true,
+            }
+        },
+        true
+    )
+
+    const registrationEmail = () => {
+        console.log(formState.inputs.email.value);
+        
+    }
     return (
         <>
             <Breadcrumb links={[
@@ -16,9 +35,11 @@ export default function Customer() {
                     <p className='font-[Rokh-light] font-bold text-[17px] leading-8 text-center '>جهت عضویت و اطلاع از اخبار و تخفیفات ایمیل خود را وارد نمایید</p>
                     <Input
                         className="loginInput"
+                        id="email"
                         type="email"
                         placeholder="ایمیل"
                         element="input"
+                        onInputHandler={onInputHandler}
                         validations={[
                             requiredValidator(),
                             minValidator(10),
@@ -27,7 +48,7 @@ export default function Customer() {
                         ]}
                         Icon={<FaEnvelope />}
                     />
-                    <button className='w-full h-[40px] text-white bg-primary rounded-[8px] font-[Rokh-light] font-bold hover:bg-red-700 hover:cursor-pointer'>ثبت</button>
+                    <button onClick={registrationEmail} className='w-full h-[40px] text-white bg-primary rounded-[8px] font-[Rokh-light] font-bold hover:bg-red-700 hover:cursor-pointer'>ثبت</button>
                 </div>
             </div>
         </>
