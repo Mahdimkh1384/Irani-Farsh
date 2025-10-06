@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { MdSearch, MdOutlineShoppingCart, MdOutlineLogin, MdArrowBackIos } from "react-icons/md";
 import { IoMdMenu } from "react-icons/io";
 import MobileMenu from '../MobileMenu/MobileMenu';
+import { redirect } from 'next/navigation';
 
 
 
@@ -13,6 +14,7 @@ export default function NavBar() {
     const [isShowMobileMenu, setIsShowMobileMenu] = useState(false)
     const menuRef = useRef(null);
     const [allCategories, setAllCategories] = useState([])
+    const [search, setSearch] = useState('')
 
     const getCategories = async () => {
         const res = await fetch("https://backend.sajlab.ir/api/categories")
@@ -39,6 +41,22 @@ export default function NavBar() {
         };
     }, [isShowMobileMenu]);
 
+    const searchHandler = (event) => {
+
+        if (search) {
+            if (event.keyCode === 13) {
+                setSearch('')
+                redirect(`/search?q=${search}`)
+            }
+        }
+    }
+
+    const searchBtn = () => {
+        if (search) {
+            setSearch('')
+            redirect(`/search?q=${search}`)
+        }
+    }
 
     return (<>
         {isShowMobileMenu && <div ref={menuRef}><MobileMenu /></div>}
@@ -52,7 +70,8 @@ export default function NavBar() {
                     </div>
                     <div className=' relative'>
                         <MdSearch className=' absolute right-2 lg:top-2.5 sm:top-7.5 size-6 text-neutral-600 hover: cursor-pointer' />
-                        <input type="text" placeholder='جستجوی فرش' className='lg:w-[439px] sm:w-[367px] h-[48px] bg-neutral-200 p-3 pr-10 rounded-[12px] outline-none lg:mt-0 sm:mt-5' />
+                        <input type="text" value={search} placeholder='جستجوی فرش' onChange={e => setSearch(e.target.value)} onKeyDown={e => searchHandler(e)} className='lg:w-[439px] sm:w-[367px] h-[48px] bg-neutral-200 p-3 pr-10 rounded-[12px] outline-none lg:mt-0 sm:mt-5' />
+                        <button className=' absolute lg:left-1 lg:top-1 sm:left-[-140px] sm:top-6 bg-primary text-white lg:w-[100px] h-[40px] sm:w-[90px] rounded-[8px] font-[Rokh-light] font-bold cursor-pointer hover:bg-red-700' onClick={searchBtn}>جستجو</button>
                     </div>
                 </div>
                 {/* ========================= left section ======================== */}

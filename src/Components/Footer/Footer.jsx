@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <div className='flex lg:flex-row sm:flex-col-reverse gap-10 justify-between lg:h-[352px] sm:h-[514px] bg-neutral-100 lg:mt-30 sm:mt-55 lg:pr-[108px] lg:pl-[108px] '>
+        <div className='flex lg:flex-row sm:flex-col-reverse gap-10 justify-between lg:h-[352px] sm:h-[514px] bg-neutral-100 lg:mt-30 sm:mt-55 lg:pr-[108px] lg:pl-[108px] rounded-t-[10%]'>
             {/* ===================== right section =================== */}
             <div className='lg:w-[494px] lg:h-[328px] sm:w-[318px] sm:h-[600px] flex flex-col justify-evenly lg:p-0 sm:pr-7 sm:pl-5'>
                 <h4 className='text-primary lg:text-[24px] sm:text-[18px] font-[500]'>ایرانی فرش </h4>
