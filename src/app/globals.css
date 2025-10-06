@@ -50,4 +50,12 @@
     .activeSidebarMenu {
         @apply border-r-3 border-primary text-primary
     }
+
+
+}
+
+@media (max-width: 540px) {
+    .toast {
+        width: 300px !important;
+    }
 }

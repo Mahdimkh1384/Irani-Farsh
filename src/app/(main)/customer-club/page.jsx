@@ -28,8 +28,10 @@ export default function Customer() {
             toast.error("لطفا ایمیل را وارد کنید", {
                 style: {
                     fontFamily: "Rokh-light",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    position : "top-right"
                 },
+                className: "toast"
             })
         } else {
             if (isInputValid) {
@@ -40,6 +42,7 @@ export default function Customer() {
                         fontFamily: "Rokh-light",
                         justifyContent: "center"
                     },
+                    className: "toast"
                 })
             } else {
                 toast.error("ایمیل معتبر نمی باشد", {
@@ -47,6 +50,7 @@ export default function Customer() {
                         fontFamily: "Rokh-light",
                         justifyContent: "center"
                     },
+                    className: "toast"
                 })
             }
         }
@@ -67,7 +71,7 @@ export default function Customer() {
                     <button onClick={registrationEmail} className='w-full h-[40px] text-white bg-primary rounded-[8px] font-[Rokh-light] font-bold hover:bg-red-700 hover:cursor-pointer'>ثبت</button>
                 </div>
             </div>
-            <ToastContainer />
+            <ToastContainer position="top-right"/>
         </>
     )
 }
