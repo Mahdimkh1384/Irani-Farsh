@@ -10,7 +10,6 @@ import { redirect } from 'next/navigation';
 
 export default function NavBar() {
 
-    const [isShowCategoryMenu, setIsShowCategoryMenu] = useState(false)
     const [isShowMobileMenu, setIsShowMobileMenu] = useState(false)
     const menuRef = useRef(null);
     const [allCategories, setAllCategories] = useState([])
@@ -46,7 +45,7 @@ export default function NavBar() {
         if (search) {
             if (event.keyCode === 13) {
                 setSearch('')
-                redirect(`/search?q=${search}`)
+                redirect(`/search?q=${search}page=${1}`)
             }
         }
     }
@@ -54,7 +53,7 @@ export default function NavBar() {
     const searchBtn = () => {
         if (search) {
             setSearch('')
-            redirect(`/search?q=${search}`)
+            redirect(`/search?q=${search}page=${1}`)
         }
     }
 
@@ -87,17 +86,24 @@ export default function NavBar() {
             <div className=' border-b border-neutral-300 pt-2 pb-2 lg:inline sm:hidden'>
                 <ul className='flex gap-8 text-[15px] font-bold font-[Rokh-light]'>
                     <Link href="/" className='menuHover'>صفحه اصلی</Link>
-                    <li className=' relative menuHover group' onMouseEnter={() => setIsShowCategoryMenu(true)}>
-                        <Link href="/categories" className='flex justify-center items-center gap-x-0.5 '>
-                            دسته بندی
-                            <MdArrowBackIos className=' group-hover:-rotate-90 transition-transform' />
-                        </Link>
-                        {isShowCategoryMenu &&
-                            <ul className=' absolute flex flex-col gap-y-1 shadow w-[200px] p-2.5 top-8 bg-white z-50' onMouseLeave={() => setIsShowCategoryMenu(false)}>
-                                {allCategories.map(category => (
-                                    <li key={category.id} className='text-black hover:text-primary transition-colors p-1'><Link href={category.slug}>{category.title}</Link></li>
-                                ))}
-                            </ul>}
+                    <li className="relative group menuHover">
+                        <div className="flex justify-center items-center gap-x-0.5 cursor-pointer">
+                            <Link href="/categories" className='flex justify-center items-center gap-x-0.5 '>
+                                دسته بندی
+                                <MdArrowBackIos className=' group-hover:-rotate-90 transition-transform' />
+                            </Link>
+                        </div>
+                        <div className="absolute top-5 right-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-200 bg-white shadow-md rounded-md z-50 w-[200px] p-2">
+                            {allCategories.map((category) => (
+                                <Link
+                                    key={category.id}
+                                    href={`/categories/${category.slug}`}
+                                    className="block px-3 py-2 text-black hover:text-primary transition-colors"
+                                >
+                                    {category.title}
+                                </Link>
+                            ))}
+                        </div>
                     </li>
                     <Link href="/" className='menuHover'>تماس با ما</Link>
                     <Link href="/about-us" className='menuHover'>درباره ما</Link>

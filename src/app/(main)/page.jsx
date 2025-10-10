@@ -19,3 +19,7 @@ export default function Home() {
     </>
   );
 }
+
+export const metadata = {
+    title: "ایرانی فرش",
+}

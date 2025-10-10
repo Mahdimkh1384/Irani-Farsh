@@ -18,20 +18,26 @@ export default function Slug() {
         })
 
         setMainCategory(filteredCategory)
-        console.log(filteredCategory);
+    }
 
+    const getProducts = async () => {
+        const res = await fetch("https://backend.sajlab.ir/api/products")
+        const data = await res.json()
+        console.log(data.data);
+        
     }
 
     useEffect(() => {
         getCategories()
+        getProducts()
     }, [])
 
     return (
         <>
             <Breadcrumb links={[
-                {id : 1 , title : "دسته بندی ها" , href : "categories"},
-                {id : 2 , title : mainCategory[0]?.title , href : mainCategory[0]?.slug},
-            ]}/>
+                { id: 1, title: "دسته بندی ها", href: "categories" },
+                { id: 2, title: mainCategory[0]?.title, href: mainCategory[0]?.slug },
+            ]} />
             <div className='lg:px-[108px] sm:px-3 mt-7'>
                 <h1 className='text-2xl'>{mainCategory.length ? mainCategory[0].title : <Skeleton width="200px" />}</h1>
             </div>

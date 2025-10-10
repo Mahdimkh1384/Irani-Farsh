@@ -21,3 +21,7 @@ export default function Basket() {
         </>
     )
 }
+
+export const metadata = {
+    title: "سبد خرید",
+}
