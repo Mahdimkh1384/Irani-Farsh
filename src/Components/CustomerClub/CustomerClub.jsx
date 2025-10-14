@@ -11,7 +11,7 @@ export default function CustomerClub() {
                 <Link href="/customer-club" className='btn w-full h-14 lg:p-0 sm:p-2 lg:mt-0 sm:mt-8'>ایجاد عضویت</Link>
             </div>
             <div>
-                <Image width= {440} height= {680} className='lg:w-[438px] lg:h-[678px] sm:w-[310px] sm:h-[550px]' src="/images/carpet.png"/>
+                <Image width= {440} height= {680} className='lg:w-[438px] lg:h-[678px] sm:w-[310px] sm:h-[550px]' src="/images/carpet.png" alt='carpet'/>
             </div>
         </div>
     )

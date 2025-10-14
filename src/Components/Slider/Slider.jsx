@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import './Slider.css';
 
 // import required modules
-import { Navigation } from 'swiper/modules';
+import { Navigation , Autoplay } from 'swiper/modules';
 
 export default function Slider() {
     return (
@@ -23,7 +23,8 @@ export default function Slider() {
                 slidesPerGroup={1}      // با هر حرکت فقط ۱ محصول عوض بشه
                 loop={true}             // اسلاید بی‌نهایت
                 navigation={true}       // دکمه‌های بعد/قبل
-                modules={[Navigation]}
+                autoplay={{ delay: 5000 }}
+                modules={[Navigation , Autoplay]}
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
@@ -53,7 +54,6 @@ export default function Slider() {
                 <SwiperSlide>
                     <ProductBox />
                 </SwiperSlide>
-
             </Swiper>
         </div>
     )
