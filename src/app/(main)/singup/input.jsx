@@ -1,5 +1,5 @@
 "use client";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import validator from "@/validators/validator";
 
 const inputReducer = (state, action) => {
@@ -24,12 +24,21 @@ export default function Input({
   Icon,
   validations = [],
   onChange,
+  onInputHandler, // 👈 اضافه شد
   extraParams = {},
 }) {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: "",
     isValid: false,
   });
+
+  const { value, isValid } = inputState;
+
+  useEffect(() => {
+    if (onInputHandler) {
+      onInputHandler(id, value, isValid);
+    }
+  }, [value, id, isValid, onInputHandler]);
 
   const onChangeHandler = (event) => {
     const value = event.target.value;
@@ -49,9 +58,10 @@ export default function Input({
             onChange={onChangeHandler}
             value={inputState.value}
             className={`peer bg-white/30 backdrop-blur-[4px] 
-              ${inputState.isValid
-                ? "border-green-500 border-2"
-                : inputState.value.length > 0
+              ${
+                inputState.isValid
+                  ? "border-green-500 border-2"
+                  : inputState.value.length > 0
                   ? "border-red-500 border-2"
                   : "border-[#9CA3AF]"
               } 
