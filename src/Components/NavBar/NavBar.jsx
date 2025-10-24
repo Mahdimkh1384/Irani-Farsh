@@ -181,7 +181,7 @@ export default function NavBar() {
                             {allCategories.map((category) => (
                                 <Link
                                     key={category.id}
-                                    href={`/categories/${category.slug}`}
+                                    href={category.slug}
                                     className="block px-3 py-2 text-black hover:text-primary transition-colors"
                                 >
                                     {category.title}

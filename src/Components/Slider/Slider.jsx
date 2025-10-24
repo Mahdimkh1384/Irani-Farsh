@@ -23,7 +23,7 @@ export default function Slider() {
                 slidesPerGroup={1}      // با هر حرکت فقط ۱ محصول عوض بشه
                 loop={true}             // اسلاید بی‌نهایت
                 navigation={true}       // دکمه‌های بعد/قبل
-                autoplay={{ delay: 5000 }}
+                autoplay={{ delay: 7000 }}
                 modules={[Navigation , Autoplay]}
                 breakpoints={{
                     0: {
