@@ -8,6 +8,7 @@ import { CiLogout } from "react-icons/ci";
 import { FaRegCommentDots } from "react-icons/fa6";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { logout } from "@/utils/auth";
 
 
 export default function MobileSidebar() {
@@ -19,8 +20,11 @@ export default function MobileSidebar() {
         { id: 2, title: "سبد خرید من", href: "/basket", icon: <MdOutlineShoppingCart /> },
         { id: 3, title: "سفارش های من", href: "", icon: <LuClipboardList /> },
         { id: 4, title: "آدرس ها", href: "", icon: <FaRegAddressBook /> },
-        { id: 5, title: "خروج", href: "", icon: <CiLogout /> },
-    ]
+    ];
+
+    const logOutHandler = () => {
+        logout()
+    }
 
     return (
         <div className='bg-neutral-50 z-50 fixed top-0 right-0 w-[65%] h-screen border  border-neutral-400'>
@@ -46,6 +50,7 @@ export default function MobileSidebar() {
                         {link.title}
                     </Link>
                 ))}
+                <Link href="/login" onClick={logOutHandler} className='flex items-center gap-x-2.5 pr-2.5  hover:text-primary transition-colors'> <CiLogout />خروج</Link>
             </ul>
         </div>
     )

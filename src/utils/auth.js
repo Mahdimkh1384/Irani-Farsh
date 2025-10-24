@@ -17,6 +17,5 @@ export const saveAuthData = (token, user) => {
   export const logout = () => {
     localStorage.removeItem("sajy");
     localStorage.removeItem("user");
-    window.location.href = "/login";
   };
   
