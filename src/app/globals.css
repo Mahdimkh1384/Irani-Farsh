@@ -47,7 +47,15 @@
         @apply w-[100%] h-[56px] rounded-[12px] opacity-100 rotate-0 backdrop-blur-[4px] bg-white/30 border border-[#9CA3AF] placeholder-[#9CA3AF] text-right pr-10 focus:border-primary focus:placeholder-primary outline-none font-[Rokh-light] font-bold
     }
 
-    .activeSidebarMenu{
-        @apply border-r-3 border-primary  text-primary
+    .activeSidebarMenu {
+        @apply border-r-3 border-primary text-primary
+    }
+
+
+}
+
+@media (max-width: 540px) {
+    .toast {
+        width: 300px !important;
     }
 }

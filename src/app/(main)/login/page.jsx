@@ -102,3 +102,7 @@ export default function Login() {
         </div>
     )
 }
+
+export const metadata = {
+    title: "ورود",
+}

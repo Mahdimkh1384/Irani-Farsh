@@ -151,3 +151,7 @@ export default function Register() {
         </>
     );
 }
+
+export const metadata = {
+    title: "ثبت نام",
+}

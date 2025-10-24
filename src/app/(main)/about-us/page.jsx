@@ -5,8 +5,8 @@ export default function AboutUs() {
     return (
         <>
             <Breadcrumb links={[
-                {id:1 , title : "درباره ما" , href : "about-us"}
-            ]}/>
+                { id: 1, title: "درباره ما", href: "about-us" }
+            ]} />
             <div className='lg:px-[108px] sm:px-3 mt-10 flex flex-col items-center gap-y-15'>
                 <h1 className='text-3xl text-primary border-b p-2.5 border-neutral-500'>درباره ما</h1>
                 <p className='w-[70%] text-justify font-[Rokh-light] font-bold leading-8'>فروشگاه ایرانی فرش با هدف ارائه زیباترین و باکیفیت‌ترین فرش‌های دستباف و ماشینی ایرانی فعالیت خود را آغاز کرده است. ما باور داریم که فرش ایرانی تنها یک کف‌پوش نیست، بلکه بخشی از فرهنگ، هنر و هویت این سرزمین است.
@@ -37,4 +37,8 @@ export default function AboutUs() {
             </div>
         </>
     )
+}
+
+export const metadata = {
+    title: "درباره ما",
 }
