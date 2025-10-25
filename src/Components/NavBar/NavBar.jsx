@@ -9,7 +9,6 @@ import { redirect } from 'next/navigation';
 import { getUserData, isAuthenticated } from "@/utils/auth";
 
 export default function NavBar() {
-    const [isShowCategoryMenu, setIsShowCategoryMenu] = useState(false);
     const [isShowMobileMenu, setIsShowMobileMenu] = useState(false);
     const [allCategories, setAllCategories] = useState([]);
     const [user, setUser] = useState(null);

@@ -1,21 +1,39 @@
 "use client"
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { FiPlus } from "react-icons/fi";
 import { FaUser, FaRegAddressBook } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { LuClipboardList } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
-import { FaRegCommentDots } from "react-icons/fa6";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { logout } from "@/utils/auth";
-
-
-
+import { getUserData, isAuthenticated } from "@/utils/auth";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function SideBar() {
 
     const pathname = usePathname();
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        // وقتی کاربر لاگین یا ثبت‌نام کرد، user رو از localStorage بخون
+        const checkUser = () => {
+            if (isAuthenticated()) {
+                const userData = getUserData();
+                setUser(userData);
+            } else {
+                setUser(null);
+            }
+        };
+
+        checkUser();
+
+        // گوش بده برای تغییر در localStorage (مثلاً بعد از ثبت‌نام)
+        window.addEventListener("storage", checkUser);
+        return () => window.removeEventListener("storage", checkUser);
+    }, []);
 
     const links = [
         { id: 1, title: "حساب کاربری", href: "/my-account", icon: <FaUser /> },
@@ -39,10 +57,17 @@ export default function SideBar() {
                         <FiPlus className='text-2xl' />
                     </label>
                 </div>
-                <div className='font-[Rokh-light] font-bold flex flex-col justify-center items-center'>
-                    <h3 className='text-[20px]'>مهدی مرامی</h3>
-                    <p>mahdi@gmail.com</p>
-                </div>
+                {user ? (
+                    <div className='font-[Rokh-light] font-bold flex flex-col justify-center items-center'>
+                        <h3 className='text-[20px]'>{user.firstName} {user.lastName}</h3>
+                        <p>mahdi@gmail.com</p>
+                    </div>
+                ) : (
+                    <div className='flex flex-col justify-center items-center gap-0.5'>
+                        <Skeleton height={25} width={170} />
+                        <Skeleton height={20} width={120} />
+                    </div>
+                )}
             </div>
             {/* ====================== bottom section (menus) ======================== */}
             <div>

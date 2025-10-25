@@ -10,7 +10,7 @@ export default function Page() {
                 <div className="flex items-center justify-between bg-white border border-neutral-400 rounded-xl p-3 shadow-sm hover:bg-red-50 hover:border-red-400 transition cursor-pointer">
                     <div className="flex items-center space-x-2 space-x-reverse">
                         <Link href="/products" className="rounded-md overflow-hidden border border-gray-300">
-                            <Image width={40} height={40} src="/images/carpet.png" className="w-full h-full object-cover" />
+                            <Image width={40} height={40} src="/images/carpet.png" className="w-full h-full object-cover" alt="order-picture"/>
                         </Link>
                     </div>
                     <span className="flex-1 text-center font-bold text-gray-700">
@@ -24,7 +24,7 @@ export default function Page() {
                 <div className="flex items-center justify-between bg-white border border-neutral-400 rounded-xl p-3 shadow-sm hover:bg-red-50 hover:border-red-400 transition cursor-pointer">
                     <div className="flex items-center space-x-2 space-x-reverse">
                         <Link href="/products" className="rounded-md overflow-hidden border border-gray-300">
-                            <Image width={40} height={40} src="/images/carpet.png" className="w-full h-full object-cover" />
+                            <Image width={40} height={40} src="/images/carpet.png" className="w-full h-full object-cover" alt="order-picture"/>
                         </Link>
                     </div>
                     <span className="flex-1 text-center font-bold text-gray-700">
