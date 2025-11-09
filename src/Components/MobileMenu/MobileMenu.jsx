@@ -2,21 +2,21 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { MdArrowBackIos } from "react-icons/md";
+import { usePathname } from 'next/navigation'
 
-export default function MobileMenu() {
+export default function MobileMenu({ setIsMenuOpen  , allCategories }) {
 
     const [isShowCategoryForMobile, setIsShowCategoryForMobile] = useState(false)
-    const [allCategories, setAllCategories] = useState([])
-
-    const getCategories = async () => {
-        const res = await fetch("https://backend.sajlab.ir/api/categories")
-        const data = await res.json()
-        setAllCategories(data.data)
-    }
-
+    const pathname = usePathname()
+    const [prevPath, setPrevPath] = useState(pathname)
+    
+    // اگه روت تغییر کنه منو بسته میشه
     useEffect(() => {
-        getCategories()
-    })
+        if (prevPath !== pathname) {
+            setIsMenuOpen(false)
+        }
+        setPrevPath(pathname)
+    }, [pathname])
 
     return (
         <div className=' absolute bg-neutral-100 shadow top-0 right-0 w-[65%] h-screen z-50 '>
@@ -33,7 +33,7 @@ export default function MobileMenu() {
                         </div>
                         {isShowCategoryForMobile && <ul className='flex flex-col gap-y-3.5 p-2.5 mt-2 text-neutral-700'>
                             {allCategories.map(category => (
-                                <Link key={category.id} href={category.slug}>{category.title}</Link>
+                                <Link key={category.id} href={`/categories/${category.slug}`}>{category.title}</Link>
                             ))}
                         </ul>}
                     </li>
