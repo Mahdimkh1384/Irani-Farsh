@@ -49,6 +49,7 @@ export default function Register() {
 
             if (res.ok && data.status === "success" && data.sajy) {
                 saveAuthData(data.sajy, data.user);
+                document.cookie = `sajy=${data.sajy}; path=/; sameSite=lax`;
                 toast.success('ورود با موفقیت انجام شد 🎉');
                 setTimeout(() => {
                     window.location.href = "/";
