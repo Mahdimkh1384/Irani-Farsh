@@ -63,7 +63,7 @@ export default async function Products({ params }) {
             </div>
 
             {/* Slider محصولات مشابه */}
-            <Slider />
+            <Slider category="machine-made-rug"/>
 
             {/* Reviews Section */}
             <div>

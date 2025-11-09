@@ -11,10 +11,10 @@ export default function Home() {
       <Landing />
       <CategoryBox firstItem={0} lastItem={4}/>
       <SectionHeader title="جدیدترین ها" />
-      <Slider />
+      <Slider category= "new-carpet"/>
       <CategoryBox firstItem={4} lastItem={8} />
       <SectionHeader title="فرش های ماشینی" />
-      <Slider />
+      <Slider category= "machine-made-rug"/>
       <CustomerClub />
     </>
   );
