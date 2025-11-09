@@ -58,7 +58,7 @@ export default function NavBar() {
         if (search) {
             if (event.keyCode === 13) {
                 setSearch('')
-                redirect(`/search?q=${search}page=${1}`)
+                redirect(`/search/${search}?page=${1}`)
             }
         }
     }
@@ -66,7 +66,7 @@ export default function NavBar() {
     const searchBtn = () => {
         if (search) {
             setSearch('')
-            redirect(`/search?q=${search}page=${1}`)
+            redirect(`/search/${search}?page=${1}`)
         }
     }
 

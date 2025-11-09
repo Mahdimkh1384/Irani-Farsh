@@ -4,25 +4,62 @@ import { useState, useEffect } from 'react'
 import { Stack } from '@mui/material'
 import ProductBox from '@/Components/ProductBox/ProductBox'
 import Pagination from "@mui/material/Pagination";
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, useParams } from 'next/navigation';
 import PaginationItem from "@mui/material/PaginationItem";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import Image from 'next/image'
+import Link from 'next/link'
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function SearchSection() {
 
     const router = useRouter();
     const searchParams = useSearchParams();
+    const params = useParams()
+    const slug = decodeURIComponent(params.slug);
 
     const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
     const [totalPages, setTotalPages] = useState(1);
+    const [searchedProduct, setSearchedProduct] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [productsPerPage, setProductsPerPage] = useState(8);
+    const [isMobile, setIsMobile] = useState(false);
 
-    // فرضی: محصولات نمونه
-    const allProducts = Array.from({ length: 20 }, (_, i) => ({
-        id: i + 1,
-        name: `محصول ${i + 1}`,
-    }));
 
-    const productsPerPage = 4;
+    useEffect(() => {
+        const getSearchedProducts = async () => {
+            setLoading(true);
+            try {
+                const res = await fetch(`https://backend.sajlab.ir/api/products/search/${slug}`)
+                const data = await res.json()
+                console.log(data.data);
+                setSearchedProduct(data.data) || []
+            } catch (err) {
+                console.error(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        getSearchedProducts()
+    }, [slug])
+
+    // تعیین حالت موبایل یا دسکتاپ
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 640) {
+                setIsMobile(true)
+                setProductsPerPage(6) // موبایل
+            } else {
+                setIsMobile(false)
+                setProductsPerPage(8) // دسکتاپ
+            }
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         setPage(Number(searchParams.get("page")) || 1);
@@ -30,8 +67,8 @@ export default function SearchSection() {
 
     useEffect(() => {
         // تعداد صفحات را حساب کن
-        setTotalPages(Math.ceil(allProducts.length / productsPerPage));
-    }, [allProducts]);
+        setTotalPages(Math.ceil(searchedProduct.length / productsPerPage));
+    }, [searchedProduct]);
 
     const handleChange = (event, value) => {
         router.push(`?page=${value}`);
@@ -39,34 +76,58 @@ export default function SearchSection() {
 
     // محصولات مربوط به همان صفحه
     const startIndex = (page - 1) * productsPerPage;
-    const visibleProducts = allProducts.slice(startIndex, startIndex + productsPerPage);
+    const visibleProducts = searchedProduct.slice(startIndex, startIndex + productsPerPage);
 
 
     return (
         <>
-            <Stack spacing={4} key={page} className='mt-5'>
-                <div className='mt-4 flex lg:flex-row sm:flex-col justify-between items-center gap-3'>
-                    {visibleProducts.map((p) => (
-                        <ProductBox key={p.id} title={p.name} />
+            {loading ? (
+                // 🔹 حالت لودر (Skeleton)
+                <div className="flex gap-6 justify-between overflow-x-auto mt-5">
+                    {Array.from({ length: 4 }).map((_, i) => (
+                        <div key={i} className='flex flex-col justify-center gap-y-6 w-[287.5px] h-[493px] p-4 rounded-[12px] border border-neutral-300 flex-shrink-0'>
+                            <Skeleton height={261} width={255} borderRadius={12} />
+                            <Skeleton count={2} height={20} />
+                            <Skeleton height={40} width={255} />
+                        </div>
                     ))}
                 </div>
-                <Pagination
-                    className='mt-5 flex justify-center'
-                    count={totalPages}
-                    page={page}
-                    onChange={handleChange}
-                    color="error"
-                    renderItem={(item) => (
-                        <PaginationItem
-                            slots={{
-                                previous: ArrowForward,
-                                next: ArrowBack,
-                            }}
-                            {...item}
-                        />
-                    )}
-                />
-            </Stack>
+            ) : searchedProduct.length ? (
+                // 🔹 حالت نمایش محصولات
+                <Stack spacing={4} key={page} className='mt-5'>
+                    <div
+                        className={`mt-4 gap-3 ${isMobile ? 'flex flex-col items-center' : 'grid sm:grid-cols-3 lg:grid-cols-4'
+                            }`}
+                    >
+                        {visibleProducts.map(product => (
+                            <ProductBox key={product.id} {...product} />
+                        ))}
+                    </div>
+                    <Pagination
+                        className='mt-5 flex justify-center'
+                        count={totalPages}
+                        page={page}
+                        onChange={handleChange}
+                        color="error"
+                        renderItem={(item) => (
+                            <PaginationItem
+                                slots={{
+                                    previous: ArrowForward,
+                                    next: ArrowBack,
+                                }}
+                                {...item}
+                            />
+                        )}
+                    />
+                </Stack>
+            ) : (
+                // 🔹 حالت "محصولی یافت نشد"
+                <div className='flex flex-col justify-center items-center lg:mt-0 sm:mt-15'>
+                    <Image width={450} height={300} src="/images/search-not-found.jpg" alt='no search result' />
+                    <h1 className='text-4xl'>هیچ محصولی یافت نشد !</h1>
+                    <Link href="/" className='btn h-[40px] px-2.5 mt-7'>بازگشت به صفحه اصلی</Link>
+                </div>
+            )}
         </>
     )
 }
