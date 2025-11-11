@@ -14,8 +14,18 @@
     padding: 4px 10px;
     border-radius: 4px;
     margin: 0 10px;
-    font-size: 13px;
 }
 .swiper-button-next ,.swiper-button-prev {
     color: #CB1B1B;
+}
+
+.swiper-button-next{
+    margin-left: -18px;
+}
+.swiper-button-prev{
+    margin-right: -18px;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after{
+    font-size: large;
 }

@@ -58,7 +58,7 @@ export default function NavBar() {
         if (search) {
             if (event.keyCode === 13) {
                 setSearch('')
-                redirect(`/search?q=${search}page=${1}`)
+                redirect(`/search/${search}?page=${1}`)
             }
         }
     }
@@ -66,13 +66,13 @@ export default function NavBar() {
     const searchBtn = () => {
         if (search) {
             setSearch('')
-            redirect(`/search?q=${search}page=${1}`)
+            redirect(`/search/${search}?page=${1}`)
         }
     }
 
     return (
         <>
-            {isShowMobileMenu && <div ref={menuRef}><MobileMenu /></div>}
+            {isShowMobileMenu && <div ref={menuRef}><MobileMenu setIsMenuOpen={setIsShowMobileMenu} allCategories={allCategories}/></div>}
             <div className='flex flex-col lg:pr-[108px] lg:pl-[108px] sm:pr-3 sm:pl-3 pt-6 gap-6'>
                 <div className='flex justify-between items-start'>
                     {/* ========================= right section ======================== */}
@@ -128,7 +128,7 @@ export default function NavBar() {
                                 {allCategories.map((category) => (
                                     <Link
                                         key={category.id}
-                                        href={category.slug}
+                                        href={`/categories/${category.slug}`}
                                         className="block px-3 py-2 text-black hover:text-primary transition-colors"
                                     >
                                         {category.title}
