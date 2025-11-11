@@ -1,42 +1,53 @@
-// api.js
+const BASE_URL = "https://backend.sajlab.ir/api";
 
-const COMMENT_API_ENDPOINT = 'https://backend.sajlab.ir/api/comments';
-
+/**
+ * دریافت کامنت‌های تایید‌شده از طریق API محصول
+ * @param {number|string} productId
+ * @returns {Promise<Array>}
+ */
 export async function getApprovedComments(productId) {
-    
-    if (!productId) {
-        console.warn("آیدی محصول برای دریافت نظرات لازم است.");
-        return [];
-    }
-    
-    // 1. ساخت URL و فراخوانی fetch
-    const URL = `${COMMENT_API_ENDPOINT}?product=${productId}&approved=true`; 
-    
-    const response = await fetch(URL, {
-        method: 'GET',
-        cache: 'no-store', 
-    });
+  if (!productId) return [];
+  const URL = `${BASE_URL}/products/${productId}`;
 
-    // 2. مدیریت خطا
-    if (!response.ok) {
-        const errorText = await response.text();
-        console.error("API Error Text:", errorText); 
-        throw new Error(`خطا در دریافت نظرات. وضعیت: ${response.status}`);
-    }
+  const response = await fetch(URL, { method: "GET", cache: "no-store" });
 
-    // 3. استخراج و اصلاح داده‌ها (منطق شما)
-    const responseData = await response.json(); 
-    
-    // اگر آرایه واقعی نظرات داخل فیلد 'data' باشد
-    if (responseData.data && Array.isArray(responseData.data)) {
-        return responseData.data; 
-    }
-    
-    // اگر API مستقیماً آرایه را برگرداند
-    if (Array.isArray(responseData)) {
-        return responseData;
-    }
+  if (!response.ok)
+    throw new Error(`خطا در دریافت اطلاعات محصول (${response.status})`);
 
-    // در صورتی که پاسخ، آرایه نبود، یک آرایه خالی برمی‌گرداند تا خطا ندهد
-    return []; 
+  const productData = await response.json();
+  const comments = productData.comments || productData.data?.comments || [];
+  return comments;
+}
+
+/**
+ * ارسال کامنت جدید
+ * @param {string} token
+ * @param {string} commentText 
+ * @param {number|string} productId 
+ * @param {number} rating 
+ */
+export async function postComment(token, commentText, productId, rating) {
+  if (!token) throw new Error("توکن کاربر یافت نشد. ابتدا وارد شوید.");
+
+  const response = await fetch(`${BASE_URL}/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      product: productId,
+      content: commentText,
+      rating: rating,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    console.error("❌ خطا در ارسال نظر:", errorText);
+    throw new Error(`ارسال نظر با خطا مواجه شد (${response.status})`);
+  }
+
+  const data = await response.json();
+  return data;
 }
