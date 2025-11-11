@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function ProductGallery({ product }) {
-  const defaultImage = "/images/no-image.png"; // عکس پیش‌فرض
-  const baseURL = "https://backend.sajlab.ir/uploads/product/"; // مسیر تصاویر API
+  const defaultImage = "/images/no-image.png";
+  const baseURL = "https://backend.sajlab.ir/uploads/product/";
 
   // 🧩 حالت اولیه mainImage
   const [mainImage, setMainImage] = useState(defaultImage);

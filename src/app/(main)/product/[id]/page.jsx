@@ -12,9 +12,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Products({ params }) {
-
     const userToken = cookies().get('sajy')?.value || null;
-
     const productId = params.id;
     let productData = null;
 
@@ -27,7 +25,7 @@ export default async function Products({ params }) {
 
     const productTitle = productData.title || productData.name || "محصول";
 
-    
+
 
     return (
         <>
