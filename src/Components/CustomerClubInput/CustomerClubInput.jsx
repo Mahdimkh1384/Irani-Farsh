@@ -1,7 +1,7 @@
 "use client"
-import React , {useState} from 'react'
+import React, { useState } from 'react'
 import { FaEnvelope } from 'react-icons/fa'
-import { ToastContainer, toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import regex from "./../../validators/regex";
 
 export default function CustomerClubInput() {
@@ -23,33 +23,15 @@ export default function CustomerClubInput() {
     const registrationEmail = () => {
 
         if (!input) {
-            toast.error("لطفا ایمیل را وارد کنید", {
-                style: {
-                    fontFamily: "Rokh-light",
-                    justifyContent: "center",
-                    position: "top-right"
-                },
-                className: "toast"
-            })
-        } else {
+            toast.error("لطفا ایمیل را وارد کنید")
+        }
+        else {
             if (isInputValid) {
                 setInput('')
                 setIsInputValid(false)
-                toast.success("ایمیل شما با موفقیت ثبت شد", {
-                    style: {
-                        fontFamily: "Rokh-light",
-                        justifyContent: "center"
-                    },
-                    className: "toast"
-                })
+                toast.success("ایمیل شما با موفقیت ثبت شد")
             } else {
-                toast.error("ایمیل معتبر نمی باشد", {
-                    style: {
-                        fontFamily: "Rokh-light",
-                        justifyContent: "center"
-                    },
-                    className: "toast"
-                })
+                toast.error("ایمیل معتبر نمی باشد")
             }
         }
     }
@@ -64,7 +46,6 @@ export default function CustomerClubInput() {
                 </div>
                 <button onClick={registrationEmail} className='w-full h-[40px] text-white bg-primary rounded-[8px] font-[Rokh-light] font-bold hover:bg-red-700 hover:cursor-pointer'>ثبت</button>
             </div>
-            <ToastContainer position="top-right" />
         </>
     )
 }
