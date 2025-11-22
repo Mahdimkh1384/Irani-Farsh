@@ -67,7 +67,7 @@ export default function CategoryBox({ firstItem, lastItem }) {
                     }} className={'flex items-end lg:w-[420px] lg:h-[288px] sm:w-[340px] inset-0 sm:bg-bottom lg:bg-center bg-cover rounded-2xl'}>
                         <div className='p-7'>
                             <p className='text-white font-[Rokh-light] text-[20px] mb-2'>{allCategory[0]?.title}</p>
-                            <Link href={allCategory[0]?.slug || "/"} className='p-2 border border-white text-white font-[Rokh-light] text-[18px] rounded-xl hover:cursor-pointer'>مشاهده و خرید {allCategory[0]?.title}</Link>
+                            <Link href={`/categories/${allCategory[0]?.slug || "/"}`} className='p-2 border border-white text-white font-[Rokh-light] text-[18px] rounded-xl hover:cursor-pointer'>مشاهده و خرید {allCategory[0]?.title}</Link>
                         </div>
                     </div>
                     <div style={{
@@ -77,7 +77,7 @@ export default function CategoryBox({ firstItem, lastItem }) {
                     }} className={'flex items-end lg:w-[420px] lg:h-[288px] sm:w-[340px] inset-0 sm:bg-bottom lg:bg-center bg-cover rounded-2xl'}>
                         <div className='p-7'>
                             <p className='text-white font-[Rokh-light] text-[20px] mb-2'>{allCategory[1]?.title}</p>
-                            <Link href={allCategory[1]?.slug || "/"} className='p-2 border border-white text-white font-[Rokh-light] text-[18px] rounded-xl hover:cursor-pointer'>مشاهده و خرید {allCategory[1]?.title}</Link>
+                            <Link href={`/categories/${allCategory[1]?.slug || "/"}`} className='p-2 border border-white text-white font-[Rokh-light] text-[18px] rounded-xl hover:cursor-pointer'>مشاهده و خرید {allCategory[1]?.title}</Link>
                         </div>
                     </div>
                     <div className='flex items-center flex-col lg:gap-y-6 sm:gap-y-2.5'>
@@ -88,7 +88,7 @@ export default function CategoryBox({ firstItem, lastItem }) {
                         }} className=' flex items-end lg:w-[420px] h-[132px] sm:w-[340px] inset-0 bg-bottom bg-cover rounded-2xl '>
                             <div className='p-7'>
                                 <p className='text-white font-[Rokh-light] text-[20px] mb-2'>{allCategory[2]?.title}</p>
-                                <Link href={allCategory[2]?.slug || "/"} className='p-2 border border-white text-white font-[Rokh-light] text-[18px] rounded-xl hover:cursor-pointer'>مشاهده و خرید {allCategory[2]?.title} </Link>
+                                <Link href={`/categories/${allCategory[2]?.slug || "/"}`} className='p-2 border border-white text-white font-[Rokh-light] text-[18px] rounded-xl hover:cursor-pointer'>مشاهده و خرید {allCategory[2]?.title} </Link>
                             </div>
                         </div>
                         <div style={{
@@ -98,7 +98,7 @@ export default function CategoryBox({ firstItem, lastItem }) {
                         }} className=' flex items-end lg:w-[420px] h-[132px] sm:w-[340px] inset-0 bg-bottom bg-cover rounded-2xl '>
                             <div className='p-7'>
                                 <p className='text-white font-[Rokh-light] text-[20px] mb-2'>{allCategory[3]?.title}</p>
-                                <Link href={allCategory[3]?.slug || "/"} className='p-2 border border-white text-white font-[Rokh-light] text-[18px] rounded-xl hover:cursor-pointer'>مشاهده و خرید {allCategory[3]?.title}</Link>
+                                <Link href={`/categories/${allCategory[3]?.slug || "/"}`} className='p-2 border border-white text-white font-[Rokh-light] text-[18px] rounded-xl hover:cursor-pointer'>مشاهده و خرید {allCategory[3]?.title}</Link>
                             </div>
                         </div>
                     </div>
