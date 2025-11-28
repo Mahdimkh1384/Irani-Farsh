@@ -4,7 +4,7 @@ import ProductGallery from '@/Components/ProductsGallery/productgallery';
 import Breadcrumb from '@/Components/Breadcrumb/Breadcrumb';
 import ProductSpecs from '@/Components/ProductSpecs/ProductSpecs';
 import PurchaseBox from '@/Components/PurchaseBox/PurchaseBox';
-import Slider from '@/Components/Slider/Slider';
+import SimilarProductsSlider from '@/Components/SimilarProductsSlider/similarProductsSlider';
 import Reviews from '@/Components/Reviews/review';
 import { cookies } from 'next/headers';
 
@@ -18,6 +18,8 @@ export default async function Products({ params }) {
 
     try {
         productData = await fetchProductData(productId);
+        console.log(productData);
+
     } catch (error) {
         console.error("🚨 خطا در لود محصول:", error);
         return <div>خطا در دریافت محصول: {error.message}</div>;
@@ -30,8 +32,7 @@ export default async function Products({ params }) {
     return (
         <>
             <Breadcrumb links={[
-                { id: 1, title: 'ماهساره', href: "/" },
-                { id: 2, title: productTitle, href: `/products/${productId}` }
+                { id: 1, title: productTitle, href: `/products/${productId}` }
             ]} />
 
             <div className='flex lg:flex-row pt-[50px] lg:pr-[108px] lg:pl-[108px] justify-between sm:flex-col'>
@@ -61,8 +62,8 @@ export default async function Products({ params }) {
             </div>
 
             {/* Slider محصولات مشابه */}
-            <Slider category="machine-made-rug"/>
 
+            <SimilarProductsSlider data={productData.similarProducts}/>
             {/* Reviews Section */}
             <div>
                 {/* 🔑 پاس دادن آیدی محصول و توکن به سیستم کامنت */}
