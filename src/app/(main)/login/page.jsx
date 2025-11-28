@@ -34,9 +34,9 @@ export default function Login() {
             const data = await res.json();
             console.log("پاسخ API لاگین:", data);
         
-            if (res.ok && data.status === "success" && data.sajy) {
+            if (res.ok && data.success && data.sajy) {
                 saveAuthData(data.sajy, data.user);
-                 document.cookie = `sajy=${data.sajy}; path=/;sameSite=lax`;
+                document.cookie = `sajy=${data.sajy}; path=/;sameSite=lax`;
                 toast.success('ورود با موفقیت انجام شد 🎉');
                 setTimeout(() => {
                     window.location.href = "/";

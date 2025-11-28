@@ -23,7 +23,7 @@
 
 @theme {
     --color-primary: #CB1B1B;
-    --breakpoint-sm: 320px
+    --breakpoint-sm: 300px
 }
 
 @layer components {
