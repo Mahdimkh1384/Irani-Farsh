@@ -109,15 +109,15 @@ export default function BasketProductBox({ quantity, product, token, resetBasket
                 </div>
                 {/* ==================== product count ================== */}
                 <div className=' sm:absolute lg:static bottom-0 right-4 flex justify-around items-center w-[125px] h-[59px] border border-neutral-400 rounded-[8px] font-bold'>
-                    <FaPlus className='text-primary text-[16px] hover:cursor-pointer' onClick={addCount} />
+                    <FaPlus className='text-primary text-[16px] hover:cursor-pointer transition-all duration-150 active:scale-85' onClick={addCount} />
                     <div className='flex flex-col '>
                         <span className='text-center text-[20px] select-none'>{count}</span>
                         <p className='text-[14px] select-none'>تعداد</p>
                     </div>
                     {isCountOverOne ? (
-                        <FaMinus className='text-primary text-[16px] hover:cursor-pointer' onClick={minusCount} />
+                        <FaMinus className='text-primary text-[16px] hover:cursor-pointer transition-all duration-150 active:scale-85' onClick={minusCount} />
                     ) : (
-                        <LuTrash className='text-primary text-[16px] hover:cursor-pointer' onClick={removeItem} />
+                        <LuTrash className='text-primary text-[16px] hover:cursor-pointer transition-all duration-150 active:scale-85' onClick={removeItem} />
                     )}
                 </div>
             </div>

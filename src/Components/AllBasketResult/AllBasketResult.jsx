@@ -41,18 +41,18 @@ export default function AllBasketResult({ data, token, resetBasket }) {
         <div className='lg:w-[312px] sm:w-full h-[275px] flex flex-col gap-y-8 lg:border sm:border-y border-neutral-400 lg:rounded-[8px] px-[19px] py-[26px]'>
             {/* ================== details ================== */}
             <div className='flex justify-between'>
-                <p className='text-[16px] font-[Rokh-light] font-bold'>تعداد فرش :</p>
-                <p className='text-[20px]'>{allCount}</p>
+                <p className='text-[16px] font-[Rokh-light] font-bold select-none'>تعداد فرش :</p>
+                <p className='text-[20px] select-none'>{allCount}</p>
             </div>
             <div className='flex justify-between'>
-                <p className='text-[16px] font-[Rokh-light] font-bold'>مجموع سبد خرید : </p>
-                <p className='text-[20px]'>{allPrice.toLocaleString()}</p>
+                <p className='text-[16px] font-[Rokh-light] font-bold select-none'>مجموع سبد خرید : </p>
+                <p className='text-[20px] select-none'>{allPrice.toLocaleString()} تومان </p>
             </div>
             <div className='flex justify-between'>
-                <p className='text-[16px] font-[Rokh-light] font-bold'>ارسال توسط :</p>
-                <p className='text-[20px]'>ایرانی فرش</p>
+                <p className='text-[16px] font-[Rokh-light] font-bold select-none'>ارسال توسط :</p>
+                <p className='text-[20px] select-none'>ایرانی فرش</p>
             </div>
-            <button onClick={buyProductsHandler} className='lg:w-[274px] sm:w-[350px] h-10 rounded-[12px] px-2 text-white bg-primary hover:bg-red-700 hover:cursor-pointer font-[Rokh-light] font-bold'>{loading ? "در حال پردازش..." : "سفارش و خرید"}</button>
+            <button onClick={buyProductsHandler} className='lg:w-[274px] sm:w-[350px] h-10 rounded-[12px] px-2 text-white bg-primary hover:bg-red-700 hover:cursor-pointer font-[Rokh-light] font-bold select-none'>{loading ? "در حال پردازش..." : "سفارش و خرید"}</button>
         </div>
     )
 }

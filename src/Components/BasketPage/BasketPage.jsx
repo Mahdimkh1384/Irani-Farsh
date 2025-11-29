@@ -39,11 +39,12 @@ export default function BasketPage() {
         const user = localStorage.getItem('user')
         if (user) {
             setIsUserLogin(true)
+            getBasketItems()
         } else {
             setIsUserLogin(false)
+            setLoading(false)
         }
 
-        getBasketItems()
     }, [])
 
     if (loading) {

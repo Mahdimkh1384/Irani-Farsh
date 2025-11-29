@@ -10,7 +10,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import './SimilarProductsSlider.css';
+import './../Slider/Slider.css';
 
 // import required modules
 import { Navigation, Autoplay } from 'swiper/modules';
