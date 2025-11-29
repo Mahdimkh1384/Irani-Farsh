@@ -13,6 +13,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useContext } from 'react';
 import { UserContext } from '../../../../Contexts/UserContext';
+import Image from 'next/image';
 
 export default function SideBar() {
 
@@ -80,7 +81,7 @@ export default function SideBar() {
             {/* ====================== top section (profile) ========================= */}
             <div className='h-[40%] flex flex-col justify-center items-center gap-y-2 border-b border-neutral-600 rounded-t-[10px] bg-[linear-gradient(to_bottom,rgba(255,30,30,0.5),rgba(255,0,0,0.2),rgba(255,255,255,1))]'>
                 <div className=' relative'>
-                    <img className='size-35 rounded-[50%]' src={userInfo.profileImage ? `https://backend.sajlab.ir/uploads/user/${userInfo.profileImage}` : "/images/userIcon.png"} alt="profile" />
+                    <Image width={140} height={140} className='size-35 rounded-[50%]' src={userInfo.profileImage ? `https://backend.sajlab.ir/uploads/user/${userInfo.profileImage}` : "/images/userIcon.png"} alt="profile" />
                     <input type="file" id='fileInput' hidden onChange={handleUpload} />
                     <label htmlFor="fileInput" className=' absolute bottom-2 right-3 size-9 rounded-[50%] bg-white flex justify-center items-center hover:cursor-pointer'>
                         <FiPlus className='text-2xl' />

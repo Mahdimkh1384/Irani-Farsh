@@ -9,9 +9,13 @@ import { FaRegCommentDots } from "react-icons/fa6";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { logout } from "@/utils/auth";
-
+import { useContext } from 'react';
+import { UserContext } from '../../../../Contexts/UserContext';
+import Image from 'next/image';
 
 export default function MobileSidebar() {
+
+    const { userInfo, getUserInfo, token } = useContext(UserContext);
 
     const pathname = usePathname();
 
@@ -26,20 +30,46 @@ export default function MobileSidebar() {
         logout()
     }
 
+    const handleUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            const res = await fetch("https://backend.sajlab.ir/api/users/profileImage", {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                getUserInfo()
+            }
+
+        } catch (err) {
+            console.log("Upload error:", err);
+        }
+    }
+
     return (
         <div className='bg-neutral-50 z-50 fixed top-0 right-0 w-[65%] h-screen border  border-neutral-400'>
             {/* ====================== top section (profile) ========================= */}
             <div className='h-[35%] flex flex-col justify-center items-center gap-y-2 border-b border-neutral-600 bg-[linear-gradient(to_bottom,rgba(255,30,30,0.5),rgba(255,0,0,0.2),rgba(255,255,255,1))]'>
                 <div className=' relative'>
-                    <img className='size-30 ' src="/images/userIcon.png" alt="profile" />
-                    <input type="file" id='fileInput' hidden />
+                    <Image width={140} height={140} className='size-35 rounded-[50%]' src={userInfo.profileImage ? `https://backend.sajlab.ir/uploads/user/${userInfo.profileImage}` : "/images/userIcon.png"} alt="profile" />
+                    <input type="file" id='fileInput' hidden onChange={handleUpload}/>
                     <label htmlFor="fileInput" className=' absolute bottom-2 right-3 size-7 rounded-[50%] bg-white flex justify-center items-center hover:cursor-pointer'>
                         <FiPlus className='text-2xl' />
                     </label>
                 </div>
                 <div className='font-[Rokh-light] font-bold flex flex-col justify-center items-center'>
-                    <h3 className='text-[20px]'>مهدی مرامی</h3>
-                    <p>mahdi@gmail.com</p>
+                    <h3 className='text-[20px]'>{userInfo.firstName} {userInfo.lastName}</h3>
+                    <p>{userInfo.email}</p>
                 </div>
             </div>
             {/* ====================== bottom section (menus) ======================== */}
