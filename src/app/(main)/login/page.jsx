@@ -30,10 +30,10 @@ export default function Login() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(loginData)
             });
-        
+
             const data = await res.json();
             console.log("پاسخ API لاگین:", data);
-        
+
             if (res.ok && data.success && data.sajy) {
                 saveAuthData(data.sajy, data.user);
                 document.cookie = `sajy=${data.sajy}; path=/;sameSite=lax`;
@@ -42,13 +42,13 @@ export default function Login() {
                     window.location.href = "/";
                 }, 1500);
             } else {
-                toast.error( "ایمیل یا رمز عبور اشتباه است.");
+                toast.error("ایمیل یا رمز عبور اشتباه است.");
             }
         } catch (err) {
             console.error("❌ خطا در ارتباط با سرور:", err);
             toast.error("مشکل در اتصال به سرور!");
         }
-        
+
     };
 
     return (
@@ -63,6 +63,7 @@ export default function Login() {
                     <Input
                         className="loginInput"
                         id="email"
+                        value={formState.inputs.email.value}
                         type="email"
                         placeholder="ایمیل"
                         element="input"
@@ -73,6 +74,7 @@ export default function Login() {
                     <Input
                         className="loginInput"
                         id="password"
+                        value={formState.inputs.password.value}
                         type="password"
                         placeholder="رمز عبور"
                         element="input"
@@ -83,9 +85,8 @@ export default function Login() {
                     <button
                         type="submit"
                         disabled={!formState.isFormValid}
-                        className={`lg:w-[100%] h-[56px] rounded-[12px] text-amber-50 sm:w-[100%] font-[Rokh-light] font-bold transition-colors ${
-                            formState.isFormValid ? "bg-primary hover:bg-red-700 cursor-pointer" : "bg-gray-400 cursor-not-allowed"
-                        }`}
+                        className={`lg:w-[100%] h-[56px] rounded-[12px] text-amber-50 sm:w-[100%] font-[Rokh-light] font-bold transition-colors ${formState.isFormValid ? "bg-primary hover:bg-red-700 cursor-pointer" : "bg-gray-400 cursor-not-allowed"
+                            }`}
                     >
                         ورود
                     </button>

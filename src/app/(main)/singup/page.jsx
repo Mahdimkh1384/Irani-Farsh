@@ -76,6 +76,7 @@ export default function Register() {
                     >
                         <Input
                             id="name"
+                            value={formState.inputs.name.value}
                             className="loginInput"
                             type="text"
                             placeholder="نام"
@@ -86,6 +87,7 @@ export default function Register() {
                         />
                         <Input
                             id="family"
+                            value={formState.inputs.family.value}
                             className="loginInput"
                             type="text"
                             placeholder="نام خانوادگی"
@@ -96,6 +98,7 @@ export default function Register() {
                         />
                         <Input
                             id="email"
+                            value={formState.inputs.email.value}
                             className="loginInput"
                             type="email"
                             placeholder="ایمیل"
@@ -106,6 +109,7 @@ export default function Register() {
                         />
                         <Input
                             id="phone"
+                            value={formState.inputs.phone.value}
                             className="loginInput"
                             type="text"
                             placeholder="شماره تلفن"
@@ -116,6 +120,7 @@ export default function Register() {
                         />
                         <Input
                             id="password"
+                            value={formState.inputs.password.value}
                             className="loginInput"
                             type="password"
                             placeholder="رمز عبور"

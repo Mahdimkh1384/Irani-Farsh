@@ -2,7 +2,8 @@
 import { useReducer, useCallback } from "react";
 
 const formReducer = (state, action) => {
-  switch (action.type) { 
+  switch (action.type) {
+
     case 'INPUT_CHANGE': {
       let isFormValid = true;
 
@@ -27,6 +28,13 @@ const formReducer = (state, action) => {
       };
     }
 
+    case 'RESET_FORM': {
+      return {
+        inputs: action.resetInputs,
+        isFormValid: false,
+      };
+    }
+
     default:
       return state;
   }
@@ -47,5 +55,12 @@ export const useForm = (initInputs, initFormIsValid) => {
     });
   }, []);
 
-  return [formState, onInputHandler];
+  const resetForm = useCallback((resetInputs) => {
+    dispatch({
+      type: 'RESET_FORM',
+      resetInputs,
+    });
+  }, []);
+
+  return [formState, onInputHandler, resetForm];
 };

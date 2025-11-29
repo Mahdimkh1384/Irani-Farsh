@@ -11,9 +11,12 @@ import { logout } from "@/utils/auth";
 import { getUserData, isAuthenticated } from "@/utils/auth";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { useContext } from 'react';
+import { UserContext } from '../../../../Contexts/UserContext';
 
 export default function SideBar() {
 
+    const { userInfo, getUserInfo , token } = useContext(UserContext);
     const pathname = usePathname();
     const [user, setUser] = useState(null)
 
@@ -46,21 +49,47 @@ export default function SideBar() {
         logout()
     }
 
+    const handleUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            const res = await fetch("https://backend.sajlab.ir/api/users/profileImage", {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                getUserInfo()
+            }
+
+        } catch (err) {
+            console.log("Upload error:", err);
+        }
+    }
+
     return (
         <div className='lg:inline sm:hidden bg-neutral-50 fixed w-[25%] h-[95vh] border rounded-[10px] border-neutral-400'>
             {/* ====================== top section (profile) ========================= */}
             <div className='h-[40%] flex flex-col justify-center items-center gap-y-2 border-b border-neutral-600 rounded-t-[10px] bg-[linear-gradient(to_bottom,rgba(255,30,30,0.5),rgba(255,0,0,0.2),rgba(255,255,255,1))]'>
                 <div className=' relative'>
-                    <img className='size-35 ' src="/images/userIcon.png" alt="profile" />
-                    <input type="file" id='fileInput' hidden />
+                    <img className='size-35 rounded-[50%]' src={userInfo.profileImage ? `https://backend.sajlab.ir/uploads/user/${userInfo.profileImage}` : "/images/userIcon.png"} alt="profile" />
+                    <input type="file" id='fileInput' hidden onChange={handleUpload} />
                     <label htmlFor="fileInput" className=' absolute bottom-2 right-3 size-9 rounded-[50%] bg-white flex justify-center items-center hover:cursor-pointer'>
                         <FiPlus className='text-2xl' />
                     </label>
                 </div>
                 {user ? (
                     <div className='font-[Rokh-light] font-bold flex flex-col justify-center items-center'>
-                        <h3 className='text-[20px]'>{user.firstName} {user.lastName}</h3>
-                        <p>mahdi@gmail.com</p>
+                        <h3 className='text-[20px]'>{userInfo.firstName} {userInfo.lastName}</h3>
+                        <p>{userInfo.email}</p>
                     </div>
                 ) : (
                     <div className='flex flex-col justify-center items-center gap-0.5'>
