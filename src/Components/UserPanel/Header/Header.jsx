@@ -42,10 +42,17 @@ export default function Header() {
     useEffect(() => {
         if (!userInfo?.orders) return;
 
-        const totalPrice =
-            userInfo.orders.reduce((sum, item) =>
-                sum + Number(item.product.price) * item.quantity
-                , 0);
+        const totalPrice = userInfo.orders.reduce((sum, item) => {
+            const price = Number(item.product.price);
+            const discount = Number(item.product.discount) || 0;
+
+            // قیمت بعد از تخفیف
+            const finalPrice = discount > 0
+                ? price - (price * discount / 100)
+                : price;
+
+            return sum + finalPrice * item.quantity;
+        }, 0);
 
         setAllPrice(totalPrice);
     }, [userInfo]);
