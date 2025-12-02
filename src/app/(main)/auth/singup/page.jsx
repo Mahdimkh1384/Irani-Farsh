@@ -47,17 +47,16 @@ export default function Register() {
             const data = await res.json();
             console.log("📦 پاسخ سرور:", data);
 
-            if (res.ok && data.success && data.sajy) {
-                saveAuthData(data.sajy, data.user);
-                document.cookie = `sajy=${data.sajy}; path=/; sameSite=lax`;
-                toast.success('ورود با موفقیت انجام شد 🎉');
+            if (res.ok && data.success) {
+                localStorage.setItem("signupSessionId", data.sessionId);
+                toast.success('ثبت‌نام موفق، لطفاً کد OTP را وارد کنید');
                 setTimeout(() => {
-                    window.location.href = "/";
-                }, 1500);
+                    window.location.href = "/auth/OTP";
+                }, 800);
             } else {
-                toast.error("ایمیل یا رمز عبور اشتباه است.");
-            }
-        } catch (err) {
+                toast.error(data.message || "ثبت‌نام ناموفق بود");
+            }}
+        catch (err) {
             console.error("❌ خطا در ارتباط با سرور:", err);
             toast.error("مشکل در اتصال به سرور!");
         }

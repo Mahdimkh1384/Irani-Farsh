@@ -3,18 +3,21 @@ import React, { useEffect, useState } from "react";
 import { MdBusiness } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
-import { getToken } from "@/utils/auth"; // مسیر فایل auth خودت
+import { getToken } from "@/utils/auth";
 
 export default function PurchaseBox({ product }) {
+
     const [qty, setQty] = useState(0);
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState(null);
 
     const token = getToken();
+    const API_URL = "https://backend.sajlab.ir/api/cart-items";
+    const productId = product?._id ?? product?.id;
 
     const status = product?.rating || "متوسط";
-    const price = product?.price ? Number(product.price).toLocaleString() : "نامشخص";
     const seller = product?.seller || "شرکت فرش سهند";
+    const price = product?.price ? Number(product.price).toLocaleString() : "نامشخص";
     const stars = product?.stars || 4.6;
 
     const colorClass =
@@ -24,10 +27,7 @@ export default function PurchaseBox({ product }) {
                 ? "text-red-500"
                 : "text-yellow-500";
 
-    const API_URL = "https://backend.sajlab.ir/api/cart-items";
-    const productId = product?._id ?? product?.id;
-
-    // ------------ دریافت وضعیت اولیه سبد ----------
+    // ============= دریافت مقدار اولیه از سبد =============
     useEffect(() => {
         const fetchCart = async () => {
             if (!token || !productId) return;
@@ -42,11 +42,13 @@ export default function PurchaseBox({ product }) {
                 });
 
                 const data = await res.json();
+
                 const item = data?.find(
                     (it) =>
                         String(it.productId) === String(productId) ||
                         String(it.product_id) === String(productId)
                 );
+
                 setQty(item ? Number(item.quantity) : 0);
             } catch (err) {
                 console.error(err);
@@ -58,15 +60,19 @@ export default function PurchaseBox({ product }) {
         fetchCart();
     }, [token, productId]);
 
-    // ------------ ارسال POST برای اضافه/کم کردن ----------
-    const updateCart = async (newQty) => {
+    // ============= ارسال فقط مقدار تغییر (delta) =============
+    const updateCart = async (delta) => {
         if (!token) {
             setErrorMsg("لطفاً ابتدا وارد حساب شوید.");
             return;
         }
 
+        const finalQty = qty + delta;
+        if (finalQty < 0) return;
+
         try {
             setLoading(true);
+
             const res = await fetch(API_URL, {
                 method: "POST",
                 headers: {
@@ -75,14 +81,17 @@ export default function PurchaseBox({ product }) {
                 },
                 body: JSON.stringify({
                     productId,
-                    quantity: newQty,
+                    quantity: delta,   // ⬅ فقط تغییر را می‌فرستیم نه کل مقدار
                 }),
             });
 
             const data = await res.json();
+            console.log("Cart Data:", data);
+            console.log("Product ID in page:", productId);
+
             console.log("🟢 پاسخ سرور:", data);
 
-            setQty(newQty);
+            setQty(finalQty);  // مقدار جدید محلی
             setErrorMsg(null);
         } catch (err) {
             console.error(err);
@@ -93,16 +102,12 @@ export default function PurchaseBox({ product }) {
     };
 
     const handleAdd = () => updateCart(1);
-    const handleIncrease = () => updateCart(qty + 1);
-    const handleDecreaseOrRemove = () => {
-        if (qty <= 1) updateCart(0);
-        else updateCart(qty - 1);
-    };
+    const handleIncrease = () => updateCart(1);
+    const handleDecreaseOrRemove = () => updateCart(-1);
 
     return (
         <div className="flex flex-col justify-center lg:rounded-lg lg:border-2 border-[#ADADAD] sm:border-t sm:border-b lg:w-[312px] sm:w-[100%] h-[470px] py-[31px] px-[12px]">
 
-            {/* بخش فروشنده و عملکرد */}
             <div className="flex flex-col gap-7 border-b-1 border-[#ADADAD] pb-5">
                 <h1>فروشنده</h1>
                 <div className="flex gap-2 items-center">
@@ -121,16 +126,13 @@ export default function PurchaseBox({ product }) {
                 </div>
             </div>
 
-            {/* قیمت */}
             <div className="flex justify-between mt-6">
                 <h1 className="text-xl">قیمت:</h1>
                 <h2>{price} تومان</h2>
             </div>
 
-            {/* خطا */}
             {errorMsg && <p className="text-red-600 text-sm mt-2">{errorMsg}</p>}
 
-            {/* اگر توکن نیست */}
             {!token && (
                 <a
                     href="/login"
@@ -140,7 +142,6 @@ export default function PurchaseBox({ product }) {
                 </a>
             )}
 
-            {/* اگر محصول هنوز تو سبد نیست */}
             {token && qty === 0 && (
                 <button
                     onClick={handleAdd}
@@ -151,7 +152,6 @@ export default function PurchaseBox({ product }) {
                 </button>
             )}
 
-            {/* کنترل تعداد */}
             {token && qty > 0 && (
                 <div className="mt-5 flex justify-between items-center bg-gray-100 p-3 rounded-xl">
 
@@ -163,8 +163,8 @@ export default function PurchaseBox({ product }) {
                         +
                     </button>
 
-
                     <span className="text-lg font-bold">{qty}</span>
+
                     {qty === 1 ? (
                         <button
                             onClick={handleDecreaseOrRemove}

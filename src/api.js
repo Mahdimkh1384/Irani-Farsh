@@ -36,7 +36,7 @@ export async function postComment(token, commentText, productId, rating) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      product: productId,
+      product: Number(productId), 
       content: commentText,
       rating: rating,
     }),

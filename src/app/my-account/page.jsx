@@ -1,12 +1,13 @@
 "use client"
-import React, { useState } from 'react'
-import Input from '../(main)/singup/input'
+import React, { useEffect, useState } from 'react'
 import { FaUser, FaEnvelope, FaKey, FaPhone, } from 'react-icons/fa'
 import { requiredValidator, minValidator, maxValidator, emailValidator } from '@/validators/rules'
 import { useContext } from 'react';
 import { UserContext } from '../../../Contexts/UserContext';
 import { useForm } from "@/Components/hooks/useForm";
 import toast from 'react-hot-toast';
+import Input from '../(main)/auth/singup/input';
+import { Try } from '@mui/icons-material';
 
 
 export default function UserPanel() {
@@ -24,7 +25,6 @@ export default function UserPanel() {
         false
     );
     const [loading, setLoading] = useState(false)
-
     const updateUserInfo = async () => {
         const inputs = formState.inputs;
 

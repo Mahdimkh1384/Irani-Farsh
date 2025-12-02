@@ -1,13 +1,13 @@
 "use client";
 import React from 'react'
 import Image from 'next/image'
-import Input from '../singup/input'
 import { FaKey, FaEnvelope } from 'react-icons/fa'
 import { requiredValidator, minValidator, maxValidator, emailValidator } from '@/validators/rules'
 import Link from 'next/link'
 import { useForm } from '@/Components/hooks/useForm'
 import { saveAuthData } from '@/utils/auth'
 import toast from 'react-hot-toast';
+import Input from '../auth/singup/input';
 
 
 export default function Login() {
@@ -93,7 +93,7 @@ export default function Login() {
 
                     <p className='text-xl font-[Rokh-light] font-bold'>
                         ثبت نام نکرده اید؟{" "}
-                        <Link href="/singup" className='text-primary hover:text-red-700'>همین حالا عضو شوید</Link>
+                        <Link href="/auth/singup" className='text-primary hover:text-red-700'>همین حالا عضو شوید</Link>
                     </p>
                 </form>
             </div>

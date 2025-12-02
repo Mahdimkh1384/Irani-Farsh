@@ -60,13 +60,8 @@ export default async function Products({ params }) {
                     فرش های مشابه
                 </h1>
             </div>
-
-            {/* Slider محصولات مشابه */}
-
-            <SimilarProductsSlider data={productData.similarProducts}/>
-            {/* Reviews Section */}
+            <SimilarProductsSlider data={productData.similarProducts} />
             <div>
-                {/* 🔑 پاس دادن آیدی محصول و توکن به سیستم کامنت */}
                 <Reviews productId={productId} userToken={userToken} />
             </div>
         </>

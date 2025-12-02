@@ -14,15 +14,22 @@ import { FaStar } from "react-icons/fa";
  *   created_at?: string
  * }}} props 
  */
+const BASE_URL = "https://backend.sajlab.ir";
+
 export default function Coments({ comment }) {
   const firstName = comment?.user?.firstName || "کاربر مهمان";
-  const lastName = comment?.user?.lastName || "کاربر مهمان";
-  const userAvatar = comment?.user?.avatar || "/images/defult1.jpg";
+  const lastName = comment?.user?.lastName || "";
+  const userAvatar = comment?.user?.profileImage
+  ? comment.user.profileImage.startsWith("http")
+    ? comment.user.profileImage
+    : `${BASE_URL}/uploads/user/${comment.user.profileImage}`
+  : "/images/defult1.jpg";
   const rating = comment?.rating || 0;
   const text = comment?.content || "بدون متن";
   const createdAt = comment?.created_at
     ? new Date(comment.created_at).toLocaleDateString("fa-IR")
     : "تازه ثبت شده";
+console.log(comment);
 
   return (
     <div className="border-b border-[#E9EAEE] pb-5 pt-8">
