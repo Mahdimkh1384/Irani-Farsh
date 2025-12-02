@@ -5,16 +5,26 @@ export default function AllBasketResult({ data, token, resetBasket }) {
 
     const [allPrice, setAllPrice] = useState(0)
     const [allCount, setAllCount] = useState(0)
-    const [loading , setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        const totalCount = data.reduce((sum, item) => sum + item.quantity, 0)
-        const totalPrice = data.reduce((sum, item) => { return sum + Number(item.product.price) * item.quantity; }, 0);
+        const totalCount = data.reduce((sum, item) => sum + item.quantity, 0);
 
-        setAllCount(totalCount)
-        setAllPrice(totalPrice)
+        const totalPrice = data.reduce((sum, item) => {
+            const price = Number(item.product.price);
+            const discount = Number(item.product.discount) || 0;
 
-    }, [data])
+            const finalPrice = discount > 0
+                ? price - (price * discount / 100)
+                : price;
+
+            return sum + finalPrice * item.quantity;
+        }, 0);
+
+        setAllCount(totalCount);
+        setAllPrice(totalPrice);
+    }, [data]);
+
 
     const buyProductsHandler = async () => {
         try {
@@ -52,7 +62,7 @@ export default function AllBasketResult({ data, token, resetBasket }) {
                 <p className='text-[16px] font-[Rokh-light] font-bold select-none'>ارسال توسط :</p>
                 <p className='text-[20px] select-none'>ایرانی فرش</p>
             </div>
-            <button onClick={buyProductsHandler} className='lg:w-[274px] sm:w-[350px] h-10 rounded-[12px] px-2 text-white bg-primary hover:bg-red-700 hover:cursor-pointer font-[Rokh-light] font-bold select-none'>{loading ? "در حال پردازش..." : "سفارش و خرید"}</button>
+            <button onClick={buyProductsHandler} className='lg:w-[274px] sm:w-[350px] h-10 rounded-[12px] px-2 text-white bg-primary hover:bg-red-700 hover:cursor-pointer  select-none'>{loading ? "در حال پردازش..." : "سفارش و خرید"}</button>
         </div>
     )
 }

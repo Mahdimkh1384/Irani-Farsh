@@ -13,7 +13,10 @@ export default function PurchaseBox({ product }) {
     const token = getToken();
 
     const status = product?.rating || "متوسط";
-    const price = product?.price ? Number(product.price).toLocaleString() : "نامشخص";
+    const price = product?.price ? Number(product.price) : "نامشخص";
+    const discount = product.discount;
+    const discountPercent = Number(discount) || 0;
+    const discountPrice = (price * discountPercent) / 100;
     const seller = product?.seller || "شرکت فرش سهند";
     const stars = product?.stars || 4.6;
 
@@ -122,68 +125,88 @@ export default function PurchaseBox({ product }) {
             </div>
 
             {/* قیمت */}
-            <div className="flex justify-between mt-6">
-                <h1 className="text-xl">قیمت:</h1>
-                <h2>{price} تومان</h2>
-            </div>
+            {discount ? (
+                <div className="flex justify-between mt-6 items-center">
+                    <h1 className="text-xl font-[Rokh-light]  font-bold">قیمت:</h1>
+                    <div className="flex flex-col">
+                        <p className=" font-[Rokh-light] text-neutral-400 text-[15px]"><s>{price.toLocaleString()} تومان</s></p>
+                        <p className=" font-[Rokh-light] font-bold text-[18px]">{Number(price - discountPrice).toLocaleString()} تومان</p>
+                    </div>
+                    <div className='size-10 bg-primary flex justify-center items-center text-white rounded-xl'>
+                        <span>{discount}%</span>
+                    </div>
+                </div>
+            ) : (
+                <div className="flex justify-between mt-6 font-[Rokh-light] font-bold">
+                    <h1 className="text-xl">قیمت:</h1>
+                    <h2 className="font-[Rokh-light] font-bold text-[18px]">{price.toLocaleString()} تومان</h2>
+                </div >
+            )
+            }
 
             {/* خطا */}
             {errorMsg && <p className="text-red-600 text-sm mt-2">{errorMsg}</p>}
 
             {/* اگر توکن نیست */}
-            {!token && (
-                <a
-                    href="/login"
-                    className="w-full mt-5 bg-primary text-white text-center py-2 rounded-xl block"
-                >
-                    ورود به حساب
-                </a>
-            )}
+            {
+                !token && (
+                    <a
+                        href="/login"
+                        className="w-full mt-5 bg-primary text-white text-center py-2 rounded-xl block"
+                    >
+                        ورود به حساب
+                    </a>
+                )
+            }
 
             {/* اگر محصول هنوز تو سبد نیست */}
-            {token && qty === 0 && (
-                <button
-                    onClick={handleAdd}
-                    disabled={loading}
-                    className="w-full mt-5 bg-primary text-white py-2 rounded-xl"
-                >
-                    {loading ? "در حال افزودن..." : "افزودن به سبد خرید"}
-                </button>
-            )}
+            {
+                token && qty === 0 && (
+                    <button
+                        onClick={handleAdd}
+                        disabled={loading}
+                        className="w-full mt-5 bg-primary text-white py-2 rounded-xl cursor-pointer hover:bg-red-700 transition-colors"
+                    >
+                        {loading ? "در حال افزودن..." : "افزودن به سبد خرید"}
+                    </button>
+                )
+            }
 
             {/* کنترل تعداد */}
-            {token && qty > 0 && (
-                <div className="mt-5 flex justify-between items-center bg-gray-100 p-3 rounded-xl">
+            {
+                token && qty > 0 && (
+                    <div className="mt-5 flex justify-between items-center bg-gray-100 p-3 rounded-xl">
 
-                    <button
-                        onClick={handleIncrease}
-                        disabled={loading}
-                        className="p-2 bg-gray-300 rounded-lg text-xl"
-                    >
-                        +
-                    </button>
-
-
-                    <span className="text-lg font-bold">{qty}</span>
-                    {qty === 1 ? (
                         <button
-                            onClick={handleDecreaseOrRemove}
-                            disabled={loading}
-                            className="p-2 bg-red-200 rounded-lg"
-                        >
-                            <FaTrash size={18} className="text-red-600" />
-                        </button>
-                    ) : (
-                        <button
-                            onClick={handleDecreaseOrRemove}
+                            onClick={handleIncrease}
                             disabled={loading}
                             className="p-2 bg-gray-300 rounded-lg text-xl"
                         >
-                            −
+                            +
                         </button>
-                    )}
-                </div>
-            )}
-        </div>
+
+
+                        <span className="text-lg font-bold">{qty}</span>
+                        {qty === 1 ? (
+                            <button
+                                onClick={handleDecreaseOrRemove}
+                                disabled={loading}
+                                className="p-2 bg-red-200 rounded-lg"
+                            >
+                                <FaTrash size={18} className="text-red-600" />
+                            </button>
+                        ) : (
+                            <button
+                                onClick={handleDecreaseOrRemove}
+                                disabled={loading}
+                                className="p-2 bg-gray-300 rounded-lg text-xl"
+                            >
+                                −
+                            </button>
+                        )}
+                    </div>
+                )
+            }
+        </div >
     );
 }

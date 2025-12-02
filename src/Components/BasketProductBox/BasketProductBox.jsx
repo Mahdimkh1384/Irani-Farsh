@@ -7,11 +7,13 @@ import toast from 'react-hot-toast';
 
 export default function BasketProductBox({ quantity, product, token, resetBasket }) {
 
-    const { id, title, price, images } = product
+    const { id, title, price, images, discount } = product
 
     const [isCountOverOne, setIsCountOverOne] = useState(false)
     const [count, setCount] = useState(quantity)
     const timerRef = useRef(null)
+    const discountPercent = Number(discount) || 0;
+    const discountPrice = (price * discountPercent) / 100;
 
     useEffect(() => {
         if (count > 1) {
@@ -42,7 +44,6 @@ export default function BasketProductBox({ quantity, product, token, resetBasket
             console.log(err)
         }
     }
-
 
     const addCount = () => {
         setCount(prev => {
@@ -103,10 +104,20 @@ export default function BasketProductBox({ quantity, product, token, resetBasket
                 <h5 className='font-bold lg:text-[20px] sm:text-[16px]'>{title}</h5>
                 <p className='font-[500]'>رنگ : آبی</p>
                 <p className='font-[500]'>شرکت فرش سهند</p>
-                <div className='flex gap-x-6'>
-                    <p>قیمت:</p>
-                    <h5 className='font-bold'>{(Number(price) * count).toLocaleString()} تومان </h5>
-                </div>
+                {discount ? (
+                    <div className='flex gap-x-6'>
+                        <p>قیمت:</p>
+                        <div className='flex gap-x-2'>
+                            <h5 className='font-bold'>{((Number(price - discountPrice) * count)).toLocaleString()} تومان </h5>
+                            <p className='font-bold text-neutral-400'><s>{(Number(price) * count).toLocaleString()} تومان</s></p>
+                        </div>
+                    </div>
+                ) : (
+                    <div className='flex gap-x-6'>
+                        <p>قیمت:</p>
+                        <h5 className='font-bold'>{(Number(price) * count).toLocaleString()} تومان </h5>
+                    </div>
+                )}
                 {/* ==================== product count ================== */}
                 <div className=' sm:absolute lg:static bottom-0 right-4 flex justify-around items-center w-[125px] h-[59px] border border-neutral-400 rounded-[8px] font-bold'>
                     <FaPlus className='text-primary text-[16px] hover:cursor-pointer transition-all duration-150 active:scale-85' onClick={addCount} />

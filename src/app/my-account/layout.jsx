@@ -21,8 +21,6 @@ export default function RootLayout({ children }) {
     })
 
     const data = await res.json()
-
-    console.log(data);
     
 
     setUserInfo(data.result)
