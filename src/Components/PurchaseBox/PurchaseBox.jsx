@@ -16,15 +16,11 @@ export default function PurchaseBox({ product }) {
     const productId = product?._id ?? product?.id;
 
     const status = product?.rating || "متوسط";
-<<<<<<< HEAD
-=======
     const price = product?.price ? Number(product.price) : "نامشخص";
     const discount = product.discount;
     const discountPercent = Number(discount) || 0;
     const discountPrice = (price * discountPercent) / 100;
->>>>>>> b431f50ebee1b0d7ac87d8d5910e04936c343f6a
     const seller = product?.seller || "شرکت فرش سهند";
-    const price = product?.price ? Number(product.price).toLocaleString() : "نامشخص";
     const stars = product?.stars || 4.6;
 
     const colorClass =
@@ -133,12 +129,6 @@ export default function PurchaseBox({ product }) {
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <div className="flex justify-between mt-6">
-                <h1 className="text-xl">قیمت:</h1>
-                <h2>{price} تومان</h2>
-            </div>
-=======
             {/* قیمت */}
             {discount ? (
                 <div className="flex justify-between mt-6 items-center">
@@ -158,11 +148,9 @@ export default function PurchaseBox({ product }) {
                 </div >
             )
             }
->>>>>>> b431f50ebee1b0d7ac87d8d5910e04936c343f6a
 
             {errorMsg && <p className="text-red-600 text-sm mt-2">{errorMsg}</p>}
 
-<<<<<<< HEAD
             {!token && (
                 <a
                     href="/login"
@@ -176,7 +164,7 @@ export default function PurchaseBox({ product }) {
                 <button
                     onClick={handleAdd}
                     disabled={loading}
-                    className="w-full mt-5 bg-primary text-white py-2 rounded-xl"
+                    className="w-full mt-5 bg-primary text-white py-2 rounded-xl cursor-pointer hover:bg-red-700 transition-colors"
                 >
                     {loading ? "در حال افزودن..." : "افزودن به سبد خرید"}
                 </button>
@@ -188,7 +176,7 @@ export default function PurchaseBox({ product }) {
                     <button
                         onClick={handleIncrease}
                         disabled={loading}
-                        className="p-2 bg-gray-300 rounded-lg text-xl"
+                        className="p-2 bg-gray-300 rounded-lg text-xl cursor-pointer"
                     >
                         +
                     </button>
@@ -196,49 +184,6 @@ export default function PurchaseBox({ product }) {
                     <span className="text-lg font-bold">{qty}</span>
 
                     {qty === 1 ? (
-=======
-            {/* اگر توکن نیست */}
-            {
-                !token && (
-                    <a
-                        href="/login"
-                        className="w-full mt-5 bg-primary text-white text-center py-2 rounded-xl block"
-                    >
-                        ورود به حساب
-                    </a>
-                )
-            }
-
-            {/* اگر محصول هنوز تو سبد نیست */}
-            {
-                token && qty === 0 && (
-                    <button
-                        onClick={handleAdd}
-                        disabled={loading}
-                        className="w-full mt-5 bg-primary text-white py-2 rounded-xl cursor-pointer hover:bg-red-700 transition-colors"
-                    >
-                        {loading ? "در حال افزودن..." : "افزودن به سبد خرید"}
-                    </button>
-                )
-            }
-
-            {/* کنترل تعداد */}
-            {
-                token && qty > 0 && (
-                    <div className="mt-5 flex justify-between items-center bg-gray-100 p-3 rounded-xl">
-
->>>>>>> b431f50ebee1b0d7ac87d8d5910e04936c343f6a
-                        <button
-                            onClick={handleIncrease}
-                            disabled={loading}
-                            className="p-2 bg-gray-300 rounded-lg text-xl"
-                        >
-                            +
-                        </button>
-
-
-                        <span className="text-lg font-bold">{qty}</span>
-                        {qty === 1 ? (
                             <button
                                 onClick={handleDecreaseOrRemove}
                                 disabled={loading}
@@ -250,7 +195,7 @@ export default function PurchaseBox({ product }) {
                             <button
                                 onClick={handleDecreaseOrRemove}
                                 disabled={loading}
-                                className="p-2 bg-gray-300 rounded-lg text-xl"
+                                className="p-2 bg-gray-300 rounded-lg text-xl cursor-pointer"
                             >
                                 −
                             </button>

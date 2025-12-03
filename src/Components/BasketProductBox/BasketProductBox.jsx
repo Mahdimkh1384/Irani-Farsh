@@ -100,14 +100,14 @@ export default function BasketProductBox({ quantity, product, token, resetBasket
                 <Image width={160} height={235} className='w-[160px] h-[224px]' src={`https://backend.sajlab.ir/uploads/product/${images[0]}`} alt="basket-carpet" />
             </Link>
             {/* ====================== left section ===================== */}
-            <div className='flex  lg:justify-between flex-col lg:gap-y-3.5 sm:gap-y-5 font-[Rokh-light]'>
+            <div className='flex lg:justify-between flex-col lg:gap-y-3.5 sm:gap-y-5 font-[Rokh-light]'>
                 <h5 className='font-bold lg:text-[20px] sm:text-[16px]'>{title}</h5>
                 <p className='font-[500]'>رنگ : آبی</p>
                 <p className='font-[500]'>شرکت فرش سهند</p>
                 {discount ? (
                     <div className='flex gap-x-6'>
                         <p>قیمت:</p>
-                        <div className='flex gap-x-2'>
+                        <div className='flex gap-x-2 lg:flex-row sm:flex-col'>
                             <h5 className='font-bold'>{((Number(price - discountPrice) * count)).toLocaleString()} تومان </h5>
                             <p className='font-bold text-neutral-400'><s>{(Number(price) * count).toLocaleString()} تومان</s></p>
                         </div>

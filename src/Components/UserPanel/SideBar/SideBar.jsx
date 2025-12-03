@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { FiPlus } from "react-icons/fi";
 import { FaUser, FaRegAddressBook } from "react-icons/fa";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineShoppingCart , MdEdit  } from "react-icons/md";
 import { LuClipboardList } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
 import Link from 'next/link';
@@ -83,8 +83,8 @@ export default function SideBar() {
                 <div className=' relative'>
                     <Image width={140} height={140} className='size-35 rounded-[50%]' src={userInfo.profileImage ? `https://backend.sajlab.ir/uploads/user/${userInfo.profileImage}` : "/images/userIcon.png"} alt="profile" />
                     <input type="file" id='fileInput' hidden onChange={handleUpload} />
-                    <label htmlFor="fileInput" className=' absolute bottom-2 right-3 size-9 rounded-[50%] bg-white flex justify-center items-center hover:cursor-pointer'>
-                        <FiPlus className='text-2xl' />
+                    <label htmlFor="fileInput" className=' absolute bottom-0 right-3 size-9 rounded-[50%] bg-white flex justify-center items-center hover:cursor-pointer'>
+                        {userInfo.profileImage ? <MdEdit className='text-2xl' /> : <FiPlus className='text-2xl' />}
                     </label>
                 </div>
                 {user ? (

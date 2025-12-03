@@ -60,13 +60,13 @@ export default function Header() {
     const userHistoryData = [
         { id: 1, title: "دیدگاه ها و نظرات", shortTitle: "دیدگاه", icon: <TfiCommentAlt />, data: userInfo.commentsCount },
         { id: 2, title: "آدرس ها", shortTitle: "آدرس", icon: <FaRegAddressBook />, data: userInfo.address ? 1 : 0 }, //****** 
-        { id: 3, title: "سفارشات", shortTitle: "سفارش", icon: <TbShoppingBagCheck />, data: userInfo.orders?.length },
+        { id: 3, title: "سفارشات", shortTitle: "سفارش", icon: <TbShoppingBagCheck />, data: userInfo.orders?.length ? userInfo.orders?.length : 0 },
         { id: 4, title: "کل مبلغ سفارشات", shortTitle: "تومان", icon: <BiDollar />, data: allPrice },
     ]
 
     return (
         <>
-            {isShowMobileSidebar && <div ref={menuRef}><MobileSidebar /></div>}
+            {isShowMobileSidebar && <div ref={menuRef}><MobileSidebar setIsMenuOpen={setIsShowMobileSidebar}/></div>}
             <div className=' lg:flex-row sm:flex-col flex justify-between items-center bg-neutral-50 border rounded-[10px] border-neutral-400'>
                 {/* ================= right section ================ */}
                 <div className='lg:p-8 sm:p-5 flex items-center justify-between w-full'>
