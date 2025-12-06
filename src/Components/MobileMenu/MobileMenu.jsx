@@ -37,7 +37,7 @@ export default function MobileMenu({ setIsMenuOpen  , allCategories }) {
                             ))}
                         </ul>}
                     </li>
-                    <Link href="/" className='p-2'>تماس با ما</Link>
+                    <Link href="/call-us" className='p-2'>تماس با ما</Link>
                     <Link href="/about-us" className='p-2'>درباره ما</Link>
                 </ul>
             </div>

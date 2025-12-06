@@ -136,7 +136,7 @@ export default function NavBar() {
                                 ))}
                             </div>
                         </li>
-                        <Link href="/" className='menuHover'>تماس با ما</Link>
+                        <Link href="/call-us" className='menuHover'>تماس با ما</Link>
                         <Link href="/about-us" className='menuHover'>درباره ما</Link>
                     </ul>
                 </div >

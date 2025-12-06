@@ -64,7 +64,7 @@ export default function Slider({ category }) {
                         1024: { slidesPerView: 4, spaceBetween: 20 }
                     }}
                 >
-                    {mainProducts.map(product => (
+                    {mainProducts.slice(0 , 6).map(product => (
                         <SwiperSlide key={product.id}>
                             <ProductBox {...product} />
                         </SwiperSlide>
