@@ -1,7 +1,7 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
-import { FaKey, FaEnvelope } from 'react-icons/fa'
+import { FaKey, FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa'
 import { requiredValidator, minValidator, maxValidator, emailValidator } from '@/validators/rules'
 import Link from 'next/link'
 import { useForm } from '@/Components/hooks/useForm'
@@ -11,6 +11,7 @@ import Input from '../auth/singup/input';
 
 
 export default function Login() {
+    const [isPasswordShow, setIsPasswordShow] = useState(false)
     const [formState, onInputHandler] = useForm({
         email: { value: '', isValid: false },
         password: { value: '', isValid: false }
@@ -71,17 +72,22 @@ export default function Login() {
                         onInputHandler={onInputHandler}
                         Icon={<FaEnvelope />}
                     />
-                    <Input
-                        className="loginInput"
-                        id="password"
-                        value={formState.inputs.password.value}
-                        type="password"
-                        placeholder="رمز عبور"
-                        element="input"
-                        validations={[requiredValidator(), minValidator(8), maxValidator(20)]}
-                        onInputHandler={onInputHandler}
-                        Icon={<FaKey />}
-                    />
+                    <div className='relative w-full flex items-center'>
+                        <Input
+                            className="loginInput"
+                            id="password"
+                            value={formState.inputs.password.value}
+                            type={isPasswordShow ? "text" : "password"}
+                            placeholder="رمز عبور"
+                            element="input"
+                            validations={[requiredValidator(), minValidator(8), maxValidator(20)]}
+                            onInputHandler={onInputHandler}
+                            Icon={<FaKey />}
+                        />
+                        <div onClick={() => {setIsPasswordShow (!isPasswordShow)}} className="absolute left-3 cursor-pointer transition-all duration-150 active:scale-95 text-xl text-neutral-600"> 
+                            {isPasswordShow ? <FaEye/> : <FaEyeSlash />}
+                        </div>
+                    </div>
                     <button
                         type="submit"
                         disabled={!formState.isFormValid}

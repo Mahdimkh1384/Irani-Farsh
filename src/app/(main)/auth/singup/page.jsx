@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Input from "./input";
 import { FaUser, FaEnvelope, FaKey, FaPhone } from "react-icons/fa";
@@ -13,8 +13,11 @@ import {
 import { useForm } from "@/Components/hooks/useForm";
 import { saveAuthData } from "@/utils/auth";
 import toast from 'react-hot-toast';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 export default function Register() {
+    const [isPasswordShow, setIsPasswordShow] = useState(false)
     const [formState, onInputHandler] = useForm(
         {
             name: { value: "", isValid: false },
@@ -49,13 +52,14 @@ export default function Register() {
 
             if (res.ok && data.success) {
                 localStorage.setItem("signupSessionId", data.sessionId);
-                toast.success('ثبت‌نام موفق، لطفاً کد OTP را وارد کنید');
+                toast.success('ثبت‌نام موفق، لطفاً کد تایید را وارد کنید');
                 setTimeout(() => {
                     window.location.href = "/auth/OTP";
                 }, 800);
             } else {
                 toast.error(data.message || "ثبت‌نام ناموفق بود");
-            }}
+            }
+        }
         catch (err) {
             console.error("❌ خطا در ارتباط با سرور:", err);
             toast.error("مشکل در اتصال به سرور!");
@@ -117,17 +121,22 @@ export default function Register() {
                             onInputHandler={onInputHandler}
                             Icon={<FaPhone />}
                         />
-                        <Input
-                            id="password"
-                            value={formState.inputs.password.value}
-                            className="loginInput"
-                            type="password"
-                            placeholder="رمز عبور"
-                            element="input"
-                            validations={[requiredValidator(), minValidator(8), maxValidator(20)]}
-                            onInputHandler={onInputHandler}
-                            Icon={<FaKey />}
-                        />
+                        <div className="relative w-full flex items-center">
+                            <Input
+                                id="password"
+                                value={formState.inputs.password.value}
+                                className="loginInput"
+                                type={isPasswordShow ? "text" : "password"}
+                                placeholder="رمز عبور"
+                                element="input"
+                                validations={[requiredValidator(), minValidator(8), maxValidator(20)]}
+                                onInputHandler={onInputHandler}
+                                Icon={<FaKey />}
+                            />
+                            <div onClick={() => setIsPasswordShow(!isPasswordShow)} className="absolute left-3 cursor-pointer transition-all duration-150 active:scale-95 text-xl text-neutral-600">
+                                {isPasswordShow ? <FaEye/> : <FaEyeSlash/> }
+                            </div>
+                        </div>
 
                         <button
                             type="submit"
