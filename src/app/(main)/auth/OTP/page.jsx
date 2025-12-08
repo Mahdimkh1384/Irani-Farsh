@@ -157,7 +157,7 @@ export default function OtpPage() {
       <button
         type="button"
         onClick={() => window.history.back()}
-        className="text-gray-500 text-3xl self-end"
+        className="text-gray-500 text-3xl self-end cursor-pointer"
       >
         ←
       </button>
@@ -212,7 +212,7 @@ export default function OtpPage() {
             className={`
               w-full h-14 rounded-2xl text-white font-semibold text-lg
               bg-primary cursor-pointer
-              hover:opacity-90 active:scale-95 transition
+              hover:bg-rose-700 
               ${loading ? "opacity-60 cursor-not-allowed" : ""}
             `}
           >
