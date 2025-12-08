@@ -9,7 +9,7 @@ export default function ProductBox(product) {
     const discountPercent = Number(discount) || 0;
     const discountPrice = (price * discountPercent) / 100;
     return (
-        <div className='py-1 lg:w-[90%] sm:w-[80%] h-[65vh]'>
+        <div className='py-1 lg:w-[90%] sm:w-[80%] h-[67vh]'>
             <div className=' flex flex-col justify-between gap-y-6 w-full h-full p-4 rounded-[12px] border border-neutral-300 transition-all duration-300 hover:scale-[1.01]'>
                 <div className='flex justify-center'>
                     <Image width={255} height={261} className='w-[255.5px] h-[261px]' src={`https://backend.sajlab.ir/uploads/product/${images[0]}`} alt="single-carpet" />

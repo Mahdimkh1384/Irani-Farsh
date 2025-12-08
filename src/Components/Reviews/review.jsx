@@ -70,8 +70,8 @@ export default function Reviews({ productId }) {
             تاکنون هیچ نظری برای این محصول ثبت یا تأیید نشده است. اولین نفر باشید!
           </p>
         )}
-        {comments.map((comment) => (
-          <Coments key={comment.id} comment={comment} />
+        {comments.map((comment, index) => (
+          <Coments key={comment.id || index} comment={comment} />
         ))}
       </div>
     </div>

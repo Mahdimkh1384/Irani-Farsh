@@ -35,6 +35,13 @@ export default function OtpPage() {
     return () => clearInterval(t);
   }, [resendTimer]);
 
+  useEffect(() => {
+    if (otp.every((d) => d !== "") && !autoSubmitRef.current) {
+      autoSubmitRef.current = true;
+      handleSubmit();
+    }
+  }, [otp]);
+
   const formatTimer = (s) => {
     const mm = Math.floor(s / 60).toString().padStart(2, "0");
     const ss = (s % 60).toString().padStart(2, "0");
@@ -43,15 +50,19 @@ export default function OtpPage() {
 
   const handleChange = (value, index) => {
     if (!/^[0-9]?$/.test(value)) return;
+
     setOtp((prev) => {
       const newOtp = [...prev];
       newOtp[index] = value;
+
       if (value !== "" && index < newOtp.length - 1) {
         inputs.current[index + 1]?.focus();
       }
+
       return newOtp;
     });
   };
+
 
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace") {
@@ -153,11 +164,11 @@ export default function OtpPage() {
   };
 
   return (
-    <div className=" flex items-center justify-center flex-col lg:pr-[108px] lg:pl-[108px] sm:pr-3 sm:pl-3">
+    <div className=" flex items-center justify-center flex-col lg:px-[108px] sm:px-3 mt-5">
       <button
         type="button"
         onClick={() => window.history.back()}
-        className="text-gray-500 text-3xl self-end cursor-pointer"
+        className="text-gray-500 text-3xl self-end border border-primary px-2 rounded-[8px] hover:bg-red-50 transition-colors cursor-pointer"
       >
         ←
       </button>
@@ -212,7 +223,7 @@ export default function OtpPage() {
             className={`
               w-full h-14 rounded-2xl text-white font-semibold text-lg
               bg-primary cursor-pointer
-              hover:bg-rose-700 
+              hover:bg-red-700 transition-colors
               ${loading ? "opacity-60 cursor-not-allowed" : ""}
             `}
           >

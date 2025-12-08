@@ -7,9 +7,14 @@ import { getToken } from "@/utils/auth";
 
 export default function PurchaseBox({ product }) {
 
+    const [mounted, setMounted] = useState(false);
     const [qty, setQty] = useState(0);
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState(null);
+
+    useEffect(() => {
+        setMounted(true); // بعد از mount روی کلاینت فعال میشه
+    }, []);
 
     const token = getToken();
     const API_URL = "https://backend.sajlab.ir/api/cart-items";
@@ -46,7 +51,15 @@ export default function PurchaseBox({ product }) {
 
                 const data = await res.json();
 
-                const item = data?.find(
+                const items = Array.isArray(data)
+                    ? data
+                    : Array.isArray(data?.data)
+                        ? data.data
+                        : Array.isArray(data?.items)
+                            ? data.items
+                            : [];
+
+                const item = items.find(
                     (it) =>
                         String(it.productId) === String(productId) ||
                         String(it.product_id) === String(productId)
@@ -107,6 +120,8 @@ export default function PurchaseBox({ product }) {
     const handleAdd = () => updateCart(1);
     const handleIncrease = () => updateCart(1);
     const handleDecreaseOrRemove = () => updateCart(-1);
+
+    if (!mounted) return null;
 
     return (
         <div className="flex flex-col justify-center lg:rounded-lg lg:border-2 border-[#ADADAD] sm:border-t sm:border-b lg:w-[312px] sm:w-[100%] h-[470px] py-[31px] px-[12px]">
@@ -184,24 +199,24 @@ export default function PurchaseBox({ product }) {
                     <span className="text-lg font-bold">{qty}</span>
 
                     {qty === 1 ? (
-                            <button
-                                onClick={handleDecreaseOrRemove}
-                                disabled={loading}
-                                className="p-2 bg-red-200 rounded-lg"
-                            >
-                                <FaTrash size={18} className="text-red-600" />
-                            </button>
-                        ) : (
-                            <button
-                                onClick={handleDecreaseOrRemove}
-                                disabled={loading}
-                                className="p-2 bg-gray-300 rounded-lg text-xl cursor-pointer"
-                            >
-                                −
-                            </button>
-                        )}
-                    </div>
-                )
+                        <button
+                            onClick={handleDecreaseOrRemove}
+                            disabled={loading}
+                            className="p-2 bg-red-200 rounded-lg"
+                        >
+                            <FaTrash size={18} className="text-red-600" />
+                        </button>
+                    ) : (
+                        <button
+                            onClick={handleDecreaseOrRemove}
+                            disabled={loading}
+                            className="p-2 bg-gray-300 rounded-lg text-xl cursor-pointer"
+                        >
+                            −
+                        </button>
+                    )}
+                </div>
+            )
             }
         </div >
     );
