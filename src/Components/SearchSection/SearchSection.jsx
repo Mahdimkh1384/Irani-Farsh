@@ -83,7 +83,7 @@ export default function SearchSection() {
         <>
             {loading ? (
                 // 🔹 حالت لودر (Skeleton)
-                <div className="flex gap-6 justify-between overflow-x-auto mt-5">
+                <div className="flex gap-6 lg:flex-row sm:flex-col justify-between items-center overflow-x-auto mt-5">
                     {Array.from({ length: 4 }).map((_, i) => (
                         <div key={i} className='flex flex-col justify-center gap-y-6 w-[287.5px] h-[493px] p-4 rounded-[12px] border border-neutral-300 flex-shrink-0'>
                             <Skeleton height={261} width={255} borderRadius={12} />

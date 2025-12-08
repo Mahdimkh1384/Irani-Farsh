@@ -3,6 +3,7 @@ import { LiaTelegram } from "react-icons/lia";
 import { PiInstagramLogoLight } from "react-icons/pi";
 import { FaLinkedin } from "react-icons/fa";
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 export default function Footer() {
@@ -21,7 +22,7 @@ export default function Footer() {
                             <PiInstagramLogoLight className='hover:cursor-pointer' />
                         </div>
                     </div>
-                    <img src="/images/enamad.png" alt="enamad" />
+                    <Image width={100} height={100} src="/images/enamad.png" alt="enamad" />
                 </div>
             </div>
             {/* ===================== left section =================== */}

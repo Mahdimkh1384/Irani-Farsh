@@ -89,7 +89,7 @@ export default function NavBar() {
                     </div>
 
                     {/* ========================= left section ======================== */}
-                    <div className='flex justify-between items-center gap-4'>
+                    <div className='flex justify-between items-center gap-4 mr-8'>
                         <Link href="/basket" className='btn size-12 text-2xl'>
                             <MdOutlineShoppingCart />
                         </Link>

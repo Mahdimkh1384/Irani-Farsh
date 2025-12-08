@@ -50,7 +50,7 @@ export default function BasketPage() {
     if (loading) {
         return (
             <div className='flex justify-between lg:items-start sm:items-center lg:flex-row sm:flex-col lg:pr-[108px] lg:pl-[108px] mt-10'>
-                <div className='lg:w-[832px] sm:w-[360px] flex flex-col gap-y-7 lg:border border-neutral-400 lg:rounded-[12px] pt-9 pr-6 pl-6 pb-9'>
+                <div className='lg:w-[60%] sm:w-[360px] flex flex-col gap-y-7 lg:border border-neutral-400 lg:rounded-[12px] pt-9 pr-6 pl-6 pb-9'>
                     <Skeleton width={150} height={35} />
                     <div className='w-full flex gap-x-4'>
                         <Skeleton width={160} height={224} />
@@ -63,7 +63,7 @@ export default function BasketPage() {
                         </div>
                     </div>
                 </div>
-                <div className='lg:w-[312px] sm:w-full h-[275px] flex flex-col gap-y-6 lg:border sm:border-y border-neutral-400 lg:rounded-[8px] px-[19px] py-[26px] items-center '>
+                <div className='lg:w-[25%] sm:w-full h-[275px] flex flex-col gap-y-6 lg:border sm:border-y border-neutral-400 lg:rounded-[8px] px-[19px] py-[26px] items-center '>
                     <div className='flex justify-between w-full'>
                         <Skeleton width={120} height={35} />
                         <Skeleton width={120} height={35} />
@@ -90,7 +90,7 @@ export default function BasketPage() {
                         {/* ========================== right section =========================== */}
                         {basketItems && basketItems.length > 0 ? (
                             <>
-                                <div className='lg:w-[832px] sm:w-[360px] flex flex-col gap-y-14 lg:border border-neutral-400 lg:rounded-[12px] pt-9 pr-6 pl-6 pb-9'>
+                                <div className='lg:w-[60%] sm:w-[360px] flex flex-col gap-y-14 lg:border border-neutral-400 lg:rounded-[12px] pt-9 pr-6 pl-6 pb-9'>
                                     <h6>سبد خرید شما</h6>
                                     {basketItems.map(item => (
                                         <BasketProductBox
@@ -105,13 +105,13 @@ export default function BasketPage() {
                                 {/* =========================== left section =========================== */}
                                 <AllBasketResult data={basketItems} token={token} resetBasket={getBasketItems} />
                             </>
-                        ) : <div className='flex w-full lg:h-[130px] sm:h-[200px] justify-center items-end'>
+                        ) : <div className='flex w-full lg:h-[27vh] sm:h-[200px] justify-center items-center'>
                             <h1 className='lg:text-2xl sm:text-xl'>سبد خرید شما خالی است!</h1>
                         </div>}
                     </div>
                 </div>
             ) : (
-                <div className='flex lg:h-[150px] sm:h-[200px] justify-center items-end '>
+                <div className='flex lg:h-[31vh] sm:h-[200px] justify-center items-center '>
                     <h1 className='lg:text-2xl sm:text-xl'>برای مشاهده سبد خرید خود ابتدا باید <a href='/login' className='text-primary'> وارد </a>  شوید!</h1>
                 </div>
             )}

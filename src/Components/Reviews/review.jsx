@@ -37,7 +37,7 @@ export default function Reviews({ productId }) {
 
   return (
     <div className="lg:pr-[108px] lg:pl-[108px] pt-20">
-      <h1 className="text-3xl font-bold text-gray-800 mb-10">
+      <h1 className="text-3xl font-bold text-gray-800 mb-10 px-3">
         دیدگاه‌ها و امتیازها
       </h1>
 
@@ -48,7 +48,7 @@ export default function Reviews({ productId }) {
         onCommentSubmitted={loadComments}
       />
 
-      <h2 className="text-2xl font-bold mt-12 mb-6 border-b pb-2 text-gray-800">
+      <h2 className="text-2xl font-bold mt-12 mb-6 border-b pb-2 text-gray-800 px-3">
         نظرات کاربران ({isLoading ? '...' : comments.length})
       </h2>
 

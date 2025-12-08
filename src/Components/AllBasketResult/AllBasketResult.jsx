@@ -48,7 +48,7 @@ export default function AllBasketResult({ data, token, resetBasket }) {
 
     }
     return (
-        <div className='lg:w-[312px] sm:w-full h-[275px] flex flex-col gap-y-8 lg:border sm:border-y border-neutral-400 lg:rounded-[8px] px-[19px] py-[26px]'>
+        <div className='lg:w-[25%] sm:w-full h-[275px] flex flex-col gap-y-8 lg:border sm:border-y border-neutral-400 lg:rounded-[8px] px-[19px] py-[26px]'>
             {/* ================== details ================== */}
             <div className='flex justify-between'>
                 <p className='text-[16px] font-[Rokh-light] font-bold select-none'>تعداد فرش :</p>
@@ -62,7 +62,9 @@ export default function AllBasketResult({ data, token, resetBasket }) {
                 <p className='text-[16px] font-[Rokh-light] font-bold select-none'>ارسال توسط :</p>
                 <p className='text-[20px] select-none'>ایرانی فرش</p>
             </div>
-            <button onClick={buyProductsHandler} className='lg:w-[274px] sm:w-[350px] h-10 rounded-[12px] px-2 text-white bg-primary hover:bg-red-700 hover:cursor-pointer  select-none'>{loading ? "در حال پردازش..." : "سفارش و خرید"}</button>
+            <div className='flex justify-center'>
+                <button onClick={buyProductsHandler} className='lg:w-[274px] sm:w-[350px] h-10 rounded-[12px] px-2 text-white bg-primary hover:bg-red-700 hover:cursor-pointer  select-none'>{loading ? "در حال پردازش..." : "سفارش و خرید"}</button>
+            </div>
         </div>
     )
 }

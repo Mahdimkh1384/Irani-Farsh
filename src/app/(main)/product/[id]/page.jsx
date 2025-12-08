@@ -56,7 +56,7 @@ export default async function Products({ params }) {
             </div>
 
             <div className='lg:pr-[108px] lg:pl-[108px] pt-20 flex flex-col gap-10'>
-                <h1 className='text-2xl'>
+                <h1 className='text-2xl px-3'>
                     فرش های مشابه
                 </h1>
             </div>
