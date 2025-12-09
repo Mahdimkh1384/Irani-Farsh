@@ -4,7 +4,7 @@ import ProductGallery from '@/Components/ProductsGallery/productgallery';
 import Breadcrumb from '@/Components/Breadcrumb/Breadcrumb';
 import ProductSpecs from '@/Components/ProductSpecs/ProductSpecs';
 import PurchaseBox from '@/Components/PurchaseBox/PurchaseBox';
-import SimilarProductsSlider from '@/Components/SimilarProductsSlider/similarProductsSlider';
+import SimilarProductsSlider from '@/Components/SimilarProductsSlider/SimilarProductsSlider';
 import Reviews from '@/Components/Reviews/review';
 import { cookies } from 'next/headers';
 
