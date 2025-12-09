@@ -44,6 +44,7 @@ export default function Register() {
             const res = await fetch("https://backend.sajlab.ir/api/users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify(userData),
             });
 
@@ -134,7 +135,7 @@ export default function Register() {
                                 Icon={<FaKey />}
                             />
                             <div onClick={() => setIsPasswordShow(!isPasswordShow)} className="absolute left-3 cursor-pointer transition-all duration-150 active:scale-95 text-xl text-neutral-600">
-                                {isPasswordShow ? <FaEye/> : <FaEyeSlash/> }
+                                {isPasswordShow ? <FaEye /> : <FaEyeSlash />}
                             </div>
                         </div>
 
