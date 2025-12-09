@@ -44,7 +44,7 @@ export default function CustomerClubInput() {
                     <FaEnvelope className={`absolute top-[20px] right-1.5 text-neutral-500 ${isInputValid ? " group-focus-within:text-green-500" : " group-focus-within:text-primary"}`} />
                     <input type="text" value={input} className={`w-full h-10 rounded-[8px] border font-[Rokh-light] border-neutral-400 p-7 outline-0 ${isInputValid ? " focus:border-green-500 focus:placeholder:text-green-500" : " focus:border-primary focus:placeholder:text-primary"}`} placeholder='ایمیل' onChange={e => changeInputHandler(e.target.value)} />
                 </div>
-                <button onClick={registrationEmail} className='w-full h-[40px] text-white bg-primary rounded-[8px] font-[Rokh-light] font-bold hover:bg-red-700 hover:cursor-pointer'>ثبت</button>
+                <button onClick={registrationEmail} className='w-full h-[40px] text-white bg-primary rounded-[8px] font-[Rokh-light] font-bold hover:bg-red-700 transition-colors hover:cursor-pointer'>ثبت</button>
             </div>
         </>
     )

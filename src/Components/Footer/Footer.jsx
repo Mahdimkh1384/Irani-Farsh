@@ -39,17 +39,16 @@ export default function Footer() {
                         <tr>
                             <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/product/4">فرش باغ گل سبز</Link></td>
                             <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/categories/new-carpet">فرش های جدید</Link></td>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/call-us">تماس با ما</Link></td>
+                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/about-us">درباره ما</Link></td>
                         </tr>
                         <tr>
                             <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/product/7">فرش طرح سلطانی</Link></td>
                             <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/categories/tabriz-handmade-carpet">فرش دستبافت تبریز</Link></td>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/about">درباره ما</Link></td>
+                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/customer-club">باشگاه مشتریان</Link></td>
                         </tr>
                         <tr>
                             <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/product/11">فرش رنگی ابریشم</Link></td>
                             <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/categories/machine-made-rug">قالیچه ماشینی</Link></td>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/customer-club">باشگاه مشتریان</Link></td>
                         </tr>
                     </tbody>
                 </table>

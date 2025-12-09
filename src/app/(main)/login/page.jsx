@@ -38,7 +38,7 @@ export default function Login() {
             if (res.ok && data.success && data.sajy) {
                 saveAuthData(data.sajy, data.user);
                 document.cookie = `sajy=${data.sajy}; path=/;sameSite=lax`;
-                toast.success('ورود با موفقیت انجام شد 🎉');
+                toast.success('ورود با موفقیت انجام شد ');
                 setTimeout(() => {
                     window.location.href = "/";
                 }, 1500);

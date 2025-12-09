@@ -43,7 +43,7 @@ export default function CommentForm({ productId, userToken, onCommentSubmitted }
       await postComment(token, commentText, productId, rating);
 
       // 🚫 حذف alert — فقط toast استفاده می‌کنیم
-      toast.success("✅ نظر شما با موفقیت ثبت شد و در انتظار تأیید ادمین است.", {
+      toast.success(" نظر شما با موفقیت ثبت شد و در انتظار تأیید ادمین است.", {
         duration: 5000,
       });
 
