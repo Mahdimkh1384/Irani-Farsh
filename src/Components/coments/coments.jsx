@@ -12,9 +12,9 @@ import { FaStar } from "react-icons/fa";
  *   rating?: number,
  *   comment?: string,
  *   created_at?: string
- * }}} props 
+ * }}} props
  */
-const BASE_URL = "https://backend.sajlab.ir";
+const BASE_URL = "https://api.iranifarsh.neofy.ir";
 
 export default function Coments({ comment }) {
   const firstName = comment?.user?.firstName || "کاربر مهمان";

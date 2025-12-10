@@ -67,7 +67,7 @@ export default function Page() {
                                         <Image
                                             width={40}
                                             height={40}
-                                            src={`https://backend.sajlab.ir/uploads/product/${item.product.images[0]}`}
+                                            src={`https://api.iranifarsh.neofy.ir/uploads/product/${item.product.images[0]}`}
                                             className="w-full h-full object-cover"
                                             alt="order-picture"
                                         />
