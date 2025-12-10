@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { FiPlus } from "react-icons/fi";
 import { FaUser, FaRegAddressBook } from "react-icons/fa";
-import { MdOutlineShoppingCart , MdEdit  } from "react-icons/md";
+import { MdOutlineShoppingCart, MdEdit } from "react-icons/md";
 import { LuClipboardList } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
 import Link from 'next/link';
@@ -17,7 +17,7 @@ import Image from 'next/image';
 
 export default function SideBar() {
 
-    const { userInfo, getUserInfo , token } = useContext(UserContext);
+    const { userInfo, getUserInfo, token } = useContext(UserContext);
     const pathname = usePathname();
     const [user, setUser] = useState(null)
 
@@ -58,7 +58,7 @@ export default function SideBar() {
         formData.append("image", file);
 
         try {
-            const res = await fetch("https://backend.sajlab.ir/api/users/profileImage", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/users/profileImage", {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,

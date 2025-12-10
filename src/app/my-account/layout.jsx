@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   const token = getToken()
 
   const getUserInfo = async () => {
-    const res = await fetch("https://backend.sajlab.ir/api/users/info", {
+    const res = await fetch("https://api.iranifarsh.neofy.ir/users/info", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     })
 
     const data = await res.json()
-    
+
 
     setUserInfo(data.result)
   }

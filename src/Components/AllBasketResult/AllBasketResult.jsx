@@ -29,7 +29,7 @@ export default function AllBasketResult({ data, token, resetBasket }) {
     const buyProductsHandler = async () => {
         try {
             setLoading(true)
-            const res = await fetch("https://backend.sajlab.ir/api/cart-items/order", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/cart-items/order", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

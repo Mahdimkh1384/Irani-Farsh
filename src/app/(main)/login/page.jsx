@@ -26,7 +26,7 @@ export default function Login() {
         };
 
         try {
-            const res = await fetch("https://backend.sajlab.ir/api/users/login", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(loginData)
@@ -84,8 +84,8 @@ export default function Login() {
                             onInputHandler={onInputHandler}
                             Icon={<FaKey />}
                         />
-                        <div onClick={() => {setIsPasswordShow (!isPasswordShow)}} className="absolute left-3 cursor-pointer transition-all duration-150 active:scale-95 text-xl text-neutral-600"> 
-                            {isPasswordShow ? <FaEye/> : <FaEyeSlash />}
+                        <div onClick={() => { setIsPasswordShow(!isPasswordShow) }} className="absolute left-3 cursor-pointer transition-all duration-150 active:scale-95 text-xl text-neutral-600">
+                            {isPasswordShow ? <FaEye /> : <FaEyeSlash />}
                         </div>
                     </div>
                     <button

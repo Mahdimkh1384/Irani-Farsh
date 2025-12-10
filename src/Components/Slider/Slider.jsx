@@ -23,7 +23,7 @@ export default function Slider({ category }) {
     const getProducts = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`https://backend.sajlab.ir/api/categories/${category}`);
+            const res = await fetch(`https://api.iranifarsh.neofy.ir/categories/${category}`);
             const data = await res.json();
             setMainProducts(data.data.products || []);
         } catch (error) {
@@ -64,7 +64,7 @@ export default function Slider({ category }) {
                         1024: { slidesPerView: 4, spaceBetween: 20 }
                     }}
                 >
-                    {mainProducts.slice(0 , 6).map(product => (
+                    {mainProducts.slice(0, 6).map(product => (
                         <SwiperSlide key={product.id}>
                             <ProductBox {...product} />
                         </SwiperSlide>

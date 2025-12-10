@@ -1,4 +1,4 @@
-const BASE_URL = "https://backend.sajlab.ir/api";
+const BASE_URL = "https://api.iranifarsh.neofy.ir";
 
 /**
  * دریافت کامنت‌های تایید‌شده از طریق API محصول
@@ -36,7 +36,7 @@ export async function postComment(token, commentText, productId, rating) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      product: Number(productId), 
+      product: Number(productId),
       content: commentText,
       rating: rating,
     }),

@@ -25,7 +25,7 @@ export default function BasketProductBox({ quantity, product, token, resetBasket
 
     const updateQuantity = async (newCount) => {
         try {
-            const res = await fetch("https://backend.sajlab.ir/api/cart-items", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/cart-items", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export default function BasketProductBox({ quantity, product, token, resetBasket
 
     const removeItem = async () => {
         try {
-            const res = await fetch("https://backend.sajlab.ir/api/cart-items", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/cart-items", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

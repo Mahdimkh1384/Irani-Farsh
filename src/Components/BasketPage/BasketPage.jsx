@@ -15,7 +15,7 @@ export default function BasketPage() {
 
     const getBasketItems = async () => {
         try {
-            const res = await fetch("https://backend.sajlab.ir/api/users/info", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/users/info", {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,

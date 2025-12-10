@@ -31,7 +31,7 @@ export default function SearchSection() {
         const getSearchedProducts = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`https://backend.sajlab.ir/api/products/search/${slug}`)
+                const res = await fetch(`https://api.iranifarsh.neofy.ir/products/search/${slug}`)
                 const data = await res.json()
                 console.log(data.data);
                 setSearchedProduct(data.data) || []

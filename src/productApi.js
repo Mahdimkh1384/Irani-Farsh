@@ -1,4 +1,4 @@
-const PRODUCT_API_ENDPOINT = 'https://backend.sajlab.ir/api/products';
+const PRODUCT_API_ENDPOINT = 'https://api.iranifarsh.neofy.ir/products';
 
 /**
  * @param {string} productId - آیدی محصول

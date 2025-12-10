@@ -41,7 +41,7 @@ export default function Register() {
         };
 
         try {
-            const res = await fetch("https://backend.sajlab.ir/api/users/register", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",

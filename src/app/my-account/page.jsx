@@ -46,7 +46,7 @@ export default function UserPanel() {
         if (Object.keys(validData).length > 0) {
             setLoading(true)
 
-            const res = await fetch("https://backend.sajlab.ir/api/users", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/users", {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,

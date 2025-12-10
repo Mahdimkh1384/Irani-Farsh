@@ -1,5 +1,5 @@
 "use client"
-import React , {useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { FiPlus } from "react-icons/fi";
 import { FaUser, FaRegAddressBook } from "react-icons/fa";
 import { MdOutlineShoppingCart, MdEdit } from "react-icons/md";
@@ -12,7 +12,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../../../Contexts/UserContext';
 import Image from 'next/image';
 
-export default function MobileSidebar({setIsMenuOpen}) {
+export default function MobileSidebar({ setIsMenuOpen }) {
 
     const { userInfo, getUserInfo, token } = useContext(UserContext);
 
@@ -46,7 +46,7 @@ export default function MobileSidebar({setIsMenuOpen}) {
         formData.append("image", file);
 
         try {
-            const res = await fetch("https://backend.sajlab.ir/api/users/profileImage", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/users/profileImage", {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,

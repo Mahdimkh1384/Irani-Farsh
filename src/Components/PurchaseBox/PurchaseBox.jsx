@@ -17,7 +17,7 @@ export default function PurchaseBox({ product }) {
     }, []);
 
     const token = getToken();
-    const API_URL = "https://backend.sajlab.ir/api/cart-items";
+    const API_URL = "https://api.iranifarsh.neofy.ir/cart-items";
     const productId = product?._id ?? product?.id;
 
     const status = product?.rating || "متوسط";

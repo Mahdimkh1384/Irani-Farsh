@@ -28,31 +28,31 @@ export default function AddressPage() {
 
     const fetchAddresses = async () => {
         try {
-            const res = await fetch("https://backend.sajlab.ir/api/users/info", {
+            const res = await fetch("https://api.iranifarsh.neofy.ir/users/info", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 }
             });
-    
+
             const data = await res.json();
             console.log("Raw backend data:", data);
-    
+
             const addressesWithId = ((data.result && data.result.address) || []).map((addr, index) => ({
                 id: addr.id || index,
                 ...addr
             }));
-    
+
             console.log("Processed addresses:", addressesWithId);
             setAddresses(addressesWithId);
-    
+
         } catch (error) {
             console.log("get addresses error:", error);
         }
     };
-    
-    
+
+
 
     useEffect(() => {
         fetchAddresses();
@@ -81,7 +81,7 @@ export default function AddressPage() {
 
         try {
             const updated = [...addresses, newAddress];
-            await fetch("https://backend.sajlab.ir/api/users", {
+            await fetch("https://api.iranifarsh.neofy.ir/users", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export default function AddressPage() {
     const handleDelete = async (id) => {
         try {
             const filtered = addresses.filter(addr => addr.id !== id);
-            await fetch("https://backend.sajlab.ir/api/users", {
+            await fetch("https://api.iranifarsh.neofy.ir/users", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

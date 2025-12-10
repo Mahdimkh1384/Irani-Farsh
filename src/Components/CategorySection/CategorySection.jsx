@@ -10,7 +10,7 @@ export default function categories() {
     const [isLoading, setIsLoading] = useState(true)
 
     const getCategories = async () => {
-        const res = await fetch("https://backend.sajlab.ir/api/categories")
+        const res = await fetch("https://api.iranifarsh.neofy.ir/categories")
         const data = await res.json()
         if (res.status === 200) {
             setAllCategories(data.data)
