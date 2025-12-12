@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export default function Footer() {
     return (
-        <div className='flex lg:flex-row sm:flex-col-reverse gap-10 justify-between lg:h-[352px] sm:h-[514px] bg-neutral-100 lg:mt-30 sm:mt-50 lg:pr-[108px] lg:pl-[108px] rounded-t-[10%]'>
+        <div className='flex lg:flex-row sm:flex-col-reverse gap-10 justify-between lg:h-[352px] sm:h-[514px] bg-neutral-100 lg:mt-30 sm:mt-50 lg:pr-[108px] lg:pl-[108px] rounded-t-[50px]'>
             {/* ===================== right section =================== */}
             <div className='lg:w-[494px] lg:h-[328px] sm:h-[600px] flex flex-col justify-evenly lg:p-0 sm:pr-7 sm:pl-5'>
                 <Link href="/" className='text-primary lg:text-[24px] sm:text-[18px] font-[500]'>ایرانی فرش </Link>
@@ -26,13 +26,13 @@ export default function Footer() {
                 </div>
             </div>
             {/* ===================== left section =================== */}
-            <div className='lg:w-[600px] lg:h-[328px] sm:w-full sm:h-[178] font-[Rokh-light] font-bold mt-6'>
+            <div className='lg:w-[600px] lg:h-[328px] sm:w-full font-[Rokh-light] font-bold mt-6'>
                 <table className='table-auto w-full border-separate border-spacing-x-8'>
                     <thead>
                         <tr className='text-neutral-700 lg:text-[16px] sm:text-[12px] lg:font-[700] sm:font-[600]'>
-                            <td className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>فرش های پر طرفدار</td>
-                            <td className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>دسته بندی های پر بازدید</td>
-                            <td className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>راه های ارتباطی سریع</td>
+                            <th className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>فرش های پر طرفدار</th>
+                            <th className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>دسته بندی های پر بازدید</th>
+                            <th className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>راه های ارتباطی سریع</th>
                         </tr>
                     </thead>
                     <tbody className='text-neutral-600'>
