@@ -12,7 +12,7 @@ export default function ProductBox(product) {
         <div className='py-1 lg:w-[90%] sm:w-[80%] h-[67vh]'>
             <div className=' flex flex-col justify-between gap-y-6 w-full h-full p-4 rounded-[12px] border border-neutral-300 transition-all duration-300 hover:scale-[1.01]'>
                 <div className='flex justify-center'>
-                    <Image width={255} height={261} className='w-[255.5px] h-[261px]' src={`https://backend.sajlab.ir/uploads/product/${images[0]}`} alt="single-carpet" />
+                    <Image width={255} height={261} className='w-[255.5px] h-[261px]' src={`https://api.iranifarsh.neofy.ir/uploads/product/${images[0]}`} alt="single-carpet" />
                 </div>
                 <div className='flex flex-col gap-y-4'>
                     <p className='font-[Rokh-light] font-bold text-[18px]'>{title}</p>

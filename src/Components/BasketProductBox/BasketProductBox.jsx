@@ -97,7 +97,7 @@ export default function BasketProductBox({ quantity, product, token, resetBasket
         <div className=' sm:relative lg:static lg:w-[507px] lg:h-[226px] sm:w-[312px] sm:h-[310px] flex lg:gap-x-6 sm:gap-6'>
             {/* ====================== right section ===================== */}
             <Link href={`/product/${id}`}>
-                <Image width={160} height={235} className='w-[160px] h-[224px]' src={`https://backend.sajlab.ir/uploads/product/${images[0]}`} alt="basket-carpet" />
+                <Image width={160} height={235} className='w-[160px] h-[224px]' src={`https://api.iranifarsh.neofy.ir/uploads/product/${images[0]}`} alt="basket-carpet" />
             </Link>
             {/* ====================== left section ===================== */}
             <div className='flex lg:justify-between flex-col lg:gap-y-3.5 sm:gap-y-5 font-[Rokh-light]'>

@@ -37,7 +37,6 @@ export default function AddressPage() {
             });
 
             const data = await res.json();
-            console.log("Raw backend data:", data);
 
             const addressesWithId = ((data.result && data.result.address) || []).map((addr, index) => ({
                 id: addr.id || index,
@@ -87,7 +86,7 @@ export default function AddressPage() {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: JSON.stringify({ address: updated }) // نام آرایه مطابق با backend
+                body: JSON.stringify({ address: updated }) 
             });
             await fetchAddresses();
             setOpen(false);

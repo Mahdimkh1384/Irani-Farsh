@@ -61,7 +61,7 @@ export default function CategoryBox({ firstItem, lastItem }) {
             ) : (
                 <div className='flex lg:flex-row sm:flex-col lg:gap-x-6 sm:gap-y-2.5 items-center justify-between lg:pr-[108px] lg:pl-[108px] sm:pr-3 sm:pl-3 mt-25'>
                     <div style={{
-                        backgroundImage: `linear-gradient(to left, rgba(1,48,117,0.6), rgba(0,0,0,0.1)), url(https://backend.sajlab.ir/uploads/category/${allCategory[0]?.image})`,
+                        backgroundImage: `linear-gradient(to left, rgba(1,48,117,0.6), rgba(0,0,0,0.1)), url(https://api.iranifarsh.neofy.ir/uploads/category/${allCategory[0]?.image})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
                     }} className={'flex items-end flex-2 lg:h-[288px] sm:w-[340px] inset-0 sm:bg-bottom lg:bg-center bg-cover rounded-2xl hover:shadow shadow-neutral-700 transition-all'}>
@@ -71,7 +71,7 @@ export default function CategoryBox({ firstItem, lastItem }) {
                         </div>
                     </div>
                     <div style={{
-                        backgroundImage: `linear-gradient(to left, rgba(1,48,117,0.6), rgba(0,0,0,0.1)), url(https://backend.sajlab.ir/uploads/category/${allCategory[1]?.image})`,
+                        backgroundImage: `linear-gradient(to left, rgba(1,48,117,0.6), rgba(0,0,0,0.1)), url(https://api.iranifarsh.neofy.ir/uploads/category/${allCategory[1]?.image})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
                     }} className={'flex items-end flex-2 lg:h-[288px] sm:w-[340px] inset-0 sm:bg-bottom lg:bg-center bg-cover rounded-2xl hover:shadow shadow-neutral-700 transition-all'}>
@@ -82,7 +82,7 @@ export default function CategoryBox({ firstItem, lastItem }) {
                     </div>
                     <div className='flex items-center flex-1/6 flex-col lg:gap-y-6 sm:gap-y-2.5'>
                         <div style={{
-                            backgroundImage: `linear-gradient(to left, rgba(1,48,117,0.6), rgba(0,0,0,0.1)), url(https://backend.sajlab.ir/uploads/category/${allCategory[2]?.image})`,
+                            backgroundImage: `linear-gradient(to left, rgba(1,48,117,0.6), rgba(0,0,0,0.1)), url(https://api.iranifarsh.neofy.ir/uploads/category/${allCategory[2]?.image})`,
                             backgroundPosition: 'center',
                             backgroundSize: 'cover',
                         }} className=' flex items-end lg:w-full h-[132px] sm:w-[340px] inset-0 bg-bottom bg-cover rounded-2xl hover:shadow shadow-neutral-700 transition-all'>
@@ -92,7 +92,7 @@ export default function CategoryBox({ firstItem, lastItem }) {
                             </div>
                         </div>
                         <div style={{
-                            backgroundImage: `linear-gradient(to left, rgba(1,48,117,0.6), rgba(0,0,0,0.1)), url(https://backend.sajlab.ir/uploads/category/${allCategory[3]?.image})`,
+                            backgroundImage: `linear-gradient(to left, rgba(1,48,117,0.6), rgba(0,0,0,0.1)), url(https://api.iranifarsh.neofy.ir/uploads/category/${allCategory[3]?.image})`,
                             backgroundPosition: 'center',
                             backgroundSize: 'cover',
                         }} className=' flex items-end lg:w-full h-[132px] sm:w-[340px] inset-0 bg-bottom bg-cover rounded-2xl hover:shadow shadow-neutral-700 transition-all'>
