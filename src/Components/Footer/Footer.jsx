@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export default function Footer() {
     return (
-        <div className='flex lg:flex-row sm:flex-col-reverse gap-10 justify-between lg:h-[352px] sm:h-[514px] bg-neutral-100 lg:mt-30 sm:mt-50 lg:pr-[108px] lg:pl-[108px] rounded-t-[50px]'>
+        <footer className='flex lg:flex-row sm:flex-col-reverse gap-10 justify-between items-center lg:h-[352px] sm:h-[514px] bg-neutral-100 lg:mt-30 sm:mt-50 lg:pr-[108px] lg:pl-[108px] rounded-t-[50px]'>
             {/* ===================== right section =================== */}
             <div className='lg:w-[494px] lg:h-[328px] sm:h-[600px] flex flex-col justify-evenly lg:p-0 sm:pr-7 sm:pl-5'>
                 <Link href="/" className='text-primary lg:text-[24px] sm:text-[18px] font-[500]'>ایرانی فرش </Link>
@@ -26,33 +26,25 @@ export default function Footer() {
                 </div>
             </div>
             {/* ===================== left section =================== */}
-            <div className='lg:w-[600px] lg:h-[328px] sm:w-full font-[Rokh-light] font-bold mt-6'>
-                <table className='table-auto w-full border-separate border-spacing-x-8'>
-                    <thead>
-                        <tr className='text-neutral-700 lg:text-[16px] sm:text-[12px] lg:font-[700] sm:font-[600]'>
-                            <th className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>فرش های پر طرفدار</th>
-                            <th className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>دسته بندی های پر بازدید</th>
-                            <th className='border-b border-neutral-200 lg:w-[184px] sm:w-[105px] pb-0.5'>راه های ارتباطی سریع</th>
-                        </tr>
-                    </thead>
-                    <tbody className='text-neutral-600'>
-                        <tr>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/product/4">فرش باغ گل سبز</Link></td>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/categories/new-carpet">فرش های جدید</Link></td>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/about-us">درباره ما</Link></td>
-                        </tr>
-                        <tr>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/product/7">فرش طرح سلطانی</Link></td>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/categories/tabriz-handmade-carpet">فرش دستبافت تبریز</Link></td>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/customer-club">باشگاه مشتریان</Link></td>
-                        </tr>
-                        <tr>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/product/11">فرش رنگی ابریشم</Link></td>
-                            <td className='py-3 lg:text-[20px] sm:text-[12px] font-[500]'><Link href="/categories/machine-made-rug">قالیچه ماشینی</Link></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div className='lg:w-[50%] lg:h-[328px] flex justify-evenly sm:w-full font-[Rokh-light] font-bold p-5'>
+                <div className='flex flex-col gap-8'>
+                    <h3 className='border-b border-neutral-200 pb-0.5 text-neutral-700 lg:text-[16px] sm:text-[12px] lg:font-[700] sm:font-[600]'>فرش های پر طرفدار</h3>
+                    <Link href="/product/4" className='footerLink'>فرش باغ گل سبز</Link>
+                    <Link href="/product/7" className='footerLink'>فرش طرح سلطانی </Link>
+                    <Link href="/product/11" className='footerLink'>فرش رنگی ابریشم</Link>
+                </div>
+                <div className='flex flex-col gap-8'>
+                    <h3 className='border-b border-neutral-200 pb-0.5 text-neutral-700 lg:text-[16px] sm:text-[12px] lg:font-[700] sm:font-[600]'>دسته بندی های پر بازدید</h3>
+                    <Link href="/categories/new-carpet" className='footerLink'>فرش های جدید</Link>
+                    <Link href="/categories/tabriz-handmade-carpet" className='footerLink'>فرش دستبافت تبریز  </Link>
+                    <Link href="/categories/machine-made-rug" className='footerLink'>قالیچه ماشینی</Link>
+                </div>
+                <div className='flex flex-col gap-8'>
+                    <h3 className='border-b border-neutral-200 pb-0.5 text-neutral-700 lg:text-[16px] sm:text-[12px] lg:font-[700] sm:font-[600]'>راه های ارتباطی سریع</h3>
+                    <Link href="/about-us" className='footerLink'>درباره ما</Link>
+                    <Link href="/customer-club" className='footerLink'>باشگاه مشتریان</Link>
+                </div>
             </div>
-        </div>
+        </footer>
     )
 }

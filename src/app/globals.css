@@ -50,6 +50,9 @@
     .activeSidebarMenu {
         @apply border-r-3 border-primary text-primary
     }
+    .footerLink{
+        @apply lg:text-[20px] sm:text-[12px] font-[500] text-neutral-600 hover:text-primary transition-colors
+    }
 
 
 }
