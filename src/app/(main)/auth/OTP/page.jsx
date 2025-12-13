@@ -17,7 +17,7 @@ export default function OtpPage() {
   useEffect(() => {
     const session = localStorage.getItem("signupSessionId");
     if (!session) {
-      window.location.href = "/auth/register";
+      window.location.href = "/auth/signup";
     }
   }, []);
 
