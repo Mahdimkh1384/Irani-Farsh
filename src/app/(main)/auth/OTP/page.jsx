@@ -63,7 +63,6 @@ export default function OtpPage() {
     });
   };
 
-
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace") {
       if (otp[index] === "" && index > 0) {
@@ -87,14 +86,16 @@ export default function OtpPage() {
       autoSubmitRef.current = false;
       return;
     }
+
     if (!sessionId) {
-      toast.error("اطلاعات نشست پیدا نشد — دوباره ثبت‌نام کنید");
+      toast.error("اطلاعات نشست پیدا نشد");
       autoSubmitRef.current = false;
       return;
     }
 
     setLoading(true);
     setError(false);
+
     try {
       const res = await fetch("https://api.iranifarsh.neofy.ir/users/register/verify", {
         method: "POST",
@@ -107,6 +108,7 @@ export default function OtpPage() {
 
       if (res.ok && data.success) {
         toast.success("✔ تایید شد");
+
         for (let i = 0; i < otp.length; i++) {
           setTimeout(() => {
             setSuccessIndexes((prev) => {
@@ -116,6 +118,7 @@ export default function OtpPage() {
             });
           }, i * 120);
         }
+
         setTimeout(() => {
           autoSubmitRef.current = false;
           window.location.href = "/dashboard";
@@ -129,7 +132,6 @@ export default function OtpPage() {
         }, 700);
       }
     } catch (err) {
-      console.error(err);
       toast.error("خطا در ارتباط با سرور");
       setError(true);
       setTimeout(() => {
@@ -142,21 +144,19 @@ export default function OtpPage() {
   };
 
   const handleResend = async () => {
-    if (!sessionId) {
-      return;
-    }
+    if (!sessionId) return;
+
     setResendLoading(true);
     try {
-      const res = await fetch("https://api.iranifarsh.neofy.ir/users/register/resend", {
+      await fetch("https://api.iranifarsh.neofy.ir/users/register/resend", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
       });
-      const data = await res.json().catch(() => ({}));
+
       toast.success("کد تایید دوباره ارسال شد ✨");
       setResendTimer(120);
-    } catch (err) {
-      console.error(err);
+    } catch {
       toast.error("خطا در ارسال مجدد");
     } finally {
       setResendLoading(false);
@@ -164,42 +164,36 @@ export default function OtpPage() {
   };
 
   return (
-    <div className=" flex items-center justify-center flex-col lg:px-[108px] sm:px-3 mt-5">
+    <div className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-[108px] mt-5">
       <button
         type="button"
         onClick={() => window.history.back()}
-        className="text-gray-500 text-3xl self-end border border-primary px-2 rounded-[8px] hover:bg-red-50 transition-colors cursor-pointer"
+        className="self-end text-2xl sm:text-3xl border border-primary px-2 rounded-lg hover:bg-red-50"
       >
         ←
       </button>
-      <div>
-        <div className="mt-16">
-          <h2 className="text-4xl font-bold text-primary">کد تایید</h2>
-          <p className="text-gray-500 text-xl mt-2">
-            کد تایید به آدرس ایمیل شما ارسال شد
-          </p>
-        </div>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col items-center mt-10 space-y-10"
-        >
-          <div dir="ltr" className="flex justify-center gap-4">
+
+      <div className="mt-12 sm:mt-16 w-full max-w-md">
+        <h2 className="text-2xl sm:text-4xl font-bold text-primary">کد تایید</h2>
+        <p className="text-gray-500 text-sm sm:text-xl mt-2">
+          کد تایید به آدرس ایمیل شما ارسال شد
+        </p>
+
+        <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8 space-y-8">
+          <div dir="ltr" className="flex justify-center gap-2 sm:gap-4">
             {otp.map((digit, index) => {
-              const baseCls = `
-                w-14 h-14 rounded-xl text-2xl font-bold text-center 
-                border-2 transition-all outline-none
-                focus:ring-2
-              `;
               const isSuccess = successIndexes[index];
               const isError = error;
 
-              const extraCls = isSuccess
-                ? "border-green-500 transform -translate-y-1 scale-105"
-                : isError
-                  ? "border-red-500 animate-otp-shake"
-                  : digit !== ""
-                    ? "border-blue-400 text-gray-800"
-                    : "border-gray-300";
+              const cls = `
+                lg:w-14 lg:h-14 sm:w-11 sm:h-11
+                rounded-xl text-lg lg:text-2xl sm:text-xl font-bold text-center
+                border-2 outline-none transition-all
+                ${isSuccess ? "border-green-500 scale-105 -translate-y-1" : ""}
+                ${isError ? "border-red-500 animate-otp-shake" : ""}
+                ${!isSuccess && !isError && digit !== "" ? "border-blue-400" : ""}
+                ${digit === "" ? "border-gray-300" : ""}
+              `;
 
               return (
                 <input
@@ -211,7 +205,7 @@ export default function OtpPage() {
                   value={digit}
                   onChange={(e) => handleChange(e.target.value, index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
-                  className={`${baseCls} ${extraCls}`}
+                  className={cls}
                 />
               );
             })}
@@ -220,33 +214,26 @@ export default function OtpPage() {
           <button
             type="submit"
             disabled={loading}
-            className={`
-              w-full h-14 rounded-2xl text-white font-semibold text-lg
-              bg-primary cursor-pointer
-              hover:bg-red-700 transition-colors
-              ${loading ? "opacity-60 cursor-not-allowed" : ""}
-            `}
+            className="w-full h-12 sm:h-14 rounded-2xl bg-primary text-white font-semibold text-base sm:text-lg hover:bg-red-700 transition disabled:opacity-60"
           >
-            {loading ? "در حال بررسی" : "تایید"}
+            {loading ? "در حال بررسی..." : "تایید"}
           </button>
+
           {resendTimer > 0 ? (
-            <div className="text-primary text-sm">
-              {formatTimer(resendTimer)}
-            </div>
+            <div className="text-primary text-sm">{formatTimer(resendTimer)}</div>
           ) : (
             <button
               type="button"
               onClick={handleResend}
               disabled={resendLoading}
-              className="text-primary hover: transition text-sm cursor-pointer"
+              className="text-primary text-sm"
             >
-              {resendLoading ? "...در حال ارسال" : "ارسال مجدد"}
+              {resendLoading ? "در حال ارسال..." : "ارسال مجدد"}
             </button>
           )}
         </form>
       </div>
 
-      {/* انیمیشن‌های CSS محلی */}
       <style jsx>{`
         @keyframes otp-shake {
           0% { transform: translateX(0); }

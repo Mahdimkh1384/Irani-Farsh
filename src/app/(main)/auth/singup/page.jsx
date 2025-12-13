@@ -49,20 +49,19 @@ export default function Register() {
             });
 
             const data = await res.json();
-            console.log("📦 پاسخ سرور:", data);
 
             if (res.ok && data.success) {
+                saveAuthData(data.sajy, data.user);
                 localStorage.setItem("signupSessionId", data.sessionId);
                 toast.success('ثبت‌نام موفق، لطفاً کد تایید را وارد کنید');
                 setTimeout(() => {
                     window.location.href = "/auth/OTP";
                 }, 800);
             } else {
-                toast.error(data.message || "ثبت‌نام ناموفق بود");
+                toast.error("ثبت‌نام ناموفق بود");
             }
         }
         catch (err) {
-            console.error("❌ خطا در ارتباط با سرور:", err);
             toast.error("مشکل در اتصال به سرور!");
         }
     };
@@ -70,7 +69,7 @@ export default function Register() {
     return (
         <>
             <div className="flex flex-col md:flex-row justify-center items-center gap-x-20 bg-no-repeat bg-center lg:bg-cover sm:bg-bottom bg-[url('/farsh.png')] md:bg-none lg:mt-15 sm:mt-5">
-                <div className="lg:w-[30%] flex flex-col gap-10 justify-center items-center sm:w-[100%] sm:gap-2 sm:bg-white sm:rounded-t-[20px] sm:pt-[20px]">
+                <div className="lg:w-[30%] flex flex-col gap-10 justify-center items-center sm:w-[100%] sm:gap-2 sm:bg-white sm:rounded-t-[20px] sm:pt-[20px] sm:mt-[150px]">
                     <h1 className="lg:text-4xl text-primary sm:text-4xl mb-3">ایرانی فرش</h1>
                     <h4 className="lg:text-2xl text-primary sm:text-2xl">ثبت نام</h4>
 
@@ -142,7 +141,7 @@ export default function Register() {
                         <button
                             type="submit"
                             disabled={!formState.isFormValid}
-                            className={`lg:w-[100%] h-[56px] rounded-[12px] text-amber-50 font-[Rokh-light] font-bold transition-colors cursor-pointer ${formState.isFormValid
+                            className={`lg:w-[100%] h-[56px] rounded-[12px] text-amber-50 sm:w-[100%] font-[Rokh-light] font-bold transition-colors cursor-pointer ${formState.isFormValid
                                 ? "bg-primary hover:bg-red-700"
                                 : "bg-gray-400 cursor-not-allowed"
                                 }`}

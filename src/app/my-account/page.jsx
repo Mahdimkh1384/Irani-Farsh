@@ -72,8 +72,6 @@ export default function UserPanel() {
                 setLoading(false)
                 toast.success("تغییرات با موفقیت ذخیره شد")
             }
-            console.log(data);
-
         } else if (allEmpty) {
             toast.error("هیچ فیلدی پر نشده است.");
         } else {

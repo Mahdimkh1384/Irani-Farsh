@@ -44,7 +44,6 @@ export async function postComment(token, commentText, productId, rating) {
 
   if (!response.ok) {
     const errorText = await response.text().catch(() => "");
-    console.error("❌ خطا در ارسال نظر:", errorText);
     throw new Error(`ارسال نظر با خطا مواجه شد (${response.status})`);
   }
 

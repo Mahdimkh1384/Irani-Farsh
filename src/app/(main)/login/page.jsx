@@ -33,8 +33,6 @@ export default function Login() {
             });
 
             const data = await res.json();
-            console.log("پاسخ API لاگین:", data);
-
             if (res.ok && data.success && data.sajy) {
                 saveAuthData(data.sajy, data.user);
                 document.cookie = `sajy=${data.sajy}; path=/;sameSite=lax`;
@@ -46,7 +44,6 @@ export default function Login() {
                 toast.error("ایمیل یا رمز عبور اشتباه است.");
             }
         } catch (err) {
-            console.error("❌ خطا در ارتباط با سرور:", err);
             toast.error("مشکل در اتصال به سرور!");
         }
 
