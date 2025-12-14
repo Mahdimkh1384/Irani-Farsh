@@ -15,12 +15,12 @@ export default function OtpPage() {
   const autoSubmitRef = useRef(false);
   const sessionId = typeof window !== "undefined" ? localStorage.getItem("signupSessionId") : null;
 
-  // useEffect(() => {
-  //   const session = localStorage.getItem("signupSessionId");
-  //   if (!session) {
-  //     window.location.href = "/auth/singup";
-  //   }
-  // }, []);
+  useEffect(() => {
+    const session = localStorage.getItem("signupSessionId");
+    if (!session) {
+      window.location.href = "/auth/singup";
+    }
+  }, []);
 
   useEffect(() => {
     if (resendTimer <= 0) return;
