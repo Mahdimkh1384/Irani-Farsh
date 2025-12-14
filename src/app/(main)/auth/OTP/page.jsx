@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
+import { saveAuthData } from '@/utils/auth'
 
 export default function OtpPage() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -14,12 +15,12 @@ export default function OtpPage() {
   const autoSubmitRef = useRef(false);
   const sessionId = typeof window !== "undefined" ? localStorage.getItem("signupSessionId") : null;
 
-  useEffect(() => {
-    const session = localStorage.getItem("signupSessionId");
-    if (!session) {
-      window.location.href = "/auth/signup";
-    }
-  }, []);
+  // useEffect(() => {
+  //   const session = localStorage.getItem("signupSessionId");
+  //   if (!session) {
+  //     window.location.href = "/auth/singup";
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (resendTimer <= 0) return;
@@ -107,6 +108,7 @@ export default function OtpPage() {
       const data = await res.json().catch(() => ({}));
 
       if (res.ok && data.success) {
+        saveAuthData(data.sajy, data.user);
         toast.success("✔ تایید شد");
 
         for (let i = 0; i < otp.length; i++) {
@@ -141,8 +143,9 @@ export default function OtpPage() {
     } finally {
       setLoading(false);
     }
+    
   };
-
+  
   const handleResend = async () => {
     if (!sessionId) return;
 
