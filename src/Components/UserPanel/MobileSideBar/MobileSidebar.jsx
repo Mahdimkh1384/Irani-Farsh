@@ -69,7 +69,7 @@ export default function MobileSidebar({ setIsMenuOpen }) {
             {/* ====================== top section (profile) ========================= */}
             <div className='h-[35%] flex flex-col justify-center items-center gap-y-2 border-b border-neutral-600 bg-[linear-gradient(to_bottom,rgba(255,30,30,0.5),rgba(255,0,0,0.2),rgba(255,255,255,1))]'>
                 <div className=' relative'>
-                    <Image width={140} height={140} className='size-35 rounded-[50%]' src={userInfo.profileImage ? `https://api.iranifarsh.neofy.ir/uploads/user/${userInfo.profileImage}` : "/images/userIcon.png"} alt="profile" />
+                    <Image width={140} height={140} className='size-35 rounded-[50%]' src={userInfo?.profileImage ? `https://api.iranifarsh.neofy.ir/uploads/user/${userInfo.profileImage}` : "/images/userIcon.png"} alt="profile" />
                     <input type="file" id='fileInput' hidden onChange={handleUpload} />
                     <label htmlFor="fileInput" className=' absolute bottom-0 right-3 size-9 rounded-[50%] bg-white flex justify-center items-center hover:cursor-pointer'>
                         {userInfo.profileImage ? <MdEdit className='text-2xl' /> : <FiPlus className='text-2xl' />}
