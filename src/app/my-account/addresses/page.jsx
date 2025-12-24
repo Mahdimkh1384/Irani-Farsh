@@ -43,7 +43,6 @@ export default function AddressPage() {
                 ...addr
             }));
 
-            console.log("Processed addresses:", addressesWithId);
             setAddresses(addressesWithId);
 
         } catch (error) {

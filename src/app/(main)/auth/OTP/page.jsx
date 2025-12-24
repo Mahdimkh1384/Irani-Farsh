@@ -1,10 +1,11 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
 import { saveAuthData } from '@/utils/auth'
+import { useRouter } from "next/navigation";
 
 export default function OtpPage() {
+  const router = useRouter();
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [loading, setLoading] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
@@ -18,7 +19,7 @@ export default function OtpPage() {
   useEffect(() => {
     const session = localStorage.getItem("signupSessionId");
     if (!session) {
-      window.location.href = "/auth/singup";
+      router.replace("/auth/singup");
     }
   }, []);
 
@@ -109,7 +110,7 @@ export default function OtpPage() {
 
       if (res.ok && data.success) {
         saveAuthData(data.sajy, data.user);
-        toast.success("✔ تایید شد");
+        toast.success("تایید شد");
 
         for (let i = 0; i < otp.length; i++) {
           setTimeout(() => {
@@ -123,10 +124,10 @@ export default function OtpPage() {
 
         setTimeout(() => {
           autoSubmitRef.current = false;
-          window.location.href = "/dashboard";
+          router.replace("/");
         }, otp.length * 120 + 400);
       } else {
-        toast.error("کد تایید اشتباه است ❌");
+        toast.error("کد تایید اشتباه است");
         setError(true);
         setTimeout(() => {
           setError(false);
@@ -143,9 +144,9 @@ export default function OtpPage() {
     } finally {
       setLoading(false);
     }
-    
+
   };
-  
+
   const handleResend = async () => {
     if (!sessionId) return;
 

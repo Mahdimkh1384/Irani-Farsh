@@ -102,10 +102,6 @@ export default function PurchaseBox({ product }) {
             });
 
             const data = await res.json();
-            console.log("Cart Data:", data);
-            console.log("Product ID in page:", productId);
-
-            console.log("🟢 پاسخ سرور:", data);
 
             setQty(finalQty);  // مقدار جدید محلی
             setErrorMsg(null);

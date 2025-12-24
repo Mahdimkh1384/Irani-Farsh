@@ -14,9 +14,11 @@ import { useForm } from "@/Components/hooks/useForm";
 import { saveAuthData } from "@/utils/auth";
 import toast from 'react-hot-toast';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 
 export default function Register() {
+    const router = useRouter();
     const [isPasswordShow, setIsPasswordShow] = useState(false)
     const [formState, onInputHandler] = useForm(
         {
@@ -55,7 +57,7 @@ export default function Register() {
                 localStorage.setItem("signupSessionId", data.sessionId);
                 toast.success('ثبت‌نام موفق، لطفاً کد تایید را وارد کنید');
                 setTimeout(() => {
-                    window.location.href = "/auth/OTP";
+                    router.replace("/auth/OTP");
                 }, 800);
             } else {
                 toast.error("ثبت‌نام ناموفق بود");

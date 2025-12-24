@@ -18,7 +18,6 @@ export default async function Products({ params }) {
 
     try {
         productData = await fetchProductData(productId);
-        console.log(productData);
 
     } catch (error) {
         console.error("🚨 خطا در لود محصول:", error);

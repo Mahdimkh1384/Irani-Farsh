@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 export default function RootLayout({ children }) {
     return (
         <html lang="en" dir="rtl">
+            <meta name='theme-color' content='#CB1B1B'/>
             <body>
                 {children}
                 <Toaster position="top-left" reverseOrder={false} />

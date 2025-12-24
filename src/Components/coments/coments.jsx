@@ -29,7 +29,6 @@ export default function Coments({ comment }) {
   const createdAt = comment?.created_at
     ? new Date(comment.created_at).toLocaleDateString("fa-IR")
     : "تازه ثبت شده";
-console.log(comment);
 
   return (
     <div className="border-b border-[#E9EAEE] pb-5 pt-8">

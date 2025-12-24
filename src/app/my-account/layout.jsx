@@ -4,12 +4,12 @@ import Header from "@/Components/UserPanel/Header/Header"
 import SideBar from "@/Components/UserPanel/SideBar/SideBar"
 import { getToken } from "@/utils/auth";
 import { useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({ children }) {
 
+  const router = useRouter();
   const [userInfo, setUserInfo] = useState([])
-
   const token = getToken()
 
   const getUserInfo = async () => {
@@ -22,9 +22,14 @@ export default function RootLayout({ children }) {
 
     const data = await res.json()
 
-
     setUserInfo(data.result)
   }
+
+  useEffect(() => {
+    if (!token) {
+      router.replace('/')
+    }
+  }, [])
 
   useEffect(() => {
     getUserInfo()

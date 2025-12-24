@@ -8,9 +8,11 @@ import { useForm } from '@/Components/hooks/useForm'
 import { saveAuthData } from '@/utils/auth'
 import toast from 'react-hot-toast';
 import Input from '../auth/singup/input';
+import { useRouter } from "next/navigation";
 
 
 export default function Login() {
+    const router = useRouter();
     const [isPasswordShow, setIsPasswordShow] = useState(false)
     const [formState, onInputHandler] = useForm({
         email: { value: '', isValid: false },
@@ -38,7 +40,7 @@ export default function Login() {
                 document.cookie = `sajy=${data.sajy}; path=/;sameSite=lax`;
                 toast.success('ورود با موفقیت انجام شد ');
                 setTimeout(() => {
-                    window.location.href = "/";
+                    router.replace("/");
                 }, 1500);
             } else {
                 toast.error("ایمیل یا رمز عبور اشتباه است.");

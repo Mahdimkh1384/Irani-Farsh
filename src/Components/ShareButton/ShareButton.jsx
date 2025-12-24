@@ -10,7 +10,6 @@ export default function ShareButton() {
           text: "این صفحه رو ببین 👇",
           url: window.location.href,
         });
-        console.log("✅ شیر موفق بود");
       } catch (err) {
         console.log("❌ کاربر کنسل کرد یا خطا:", err);
       }

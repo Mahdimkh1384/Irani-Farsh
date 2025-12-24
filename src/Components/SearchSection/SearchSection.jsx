@@ -33,7 +33,7 @@ export default function SearchSection() {
             try {
                 const res = await fetch(`https://api.iranifarsh.neofy.ir/products/search/${slug}`)
                 const data = await res.json()
-                console.log(data.data);
+
                 setSearchedProduct(data.data) || []
             } catch (err) {
                 console.error(err)
