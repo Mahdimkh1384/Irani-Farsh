@@ -24,7 +24,7 @@ export default function BasketPage() {
             const data = await res.json()
 
             const items = Array.isArray(data.result.cartItems)
-                ? data.result.cartItems
+                ? data.result.cartItems.filter(item => item.quantity > 0)
                 : []
 
             setBasketItems(items)
@@ -95,6 +95,7 @@ export default function BasketPage() {
                                     {basketItems.map(item => (
                                         <BasketProductBox
                                             key={item.id}
+                                            cartItemId={item.id}
                                             {...item}
                                             token={token}
                                             resetBasket={getBasketItems}

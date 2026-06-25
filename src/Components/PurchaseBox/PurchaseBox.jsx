@@ -13,7 +13,7 @@ export default function PurchaseBox({ product }) {
     const [errorMsg, setErrorMsg] = useState(null);
 
     useEffect(() => {
-        setMounted(true); // بعد از mount روی کلاینت فعال میشه
+        setMounted(true);
     }, []);
 
     const token = getToken();
@@ -44,9 +44,7 @@ export default function PurchaseBox({ product }) {
                 setLoading(true);
                 const res = await fetch(API_URL, {
                     method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                    headers: { Authorization: `Bearer ${token}` },
                 });
 
                 const data = await res.json();
@@ -76,7 +74,31 @@ export default function PurchaseBox({ product }) {
         fetchCart();
     }, [token, productId]);
 
-    // ============= ارسال فقط مقدار تغییر (delta) =============
+    // ============= حذف کامل آیتم از سبد =============
+    const removeFromCart = async () => {
+        try {
+            setLoading(true);
+            const res = await fetch(API_URL, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ productId, quantity: 0 }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                setQty(0);
+                setErrorMsg(null);
+            }
+        } catch (err) {
+            setErrorMsg("خطا در ارتباط با سرور");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ============= افزایش/کاهش مقدار =============
     const updateCart = async (delta) => {
         if (!token) {
             setErrorMsg("لطفاً ابتدا وارد حساب شوید.");
@@ -86,24 +108,24 @@ export default function PurchaseBox({ product }) {
         const finalQty = qty + delta;
         if (finalQty < 0) return;
 
+        if (finalQty === 0) {
+            await removeFromCart();
+            return;
+        }
+
         try {
             setLoading(true);
 
-            const res = await fetch(API_URL, {
+            await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify({
-                    productId,
-                    quantity: delta,   // ⬅ فقط تغییر را می‌فرستیم نه کل مقدار
-                }),
+                body: JSON.stringify({ productId, quantity: delta }),
             });
 
-            const data = await res.json();
-
-            setQty(finalQty);  // مقدار جدید محلی
+            setQty(finalQty);
             setErrorMsg(null);
         } catch (err) {
             console.error(err);
@@ -140,13 +162,12 @@ export default function PurchaseBox({ product }) {
                 </div>
             </div>
 
-            {/* قیمت */}
             {discount ? (
                 <div className="flex justify-between mt-6 items-center">
-                    <h1 className="text-xl font-[Rokh-light]  font-bold">قیمت:</h1>
+                    <h1 className="text-xl font-[Rokh-light] font-bold">قیمت:</h1>
                     <div className="flex flex-col">
-                        <p className=" font-[Rokh-light] text-neutral-400 text-[15px]"><s>{price.toLocaleString()} تومان</s></p>
-                        <p className=" font-[Rokh-light] font-bold text-[18px]">{Number(price - discountPrice).toLocaleString()} تومان</p>
+                        <p className="font-[Rokh-light] text-neutral-400 text-[15px]"><s>{price.toLocaleString()} تومان</s></p>
+                        <p className="font-[Rokh-light] font-bold text-[18px]">{Number(price - discountPrice).toLocaleString()} تومان</p>
                     </div>
                     <div className='size-10 bg-primary flex justify-center items-center text-white rounded-xl'>
                         <span>{discount}%</span>
@@ -156,9 +177,8 @@ export default function PurchaseBox({ product }) {
                 <div className="flex justify-between mt-6 font-[Rokh-light] font-bold">
                     <h1 className="text-xl">قیمت:</h1>
                     <h2 className="font-[Rokh-light] font-bold text-[18px]">{price.toLocaleString()} تومان</h2>
-                </div >
-            )
-            }
+                </div>
+            )}
 
             {errorMsg && <p className="text-red-600 text-sm mt-2">{errorMsg}</p>}
 
@@ -183,7 +203,6 @@ export default function PurchaseBox({ product }) {
 
             {token && qty > 0 && (
                 <div className="mt-5 flex justify-between items-center bg-gray-100 p-3 rounded-xl">
-
                     <button
                         onClick={handleIncrease}
                         disabled={loading}
@@ -198,7 +217,7 @@ export default function PurchaseBox({ product }) {
                         <button
                             onClick={handleDecreaseOrRemove}
                             disabled={loading}
-                            className="p-2 bg-red-200 rounded-lg"
+                            className="p-2 bg-red-200 rounded-lg cursor-pointer"
                         >
                             <FaTrash size={18} className="text-red-600" />
                         </button>
@@ -212,8 +231,7 @@ export default function PurchaseBox({ product }) {
                         </button>
                     )}
                 </div>
-            )
-            }
-        </div >
+            )}
+        </div>
     );
 }

@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { MdArrowBackIos } from "react-icons/md";
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { redirect } from 'next/navigation';
-import { getUserData, isAuthenticated } from "@/utils/auth";
+import { getUserData, isAuthenticated, getToken, logout } from "@/utils/auth";
 import NavbarDesktop from '../NavbarDesktop/NavbarDesktop';
 import NavbarMobile from '../NavbarMobile/NavbarMobile';
 
@@ -24,7 +24,6 @@ export default function NavBar() {
     useEffect(() => {
         getCategories();
 
-        // بسته شدن منو وقتی بیرون کلیک میشه
         const handleClickOutside = (event) => {
             if (isShowMobileMenu && menuRef.current && !menuRef.current.contains(event.target)) {
                 setIsShowMobileMenu(false);
@@ -36,25 +35,42 @@ export default function NavBar() {
     }, [isShowMobileMenu]);
 
     useEffect(() => {
-        // وقتی کاربر لاگین یا ثبت‌نام کرد، user رو از localStorage بخون
-        const checkUser = () => {
-            if (isAuthenticated()) {
+        const checkUser = async () => {
+            if (!isAuthenticated()) {
+                setUser(null);
+                return;
+            }
+            try {
+                const token = getToken();
+                const res = await fetch("https://api.iranifarsh.neofy.ir/users/info", {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    const userData = getUserData();
+                    setUser(userData);
+                } else {
+
+                    logout();
+                    document.cookie = "sajy=; path=/; max-age=0";
+                    setUser(null);
+                }
+            } catch {
                 const userData = getUserData();
                 setUser(userData);
-            } else {
-                setUser(null);
             }
         };
 
         checkUser();
 
-        // گوش بده برای تغییر در localStorage (مثلاً بعد از ثبت‌نام)
+        window.addEventListener("authChange", checkUser);
         window.addEventListener("storage", checkUser);
-        return () => window.removeEventListener("storage", checkUser);
+        return () => {
+            window.removeEventListener("authChange", checkUser);
+            window.removeEventListener("storage", checkUser);
+        };
     }, []);
 
     const searchHandler = (event) => {
-
         if (search) {
             if (event.keyCode === 13) {
                 setSearch('')
@@ -81,8 +97,7 @@ export default function NavBar() {
                 <div className="block lg:hidden">
                     <NavbarMobile setIsShowMobileMenu={setIsShowMobileMenu} user={user} search={search} setSearch={setSearch} onSearch={searchBtn} searchHandler={searchHandler} />
                 </div>
-                {/* ========================= menu section ======================== */}
-                < div className='border-b border-neutral-300 pt-2 pb-2 lg:inline sm:hidden' >
+                <div className='border-b border-neutral-300 pt-2 pb-2 lg:inline sm:hidden' >
                     <ul className='flex gap-8 text-[15px] font-bold font-[Rokh-light]'>
                         <Link href="/" className='menuHover'>صفحه اصلی</Link>
                         <li className="relative group menuHover">
@@ -106,8 +121,8 @@ export default function NavBar() {
                         </li>
                         <Link href="/about-us" className='menuHover'>درباره ما</Link>
                     </ul>
-                </div >
-            </div >
+                </div>
+            </div>
         </>
     );
 }

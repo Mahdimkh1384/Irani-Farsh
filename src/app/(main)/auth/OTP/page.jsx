@@ -110,6 +110,7 @@ export default function OtpPage() {
 
       if (res.ok && data.success) {
         saveAuthData(data.sajy, data.user);
+        window.dispatchEvent(new Event("authChange"));
         toast.success("تایید شد");
 
         for (let i = 0; i < otp.length; i++) {

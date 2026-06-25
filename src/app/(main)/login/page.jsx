@@ -37,6 +37,7 @@ export default function Login() {
             const data = await res.json();
             if (res.ok && data.success && data.sajy) {
                 saveAuthData(data.sajy, data.user);
+                window.dispatchEvent(new Event("authChange"));
                 document.cookie = `sajy=${data.sajy}; path=/;sameSite=lax`;
                 toast.success('ورود با موفقیت انجام شد ');
                 setTimeout(() => {

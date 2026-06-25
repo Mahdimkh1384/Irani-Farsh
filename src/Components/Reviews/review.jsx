@@ -12,8 +12,16 @@ export default function Reviews({ productId }) {
   const [loadError, setLoadError] = useState(null);
 
   useEffect(() => {
-    const token = Cookies.get('sajy');
-    setUserToken(token || null);
+    const cookieToken = Cookies.get('sajy');
+    if (cookieToken) {
+      setUserToken(cookieToken);
+      return;
+    }
+    const localToken = typeof window !== 'undefined' ? localStorage.getItem('sajy') : null;
+    if (localToken) {
+      Cookies.set('sajy', localToken, { path: '/', sameSite: 'lax' });
+      setUserToken(localToken);
+    }
   }, []);
 
   const loadComments = async () => {
@@ -41,7 +49,6 @@ export default function Reviews({ productId }) {
         دیدگاه‌ها و امتیازها
       </h1>
 
-      {/* 🔑 حالا توکن به فرم ارسال می‌شه */}
       <CommentForm
         productId={productId}
         userToken={userToken}
