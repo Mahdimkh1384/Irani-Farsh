@@ -1,0 +1,20 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: irani-farsh-web
+    restart: unless-stopped
+    ports:
+      # Host loopback binding per server guide: Project 2 Web = 3011
+      - "127.0.0.1:${PORT:-3011}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
+    external: true

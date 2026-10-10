@@ -37,9 +37,9 @@ export default function Register() {
         const userData = {
             firstName: formState.inputs.name.value,
             lastName: formState.inputs.family.value,
-            email: formState.inputs.email.value,
             password: formState.inputs.password.value,
             phone: formState.inputs.phone.value,
+            ...(formState.inputs.email?.value?.trim() ? { email: formState.inputs.email.value.trim() } : {}),
         };
 
         try {
@@ -60,7 +60,7 @@ export default function Register() {
                     router.replace("/auth/OTP");
                 }, 800);
             } else {
-                toast.error("ثبت‌نام ناموفق بود");
+                toast.error(data.message || "ثبت‌نام ناموفق بود");
             }
         }
         catch (err) {

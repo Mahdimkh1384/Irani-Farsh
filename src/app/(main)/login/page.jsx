@@ -22,8 +22,10 @@ export default function Login() {
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
 
+        const identifier = formState.inputs.email.value.trim();
+        const isEmail = identifier.includes('@');
         const loginData = {
-            email: formState.inputs.email.value,
+            ...(isEmail ? { email: identifier } : { phone: identifier }),
             password: formState.inputs.password.value
         };
 
@@ -44,7 +46,7 @@ export default function Login() {
                     router.replace("/");
                 }, 1500);
             } else {
-                toast.error("ایمیل یا رمز عبور اشتباه است.");
+                toast.error(data.message || "اطلاعات ورود اشتباه است.");
             }
         } catch (err) {
             toast.error("مشکل در اتصال به سرور!");
@@ -65,10 +67,10 @@ export default function Login() {
                         className="loginInput"
                         id="email"
                         value={formState.inputs.email.value}
-                        type="email"
-                        placeholder="ایمیل"
+                        type="text"
+                        placeholder="شماره موبایل یا ایمیل"
                         element="input"
-                        validations={[requiredValidator(), minValidator(10), maxValidator(100), emailValidator()]}
+                        validations={[requiredValidator(), minValidator(10), maxValidator(100)]}
                         onInputHandler={onInputHandler}
                         Icon={<FaEnvelope />}
                     />

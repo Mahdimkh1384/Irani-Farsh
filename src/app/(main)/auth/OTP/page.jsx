@@ -103,7 +103,7 @@ export default function OtpPage() {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ otp: code }),
+        body: JSON.stringify({ otp: code, sessionId }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -157,6 +157,7 @@ export default function OtpPage() {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
       });
 
       toast.success("کد تایید دوباره ارسال شد ✨");
@@ -181,7 +182,7 @@ export default function OtpPage() {
       <div className="mt-12 sm:mt-16 w-full max-w-md">
         <h2 className="text-2xl sm:text-4xl font-bold text-primary">کد تایید</h2>
         <p className="text-gray-500 text-sm sm:text-xl mt-2">
-          کد تایید به آدرس ایمیل شما ارسال شد
+          کد تایید به شماره موبایل شما پیامک شد
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8 space-y-8">
