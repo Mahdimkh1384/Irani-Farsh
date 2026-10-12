@@ -99,7 +99,7 @@ export default function OtpPage() {
     setError(false);
 
     try {
-      const res = await fetch("https://api.iranifarsh.neofy.ir/users/register/verify", {
+      const res = await fetch("https://api-iranifarsh.gawyhub.online/users/register/verify", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -153,7 +153,7 @@ export default function OtpPage() {
 
     setResendLoading(true);
     try {
-      await fetch("https://api.iranifarsh.neofy.ir/users/register/resend", {
+      await fetch("https://api-iranifarsh.gawyhub.online/users/register/resend", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

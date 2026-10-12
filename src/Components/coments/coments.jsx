@@ -14,7 +14,7 @@ import { FaStar } from "react-icons/fa";
  *   created_at?: string
  * }}} props
  */
-const BASE_URL = "https://api.iranifarsh.neofy.ir";
+const BASE_URL = "https://api-iranifarsh.gawyhub.online";
 
 export default function Coments({ comment }) {
   const firstName = comment?.user?.firstName || "کاربر مهمان";

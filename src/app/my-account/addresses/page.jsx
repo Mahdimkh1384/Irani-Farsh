@@ -28,7 +28,7 @@ export default function AddressPage() {
 
     const fetchAddresses = async () => {
         try {
-            const res = await fetch("https://api.iranifarsh.neofy.ir/users/info", {
+            const res = await fetch("https://api-iranifarsh.gawyhub.online/users/info", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export default function AddressPage() {
 
         try {
             const updated = [...addresses, newAddress];
-            await fetch("https://api.iranifarsh.neofy.ir/users", {
+            await fetch("https://api-iranifarsh.gawyhub.online/users", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -105,7 +105,7 @@ export default function AddressPage() {
     const handleDelete = async (id) => {
         try {
             const filtered = addresses.filter(addr => addr.id !== id);
-            await fetch("https://api.iranifarsh.neofy.ir/users", {
+            await fetch("https://api-iranifarsh.gawyhub.online/users", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

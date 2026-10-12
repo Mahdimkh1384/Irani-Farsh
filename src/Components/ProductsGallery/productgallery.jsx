@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function ProductGallery({ product }) {
   const defaultImage = "/images/no-image.png";
-  const baseURL = "https://api.iranifarsh.neofy.ir/uploads/product/";
+  const baseURL = "https://api-iranifarsh.gawyhub.online/uploads/product/";
 
   // 🧩 حالت اولیه mainImage
   const [mainImage, setMainImage] = useState(defaultImage);

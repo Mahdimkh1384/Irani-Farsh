@@ -27,7 +27,7 @@ export default function CategorySectionSlug() {
     const [isMobile, setIsMobile] = useState(false);
 
     const getCategories = async () => {
-        const res = await fetch("https://api.iranifarsh.neofy.ir/categories")
+        const res = await fetch("https://api-iranifarsh.gawyhub.online/categories")
         const data = await res.json()
 
         const filteredCategory = data.data.filter(category => {
@@ -40,7 +40,7 @@ export default function CategorySectionSlug() {
     const getProducts = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`https://api.iranifarsh.neofy.ir/categories/${params.slug}`)
+            const res = await fetch(`https://api-iranifarsh.gawyhub.online/categories/${params.slug}`)
             const data = await res.json()
             setMainProducts(data.data.products)
         } catch (err) {

@@ -5,20 +5,14 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'api.iranifarsh.neofy.ir',
-                pathname: '/uploads/product/**',
+                hostname: 'api-iranifarsh.gawyhub.online',
+                pathname: '/uploads/**',
             },
             {
                 protocol: 'https',
                 hostname: 'api.iranifarsh.neofy.ir',
-                pathname: '/uploads/category/**',
+                pathname: '/uploads/**',
             },
-            {
-                protocol: 'https',
-                hostname: 'api.iranifarsh.neofy.ir',
-                pathname: '/uploads/user/**',
-            },
-
         ],
     }
 };

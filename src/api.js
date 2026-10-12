@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.iranifarsh.neofy.ir";
+const BASE_URL = "https://api-iranifarsh.gawyhub.online";
 
 /**
  * دریافت کامنت‌های تایید‌شده از طریق API محصول

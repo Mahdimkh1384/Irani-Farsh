@@ -1,4 +1,4 @@
-const PRODUCT_API_ENDPOINT = 'https://api.iranifarsh.neofy.ir/products';
+const PRODUCT_API_ENDPOINT = 'https://api-iranifarsh.gawyhub.online/products';
 
 /**
  * @param {string} productId - آیدی محصول

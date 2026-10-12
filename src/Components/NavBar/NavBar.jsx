@@ -16,7 +16,7 @@ export default function NavBar() {
     const [search, setSearch] = useState('')
 
     const getCategories = async () => {
-        const res = await fetch("https://api.iranifarsh.neofy.ir/categories");
+        const res = await fetch("https://api-iranifarsh.gawyhub.online/categories");
         const data = await res.json();
         setAllCategories(data.data);
     };
@@ -42,7 +42,7 @@ export default function NavBar() {
             }
             try {
                 const token = getToken();
-                const res = await fetch("https://api.iranifarsh.neofy.ir/users/info", {
+                const res = await fetch("https://api-iranifarsh.gawyhub.online/users/info", {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 if (res.ok) {

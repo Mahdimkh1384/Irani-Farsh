@@ -30,7 +30,7 @@ export default function Login() {
         };
 
         try {
-            const res = await fetch("https://api.iranifarsh.neofy.ir/users/login", {
+            const res = await fetch("https://api-iranifarsh.gawyhub.online/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(loginData)

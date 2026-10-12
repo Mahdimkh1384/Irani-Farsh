@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       return;
     }
 
-    const res = await fetch("https://api.iranifarsh.neofy.ir/users/info", {
+    const res = await fetch("https://api-iranifarsh.gawyhub.online/users/info", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${currentToken}`,
