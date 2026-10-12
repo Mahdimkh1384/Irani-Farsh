@@ -11,9 +11,6 @@ RUN npm install -g pnpm
 # Copy dependency manifests
 COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
 
-# Allow required native build scripts
-RUN pnpm config set only-built-dependencies "sharp,unrs-resolver"
-
 # Install dependencies
 RUN pnpm install --frozen-lockfile
 
