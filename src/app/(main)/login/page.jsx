@@ -68,7 +68,7 @@ export default function Login() {
                         id="email"
                         value={formState.inputs.email.value}
                         type="text"
-                        placeholder="شماره موبایل یا ایمیل"
+                        placeholder="ایمیل یا شماره موبایل"
                         element="input"
                         validations={[requiredValidator(), minValidator(10), maxValidator(100)]}
                         onInputHandler={onInputHandler}

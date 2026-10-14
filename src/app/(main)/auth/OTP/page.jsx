@@ -160,7 +160,7 @@ export default function OtpPage() {
         body: JSON.stringify({ sessionId }),
       });
 
-      toast.success("کد تایید دوباره ارسال شد ✨");
+      toast.success("کد تایید دوباره به ایمیل شما ارسال شد ✨");
       setResendTimer(120);
     } catch {
       toast.error("خطا در ارسال مجدد");
@@ -182,7 +182,7 @@ export default function OtpPage() {
       <div className="mt-12 sm:mt-16 w-full max-w-md">
         <h2 className="text-2xl sm:text-4xl font-bold text-primary">کد تایید</h2>
         <p className="text-gray-500 text-sm sm:text-xl mt-2">
-          کد تایید به شماره موبایل شما پیامک شد
+          کد تایید به ایمیل شما ارسال شد
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8 space-y-8">

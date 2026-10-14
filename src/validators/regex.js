@@ -1,5 +1,5 @@
 const testEmail = (value) => {
-    const emailPattern = /^[a-z0-9._-]+@gmail\.(com|ir)$/i;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return emailPattern.test(value)
 }
 

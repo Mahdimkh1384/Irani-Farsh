@@ -17,6 +17,13 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 
+// Phone is optional now that email is the primary signup identifier,
+// but if the user does fill it in, it still has to look like a real number.
+const optionalPhoneValidator = (value) => {
+    if (!value || value.trim() === "") return true;
+    return /^(\+98|0)?9\d{9}$/.test(value.trim()) || "شماره موبایل نامعتبر است";
+};
+
 export default function Register() {
     const router = useRouter();
     const [isPasswordShow, setIsPasswordShow] = useState(false)
@@ -26,7 +33,7 @@ export default function Register() {
             family: { value: "", isValid: false },
             email: { value: "", isValid: false },
             password: { value: "", isValid: false },
-            phone: { value: "", isValid: false },
+            phone: { value: "", isValid: true }, // optional field
         },
         false
     );
@@ -38,8 +45,8 @@ export default function Register() {
             firstName: formState.inputs.name.value,
             lastName: formState.inputs.family.value,
             password: formState.inputs.password.value,
-            phone: formState.inputs.phone.value,
-            ...(formState.inputs.email?.value?.trim() ? { email: formState.inputs.email.value.trim() } : {}),
+            email: formState.inputs.email.value.trim(),
+            ...(formState.inputs.phone?.value?.trim() ? { phone: formState.inputs.phone.value.trim() } : {}),
         };
 
         try {
@@ -117,9 +124,9 @@ export default function Register() {
                             value={formState.inputs.phone.value}
                             className="loginInput"
                             type="text"
-                            placeholder="شماره تلفن"
+                            placeholder="شماره تلفن (اختیاری)"
                             element="input"
-                            validations={[requiredValidator(), minValidator(10), maxValidator(11)]}
+                            validations={[optionalPhoneValidator]}
                             onInputHandler={onInputHandler}
                             Icon={<FaPhone />}
                         />
